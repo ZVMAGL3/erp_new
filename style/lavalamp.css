@@ -1,0 +1,57 @@
+.lavaLampWithImage {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 565px;
+	PADDING-TOP: 0px;
+	POSITION: relative;
+	TOP: 0px;
+	HEIGHT: 28px
+	margin-top: 1px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	color:#FFF;
+}
+.lavaLampWithImage LI {
+	FONT-SIZE: 13px; Z-INDEX: 9; FLOAT: left; MARGIN-RIGHT: 2px; FONT-STYLE: italic; LIST-STYLE-TYPE: none; HEIGHT: 28px; color:#FFF;
+}
+.lavaLampWithImage LI A {
+	PADDING-RIGHT: 10px;
+	PADDING-TOP: 5px;
+	DISPLAY: block;
+	PADDING-LEFT: 10px;
+	Z-INDEX: 11;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	COLOR:#06F;
+	LINE-HEIGHT: 28px;
+	PADDING-TOP: 0px;
+	POSITION: relative;
+	HEIGHT: 28px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none;
+	outline: none
+}
+.lavaLampWithImage LI A:hover {
+	COLOR:#FFF;
+	margin-top: 1px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+.lavaLampWithImage LI A:active {
+	COLOR: #ffffff;
+	margin-top: 1px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+.lavaLampWithImage LI.back {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; Z-INDEX: 8; BACKGROUND: url(/images/055.gif)  repeat-x 0px 0px right top; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 9px; PADDING-TOP: 0px; POSITION: absolute; HEIGHT: 31px;COLOR:#FFF;
+}
+.lavaLampWithImage LI.back .left {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN-RIGHT: 0px; PADDING-TOP: 0px; HEIGHT: 31px;COLOR:#FFF;
+}

@@ -1,0 +1,57 @@
+@charset "utf-8";
+*, body, html, a, ul, ul li, li,i {
+	/*通用设置*/
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	text-align: center;
+	vertical-align: middle;
+	list-style: none;
+	border: 0;
+	color: #999;
+	cursor: default;
+	font-size: 12px;
+}
+body {
+	background-color: #333;
+}
+
+a:hover {
+	background-color: #e9e7e7;
+	color: #666;
+}
+a:link, a:visited {
+	text-decoration: none;
+}
+/*menu style*/
+.menuul {
+	width: 80%;
+	vertical-align: middle;	
+	margin-left: 10%;
+	margin-top:15px
+}
+.menuul a{
+	display:block;
+	width: 100%;
+	vertical-align: middle;
+	height: 50px;
+	line-height: 8px;
+	text-align: center;
+	border-radius: 5px;
+	border: 0px solid #000000;
+	margin-bottom: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+}
+
+.menuul a * {
+	vertical-align: middle;
+}
+.menuul a i {
+
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+}
+/*desk end*/
+

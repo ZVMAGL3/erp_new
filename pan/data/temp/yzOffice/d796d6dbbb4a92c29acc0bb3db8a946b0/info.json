@@ -1,0 +1,31 @@
+{
+    "currentStep": 1,
+    "success": 1,
+    "taskUuid": "443327e4ab3f223a599f30c84941e43b",
+    "hideData": [],
+    "steps": [
+        {
+            "name": "upload",
+            "process": "uploadProcess",
+            "status": 2,
+            "result": {
+                "result": 0,
+                "data": "e6941348-b415-4358-983d-ab762ceb425a\/chunyigu推广软文.doc",
+                "message": "转换成功"
+            }
+        },
+        {
+            "name": "convert",
+            "process": "convert",
+            "status": 2,
+            "result": {
+                "result": 0,
+                "data": [
+                    "http:\/\/dcs.yozosoft.com\/view\/2020\/03\/19\/MjAwMzE5NzI1MDA3NzYz.html"
+                ],
+                "message": "转换成功",
+                "type": 0
+            }
+        }
+    ]
+}

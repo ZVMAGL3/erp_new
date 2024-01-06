@@ -1,0 +1,319 @@
+/*左边菜单*/
+/*所有的按钮图片*/
+
+i.fa {
+	background: url(../images/MenuAll.png) -94px -6px;/* 左边距  上边距*/
+	width: 20px;
+	height: 20px;
+	line-height: 100%;
+	display:inline-block;    /*转换为行内*/
+	border: 0px solid #B15B5D;
+	margin: auto;
+	padding: auto
+	
+}
+i.fa-loading {
+	background: url(../MachineV1.0/images/009.gif) 0px 0px;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	
+}                                               /*loading...*/
+i.fa-poweroffclass {
+	background-position: -1px 1px;
+}/*   1-1      退出 大*/
+i.fa-nodata {
+	background-position: -5px -679px;
+}                                               /*  1-3      没有数据*/
+
+i.fa-setclass {
+	background-position: -1px -32px;
+}                                               /*  2-1      设定 大*/
+
+i.fa-textclass {
+	background-position: -1px -67px;
+}                                               /*  3-1      记事本 大*/
+
+i.fa-jiahao {
+	background-position: -93px -72px;
+}                                               /*  3-3      加号 大*/
+
+i.fa-chatclass {
+	background-position: -1px -102px;
+}                                               /*  4-1      聊天 大*/
+
+i.fa-more02 {
+	background-position: -94px -108px;
+	border: 1px;
+}                                               /*  4-1      聊天 大*/
+
+i.fa-helpclass {
+	background-position: -1px -141px;
+}                                               /*  5-1      帮助 大*/
+i.fa-peple {
+	background-position: -94px -147px;
+}                                               /*  5-3      小人图*/
+i.fa-add02 {
+	background-position: -5px -183px;
+}                                               /*  6-1      添加按钮*/
+i.fa-first {
+	background-position: -5px -232px;
+}                                               /*  7-1      首页 */
+i.fa-first-h {
+	background-position: -45px -232px;
+}                                               /*  7-2      首页灰色 */
+i.fa-huis {
+	background-position: -94px -232px;
+}                                               /*  7-3      回收,撤消，返回 */
+i.fa-7-4 {
+	background-position: -141px -232px;
+}                                               /*  7-4      更多 */
+
+i.fa-prev {
+	background-position: -5px -264px;
+}                                               /*  8-1      前一页  */
+i.fa-prev-h {
+	background-position: -45px -264px;
+}                                               /*  8-2      前一面灰  */
+i.fa-8-3 {
+	background-position: -94px -264px;
+}                                               /*  8-3      前一面灰  */
+i.fa-8-4 {
+	background-position: -141px -264px;
+}                                               /*  8-3      更多  */
+
+i.fa-next {
+	background-position: -5px -296px;
+}                                               /*  9-1      下一页  */
+i.fa-next-h {
+	background-position: -45px -296px;
+}                                               /*  9-2      下一页灰 */
+i.fa-xiaoxi {
+	background-position: -94px -295px;
+}                                               /*  9-3      消息*/
+i.fa-last {
+	background-position: -5px -328px;
+}                                               /*  10-1     最后一页*/
+i.fa-last-h {
+	background-position: -45px -328px;
+}                                               /*  10-2     末页灰*/
+i.fa-yaoshi {
+	background-position: -94px -328px;
+}                                               /*  10-3     权限  钥匙*/
+i.fa-line {
+	background-position: -5px -356px;
+}                                               /*  11-1     line */
+i.fa-lock-02 {
+	background-position: -94px -356px;
+}                                               /*  11-3     锁    */
+i.fa-11-4 {
+	background-position: -141px -356px;
+}                                               /*  11-4     叶子    */
+i.fa-print {
+	background-position: -5px -386px;
+}                                               /*  12-1     打印*/
+i.fa-trash {
+	background-position: -45px -386px;
+}                                               /*  12-2     回收站*/
+i.fa-fanhui-02 {
+	background-position: -95px -386px;
+}                                               /*  12-3     返回  */
+i.fa-pdf {
+	background-position: -5px -418px;
+}                                               /*  13-1     pdf */
+i.fa-excel {
+	background-position: -45px -418px;
+}                                               /*  13-2     excel*/
+i.fa-13-3 {
+	background-position: -94px -418px;
+}                                               /*  13-3     部门1 */
+i.fa-13-4 {
+	background-position: -141px -418px;
+}                                               /*  13-4     部门2 */
+
+i.fa-tongji {
+	background-position: -5px -453px;
+}                                               /*  14-1     统计*/
+i.fa-lock {
+	background-position: -45px -453px;
+}                                               /*  14-2     加密*/
+i.fa-14-3 {
+	background-position: -94px -453px;
+}                                               /*  14-3     男职员1*/
+i.fa-14-4 {
+	background-position: -141px -453px;
+}                                               /*  14-4     女职员1*/
+i.fa-edit {
+	background-position: -5px -489px;
+}                                               /*  15-1     编辑(批量)*/
+i.fa-sitting {
+	background-position: -45px -489px;
+}                                               /*  15-2     设定 搬手*/
+i.fa-15-3 {
+	background-position: -94px -489px;
+}                                               /*  15-3     男职员2*/
+i.fa-15-4 {
+	background-position: -141px -489px;
+}                                               /*  15-4     女职员2*/
+i.fa-edit-mini {
+	background-position: -5px -523px;
+}                                               /*  16-1     编辑小的 红*/
+i.fa-edit-mini_h {
+	background-position: -45px -523px;
+}                                               /*  16-2     编辑小的 灰*/
+i.fa-add-mini {
+	background-position: -94px -523px;
+}                                               /*  16-3     添加小*/
+i.fa-mixcloud {
+	background-position: -5px -559px;
+}                                               /*  17-1     共享 */
+i.fa-gou {
+	background-position: -45px -559px;
+}                                               /*  17-2     钩*/
+i.fa-17-3 {
+	background-position: -94px -559px;
+}                                               /*  17-3     叶子*/
+
+i.fa-add {
+	background-position: -5px -595px;
+}                                               /*  18-1     添加 */
+i.fa-del {
+	background-position: -45px -595px;
+}                                               /*  18-2     删除*/
+i.fa-del-h {
+	background-position: -94px -595px;
+}                                               /*  18-3      */
+i.fa-18-4 {
+	background-position: -141px -595px;
+}                                               /*  18-4      百度*/
+i.fa-zhuanyi {
+	background-position: -5px -633px;
+}                                               /*  19-1     转移*/
+i.fa-19-2 {
+	background-position: -45px -633px;
+}                                               /*  19-2     数据库图标 */
+i.fa-19-3 {
+	background-position: -94px -633px;
+}                                               /*  19-3      */
+i.fa-19-4 {
+	background-position: -141px -633px;
+}                                               /*  19-4      */
+i.fa-gantanhao {
+	background-position: -5px -679px;
+}                                               /*  20-1     感叹号 */
+i.fa-data-new {
+	background-position: -45px -678px;
+}                                               /*  20-2     数据库图标 */
+i.fa-20-3 {
+	background-position: -94px -676px;
+}                                               /*  20-3     审核 */
+i.fa-20-4 {
+	background-position: -141px -676px;
+}                                               /*  20-4     批准 */
+
+i.fa-21-1 {
+	background-position: -5px -718px;
+}                                               /*  21-1     mini 复选 */
+i.fa-21-2 {
+	background-position: -45px -718px;
+}                                               /*  21-2     mini 复选选中 */
+i.fa-search {
+	background-position: -94px -718px;
+}                                               /*  21-3     搜索 */
+i.fa-search2 {
+	background-position: -141px -718px;
+}                                               /*  21-4     搜索2 */
+
+i.fa-22-1 {
+	background-position: -5px -748px;
+}                                               /*  22-1     mini 单选*/
+i.fa-22-2 {
+	background-position: -45px -748px;
+}                                               /*  22-2     mini 单选选中*/
+i.fa-sitting-ziduan {
+	background-position: -5px -782px;
+}                                               /*  23-1     字段设定*/
+i.fa-23-3 {
+	background-position: -94px -782px;
+}                                               /*  23-3     簽字*/
+i.fa-23-4 {
+	background-position: -141px -782px;
+}                                               /*  23-4     标准*/
+i.fa-sitting-chilun {
+	background-position: -5px -823px;
+}                                               /*  24-1     设定 齿轮*/
+i.fa-jigou {
+	background-position: -45px -823px;
+}                                               /*  24-2     组织机构*/
+i.fa-24-03 {
+	background-position: -94px -823px;
+}                                               /*  24-3    时间1*/
+i.fa-24-04 {
+	background-position: -141px -823px;
+}                                               /*  24-4    集团图标*/
+i.fa-25-1 {
+	background-position: -5px -863px;
+}                                               /*  25-1     字段表*/
+i.fa-25-02 {
+	background-position: -45px -863px;
+}                                               /*  25-2     字段表*/
+i.fa-25-03 {
+	background-position: -94px -863px;
+}                                               /*  25-3     时间选择*/
+
+i.fa-edit-ul {
+	background-position: -5px -901px;
+}                                               /*  26-1     编辑(题头)*/
+i.fa-shuaxin {
+	background-position: -45px -901px;
+}                                               /*  26-2     刷新*/
+i.fa-sitting-big {
+	background-position: -45px -941px;
+}                                              /*  27-1     设定 大号*/
+
+i.fa-27-3 {
+	background-position: -94px -943px;
+	width: 56px;
+	height: 28px;
+	line-height: 28px;
+	border:0px solid #333;
+}                                               /*  27-3     关闭*/
+
+i.fa-del-mini   {
+	background-position: -5px -989px;
+}                                               /*  28-1     删除mini*/
+i.fa-del-mini_h {
+	background-position: -45px -989px;
+}                                               /*  28-2     删除mini_h*/
+
+i.fa-28-3 {
+	background-position: -94px -986px;
+	width: 56px;
+	height: 28px;
+	line-height: 28px;
+	border:0px solid #333;
+}                                               /*  28-3    打开*/
+
+i.fa-gantan     {
+	background-position: -5px -1027px;
+}                                               /*  29-1     感叹号*/
+i.fa-gantan_h   {
+	background-position: -45px -1027px;
+}                                               /*  29-2     感叹号_h*/
+
+i.fa-30-1     {
+	background-position: -5px -1068px;
+    width: 60px;
+	height: 28px;
+	line-height: 28px;
+}                                               /*  30-1     男*/
+i.fa-30-2   {
+	background-position: -94px -1068px;
+    width: 60px;
+	height: 28px;
+	line-height: 28px;
+}                                               /*  30-2     女*/
+
+i.tishi{
+	margin:3px;
+}                                               /*提示的样式*/

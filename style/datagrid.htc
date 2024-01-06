@@ -1,0 +1,1117 @@
+<public:component lightWeight=false id="datagrid">
+<public:defaults contentEditable=false tabStop=true />
+<public:attach event="oncontentready" onevent="init()" />
+<public:attach event="ondetach" onevent="cleanup()" />
+<public:property name="isDragMove" value="false" />
+<public:property name="isDragWidth" value="false" />
+<public:property name="isSort" value="false" />
+<public:property name="isChangeSize" value="false" />
+<public:property name="fixWidth"/>
+<public:property name="fixHeight"/>
+<public:property name="isFixRow" value="false"/>
+<public:property name="isFixColumn" value="false"/>
+<script language="javascript">
+<!--
+	var oTHead = null;//表头
+	var oTHeadRow = null;//记录表格的第一行
+	var oTBody = null;//表体
+	var iColCount = 0;//列的数量
+	var aColumn = new Array();//存储列的集合
+	
+	var oDragItem = null;//拖动中显示项
+	
+	var iDragCounter = 0;
+	var iDragHeadIndex = -1;//拖拽的列
+	var iDragToHeadIndex = -1;//倒拽到的列
+	var iLastHeadIndex = -1;//最后一列索引
+	
+	var oLine = null;//存储拖拽显示的线条
+	var iDragWidthHeadIndex = -1;//存储线条拖动的列的索引
+	var iPosOffSet = 5;//偏移量
+	var bDragMode = false;//是否正在拖拽
+	var bDragWidth = false;//是否是拖宽
+	var oContainer = null;//表格的DIV容器
+	var sDragContainer = "none";//是否正在拖拽容器
+	
+	//<!----------------------选择功能(变量)----------------------------
+	var sMouseOverBackgroundColor = "white";//鼠标经过行的背景色
+	var sMouseOverBorderColor = "black";//鼠标经过行的边线颜色
+	var oSelectedRows = null;//选种行的集合
+	var oCurRow = null;//鼠标所在的行
+	//----------------------选择功能(变量)---------------------------->
+	//<!--------------------排序功能(变量)----------------------------
+	var sSortNoneImageUrl = null;//没有排序图标
+	var sSortUpImageUrl = null;//升序图标
+	var sSortDownImageUrl = null;//倒序图标
+	
+	var iSelectHeadIndex = -1;//记录点击的列索引
+	var sCurrentSort = "UP";//当前排序状态
+	
+	var iDragWidthClientX = 0;//拖宽列的长度
+	var iHiliteHeadIndex = -1;//醒目索引
+	//----------------------排序功能(变量)---------------------------->
+	//数据初始化
+	function init()
+	{
+		element.isDragMove = element.isDragMove.toLowerCase()=="true" ;//是否可以拖动列到别的地方
+		element.isDragWidth = element.isDragWidth.toLowerCase()=="true" ;//是否可以拖动列以改变列的宽度
+		element.isSort = element.isSort.toLowerCase()=="true" ;//是否可以排序
+		element.isFixRow = element.isFixRow.toLowerCase()=="true";//是否固定第一行
+		element.isFixColumn = element.isFixColumn.toLowerCase()=="true";//是否固定第一列
+		element.isChangeSize = element.isChangeSize.toLowerCase()=="true";//是否可以拖动以改变表格容器大小
+		//将表格放到DIV中
+		oContainer = document.createElement("DIV");
+		oContainer.id="__divdatagrid"
+		oContainer.style.overflow="auto"; 
+		oContainer.style.height = element.fixHeight?element.fixHeight:element.offsetHeight;
+		oContainer.style.width = element.fixWidth?element.fixWidth:element.offsetWidth;
+		oContainer.style.position = "relative"
+		oContainer.style.zIndex = 2999;
+		oContainer.style.visibility = "visible";
+		//得到表格的坐标开始点
+		var el = element;
+		var x = 0;
+		var y = 0;
+		while(el)
+		{
+			x = x + el.offsetLeft - el.scrollLeft;
+			y = y + el.offsetTop - el.scrollTop;
+			el = el.offsetParent;
+		}
+		oContainer.style.left=x;
+		oContainer.style.top=y;
+		element.parentElement.appendChild(oContainer);
+		oContainer.appendChild(element);
+		element.style.width = element.offsetWidth;
+		
+		oContainer.style.borderLeft = "1 buttonshadow solid";
+		oContainer.style.borderTop = "1 buttonshadow solid";
+		oContainer.style.borderBottom = "1 buttonshadow solid";
+		oContainer.style.borderRight = "1 buttonshadow solid";
+		
+		//<!--------------------选择功能(设置颜色)----------------------
+		sMouseOverBackgroundColor = element.currentStyle.mouseOverBackgroundColor;
+		sMouseOverBorderColor = element.currentStyle.mouseOverBorderColor;
+		oSelectedRows = new SelectRows();
+		//--------------------选择功能(设置颜色)---------------------->
+		
+		//<!------------------排序功能(设置图标)----------------------
+		sSortNoneImageUrl = element.currentStyle.sortNoneImageUrl;//没有排序
+		sSortUpImageUrl = element.currentStyle.sortUpImageUrl;//升序
+		sSortDownImageUrl = element.currentStyle.sortDownImageUrl;//降序
+		//--------------------排序功能(设置图标)---------------------->
+		if (element.rows.length<=0)
+		{
+			return;
+		}
+		oTHead = element.createTHead();//生成表头
+		oTHead.appendChild(element.rows[0]);
+		if (!oTHead)
+		{
+			return;
+		}
+		oTHeadRow = oTHead.children[0]; //假定只有一行Head如果没有或者不是tr则退出
+		if (!oTHeadRow)
+		{
+			return;
+		}
+		else
+		{
+			if (oTHeadRow.tagName != "TR")
+			{
+				return;
+			}
+		}
+		oTHeadRow.style.height = oTHeadRow.offsetHeight + 2;//当固定行时多出这四个像素可以将下面的行全部折叠完
+		//设置第一行的鼠标形状为手
+		oTHeadRow.runtimeStyle.cursor = "hand";
+		oTBody = element.tBodies[0];
+		if (!oTBody)
+		{
+			return;
+		}
+		//记录表格的列数
+		iColCount = oTHeadRow.children.length;
+		//绑定事件
+		for(var i=0;i<iColCount;i++)
+		{
+			//<!------------------排序功能(添加图片到表头中)----------------------
+			var oChild = oTHeadRow.children[i];
+			if (oChild.children.length == 0)
+			{
+				var oImg = document.createElement("IMG");
+				oImg.src = sSortNoneImageUrl;
+				oImg.id = "sortImg";
+				oImg.width = 25;
+				oImg.height = 11;
+				oChild.insertAdjacentElement("beforeEnd",oImg);
+				oImg = null;
+			}
+			else
+			{
+				oChild.children[0].style.cursor = "default";
+			}
+			//--------------------排序功能(添加图片到表头中)---------------------->
+			//<!------------------排序功能(绑定事件)----------------------
+			oChild.attachEvent("onclick",onHeadClick);
+			//--------------------排序功能(绑定事件)---------------------->
+		
+			//绑定在列头按下的事件
+			oChild.attachEvent("onmousedown",onHeadMouseDown);
+			aColumn[i] = oChild;
+			//设置固定列头的CSS
+			if (element.isFixRow)
+			{
+				if(i>0)
+				{ 
+					oChild.style.cssText = "border-left: 1px solid buttonhighlight;border-top: 1px solid buttonhighlight;border-bottom: 1px solid buttonshadow;border-right: 1px solid buttonshadow;font: menu;color: menutext;background-color: buttonface;padding-top: 0px;padding-bottom: 1px;text-align:center;z-index:3003; position:relative; top:expression(window.document.all('__divdatagrid').scrollTop);";
+				}
+			}
+		}
+		//固定列
+		if (element.isFixColumn)
+		{
+			if (element.isFixRow)
+			{
+				element.rows[0].children[0].style.cssText = "border-left: 1px solid buttonhighlight;border-top: 1px solid buttonhighlight;border-bottom: 1px solid buttonshadow;border-right: 1px solid buttonshadow;font: menu;color: menutext;background-color: buttonface;padding-top: 0px;padding-bottom: 1px;text-align:center;z-index:3004; position:relative; top:expression(window.document.all('__divdatagrid').scrollTop);left:expression(window.document.all('__divdatagrid').scrollLeft);";
+			}
+			else
+			{
+				element.rows[0].children[0].style.cssText = "border-left: 1px solid buttonhighlight;border-top: 1px solid buttonhighlight;border-bottom: 1px solid buttonshadow;border-right: 1px solid buttonshadow;font: menu;color: menutext;background-color: buttonface;padding-top: 0px;padding-bottom: 1px;text-align:center;z-index:3003; position:relative; left:expression(window.document.all('__divdatagrid').scrollLeft);";
+			}
+			for(var i=1;i<element.rows.length;i++)
+			{
+				element.rows[i].children[0].style.cssText = "border-left: 1px solid buttonhighlight;border-top: 1px solid buttonhighlight;border-bottom: 1px solid buttonshadow;border-right: 1px solid buttonshadow;font: menu;color: menutext;background-color: buttonface;padding-top: 0px;padding-bottom: 1px;text-align:center;z-index:3002; position:relative; left:expression(window.document.all('__divdatagrid').scrollLeft);";
+				element.rows[i].style.backgroundColor=i%2==0?"oldlace":"White";
+			}
+		}
+		else
+		{
+			if (element.isFixRow)
+			{
+				element.rows[0].children[0].style.cssText = "border-left: 1px solid buttonhighlight;border-top: 1px solid buttonhighlight;border-bottom: 1px solid buttonshadow;border-right: 1px solid buttonshadow;font: menu;color: menutext;background-color: buttonface;padding-top: 0px;padding-bottom: 1px;text-align:center;z-index:3003; position:relative; top:expression(window.document.all('__divdatagrid').scrollTop);";
+			}
+		}
+		//设置拖动中显示项
+		oDragItem = document.createElement("DIV");
+		oDragItem.style.font="menu";
+		oDragItem.style.backgroundColor ="buttonshadow";
+		oDragItem.style.cursor = "default";
+		oDragItem.style.position = "absolute"
+		oDragItem.style.filter = "progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=45)"
+		oDragItem.style.zIndex = 3001;
+		oDragItem.style.visibility = "hidden";
+		oContainer.insertAdjacentElement("afterBegin",oDragItem);
+		//拖动时显示的线条
+		oLine = window.document.createElement("DIV");
+		oLine.style.position = "absolute";
+		oLine.style.zIndex = "3005";
+		oLine.style.backgroundColor="Silver";
+		oLine.style.width=1;		
+		oContainer.insertAdjacentElement("afterBegin", oLine);
+		oLine.style.visibility = "hidden";
+		//添加事件处理
+		element.attachEvent("onmousemove",onMouseMove);
+		window.document.attachEvent("onmouseup", onMouseUp);
+		//<!--------------------选择功能(添加事件处理)----------------------
+		element.attachEvent("onmouseover",onMouseOver);
+		element.attachEvent("onmouseout",onMouseOut);
+		element.attachEvent("onclick",onClick);
+		element.attachEvent("onselectstart", onCancel);//当按着Ctrl键点击时，会选中文本，所以在选文本之前将事件取消掉
+		//--------------------选择功能(添加事件处理)------------------------>
+		
+		oContainer.attachEvent("onmousemove",onDivMouseMove);
+		oContainer.attachEvent("onmousedown",onDivMouseDown);
+	}
+	//清理资源
+	function cleanup()
+	{
+		for (var i=0;i<aColumn.length;i++)
+		{
+			//解除事件绑定
+			aColumn[i].detachEvent("onMouseDown", onHeadMouseDown);
+			aColumn[i].detachEvent("onclick", onHeadClick);
+			aColumn[i] = null;
+		}
+		element.detachEvent("onmousemove", onMouseMove);
+		element.detachEvent("onmouseup", onMouseUp);
+		aColumn = null;
+		
+		element.detachEvent("onmouseover", onMouseOver);
+		element.detachEvent("onmouseout",onMouseOut);
+		element.detachEvent("onclick",onClick);
+		element.detachEvent("onselectstart", onCancel);
+		oSelectRows = null;
+		
+		oContainer.detachEvent("onmousemove",onDivMouseMove);
+		oContainer.detachEvent("onmousedown",onDivMouseDown);
+	}
+	function onDivMouseMove()
+	{
+		if (!element.isChangeSize)
+		{
+			return;
+		}
+		var cliX = window.event.clientX;
+		var cliY = window.event.clientY;
+		var point = new getContainerLocation();
+		
+		if (bDragMode)
+		{
+			switch (sDragContainer)
+			{
+				case "both":
+					oContainer.style.width = cliX - point.x-oContainer.scrollLeft>5?cliX - point.x-oContainer.scrollLeft:5;
+					oContainer.style.height = cliY - point.y-oContainer.scrollTop>5?cliY - point.y-oContainer.scrollTop:5;
+					break;
+				case "width":
+					oContainer.style.width = cliX - point.x-oContainer.scrollLeft>5?cliX - point.x-oContainer.scrollLeft:5;
+					break;
+				case "height":
+					oContainer.style.height = cliY - point.y-oContainer.scrollTop>5?cliY - point.y-oContainer.scrollTop:5;
+					break;
+				case "none":
+				break;
+				default:
+				break;
+			}
+		}
+		else
+		{
+			var offsetX = 0;
+			var offsetY = 0;
+			offsetX = cliX - point.x - oContainer.scrollLeft - oContainer.offsetWidth;
+			offsetY = cliY - point.y - oContainer.scrollTop - oContainer.offsetHeight;
+			if (offsetX >0 && offsetX <=5)
+			{
+				if (Math.abs(offsetY)>5)
+				{
+					oContainer.style.cursor='e-resize';
+				}
+				else
+				{
+					oContainer.style.cursor='se-resize';
+				}
+			}
+			else
+			{
+				if (offsetY>0 && offsetY <=5)
+				{
+					if (Math.abs(offsetX)>5)
+					{
+						oContainer.style.cursor='s-resize';
+					}
+					else
+					{
+						oContainer.style.cursor='se-resize';
+					}
+				}
+				else
+				{
+					oContainer.style.cursor='default';
+				}
+			}
+		}
+	}
+	function onDivMouseDown()
+	{
+		var cliX = window.event.clientX;
+		var cliY = window.event.clientY;
+		var offsetX = 0;
+		var offsetY = 0;
+		var point = new getContainerLocation();
+		offsetX = cliX - point.x - oContainer.scrollLeft - oContainer.offsetWidth;
+		offsetY = cliY - point.y - oContainer.scrollTop - oContainer.offsetHeight;
+		if (offsetX >0 && offsetX <=5)
+		{
+			if (Math.abs(offsetY)>5)
+			{
+				sDragContainer="width";
+			}
+			else
+			{
+				sDragContainer="both";
+			}
+		}
+		else
+		{
+			if (offsetY>0 && offsetY <=5)
+			{
+				if (Math.abs(offsetX)>5)
+				{
+					sDragContainer="height";
+				}
+				else
+				{
+					sDragContainer="both";
+				}
+			}
+			else
+			{
+				sDragContainer="none";
+			}
+		}
+
+		if (sDragContainer != "none")
+		{
+			bDragMode = true;
+			oContainer.setCapture();
+		}
+	}
+	//<!--------------------选择功能(事件处理)----------------------
+	//鼠标经过要触发的事件
+	function onMouseOver()
+	{
+		if (bDragMode)
+		{
+			return;
+		}
+		var el = window.event.srcElement;
+		//得到TR
+		while (el.tagName != "TR" && el.tagName != "TABLE")
+		{
+			el = el.parentElement;
+		}
+		if (el.tagName != "TR")
+		{ 
+			return;
+		}
+		//设置行的颜色
+		if (el.rowIndex > 0) 
+		{
+			setRowStyle(el, "windowtext", sMouseOverBackgroundColor, sMouseOverBorderColor);
+			oCurRow = el;
+		}
+		el = null;
+	}
+	//鼠标离开要触发的事件
+	function onMouseOut()
+	{
+		//还原行的颜色
+		if (oCurRow)
+		{
+			if (oSelectedRows.querySelected(oCurRow))
+			{
+				setRowStyle(oCurRow, "highlighttext", "highlight", "highlight");
+			}
+			else
+			{
+				setRowStyle(oCurRow, "windowtext", oCurRow.style.backgroundColor, oCurRow.style.backgroundColor);
+			}
+		}
+	}
+	//单击表格时处理程序
+	function onClick()
+	{
+		//得到处理的元素
+		var el = window.event.srcElement;
+		//得到点击的行
+		while (el.tagName != "TR" && el.tagName != "TABLE")
+		{
+			el = el.parentElement;
+		}
+		if (el.tagName != "TR") return;
+		//如果点击的是列头，则退出
+		if (el.rowIndex == 0) return;
+			
+		if (window.event.shiftKey)
+		{
+			//当按着SHIFT键时
+			var lastRow = oSelectedRows.getLastRow();
+			if (lastRow)
+			{
+				var sIndex = el.rowIndex;
+				var lIndex = lastRow.rowIndex;
+				if (sIndex > lIndex)
+				{
+					for (var i=lIndex+1;i<=sIndex;i++)
+					{
+						setRowStyle(oTBody.children[i-1], "highlighttext", "highlight", "highlight");
+						if (!oSelectedRows.querySelected(oTBody.children[i-1])) oSelectedRows.add(oTBody.children[i - 1]);
+					}
+				}
+				else
+				{
+					for (var i=lIndex-1;i>=sIndex;i--)
+					{
+						setRowStyle(oTBody.children[i-1], "highlighttext", "highlight", "highlight");
+						if (!oSelectedRows.querySelected(oTBody.children[i-1])) oSelectedRows.add(oTBody.children[i - 1]);
+					}
+				}
+				lastRow =  null;
+				oCurRow = null;
+			}
+			else
+			{
+				oSelectedRows.removeAll();
+				oSelectedRows.add(el);
+				setRowStyle(el, "highlighttext", "highlight", "highlight");
+				oCurRow = null;
+			}
+		}
+		else if (window.event.ctrlKey)
+		{
+			//当按着CTRL键时
+			if (oSelectedRows.querySelected(el))
+			{
+				oSelectedRows.remove(el);
+				setRowStyle(el, "windowtext", el.style.backgroundColor, el.style.backgroundColor);
+			}
+			else
+			{
+				oSelectedRows.add(el);
+				setRowStyle(el, "highlighttext", "highlight", "highlight");
+				oCurRow = null;
+			}
+		}
+		else
+		{
+			if (oSelectedRows.getCount() > 0)
+			{
+				for ( var i=0;i<oSelectedRows.getCount();i++)
+				{
+					var tElement = oSelectedRows.getSelectRow(i);
+					setRowStyle(tElement, "windowtext", tElement.style.backgroundColor, el.style.backgroundColor);
+					tElement = null;
+				}
+			}
+			oSelectedRows.removeAll();
+			oSelectedRows.add(el);
+			setRowStyle(el, "highlighttext", "highlight", "highlight");
+			oCurRow = null;
+		}
+		el = null;
+	}
+	//当按着Ctrl键点击时，会选中文本，所以在选文本之前调用该方法取消事件
+	function onCancel()
+	{
+		window.event.cancelBubble = true;
+		window.event.returnValue = false;
+		return false; 
+	}
+	//---------------------选择功能(事件处理)---------------------->
+	//<!-------------------排序功能(事件处理)---------------------->
+	//列头点击
+	function onHeadClick()
+	{
+		//window.document.all('divdebug').innerText=event.offsetX;//debug
+		if (!element.isSort)
+		{
+			return;
+		}
+		var selIndex = -1;
+		//得到点击的单元格
+		var el = window.event.srcElement;
+		while (el.tagName != "TD")
+		{
+			el = el.parentElement;
+		}
+		if (el.children[0].id != "sortImg") 
+		{
+			return;
+		}
+		//得到点击列的索引
+		selIndex = getArrayIndex(el);
+		//将上次点击的列的图片设为未排序
+		if (iSelectHeadIndex != -1)
+		{
+			aColumn[iSelectHeadIndex].children[0].src = sSortNoneImageUrl;
+		}
+		//设置排序的图片
+		if (iSelectHeadIndex == selIndex)
+		{
+			if (sCurrentSort == "DOWN")
+			{
+				sCurrentSort = "UP";
+				el.children[0].src = sSortUpImageUrl;
+			}
+			else
+			{
+				sCurrentSort = "DOWN";
+				el.children[0].src = sSortDownImageUrl;
+			}
+		}
+		else
+		{
+			sCurrentSort = "UP";
+			el.children[0].src = sSortUpImageUrl;
+		}
+		//设置当前排序的索引
+		iSelectHeadIndex = selIndex;
+		//排序表格
+		sortTable(iSelectHeadIndex);
+		el = null;
+	}
+	//---------------------排序功能(事件处理)---------------------->
+	//鼠标在列头按下调用的方法
+	function onHeadMouseDown()
+	{
+		var point = new getContainerLocation();
+		var el = window.event.srcElement;
+		var offsetX = window.event.offsetX;
+		while (el.tagName != "TD" && el)
+		{
+			offsetX += el.offsetLeft;
+			el = el.parentElement;
+		}
+		//开始拖动
+		bDragMode = true;
+		//window.document.all('divdebug').innerText = offsetX + "&" + el.offsetWidth + "&" + bDragWidth;//debug
+		if(el.offsetWidth - offsetX<= 5 || offsetX <=5 )
+		{
+			bDragWidth = true;
+			//拖宽
+			//得到拖动的列
+			getDragWidthHeadIndex(window.event.clientX);
+			iDragWidthClientX = window.event.clientX;
+		}
+		else
+		{
+			//拖移
+			var selIndex = -1;
+			iDragCounter = 0;
+			//定位表格位置
+			iDragHeadIndex = getArrayIndex(el);
+			oDragItem.innerHTML = "<center>" + el.innerHTML + "</center>";
+			oDragItem.style.color = el.currentStyle.color;
+			oDragItem.style.height = el.offsetHeight - 2;
+			oDragItem.style.width  = el.offsetWidth - 2;	
+		}
+		element.setCapture();
+		el = null;
+	}
+	//鼠标移动调用的方法
+	function onMouseMove()
+	{
+		//window.document.all('divdebug').innerText = window.event.offsetY;//debug
+		if (iDragCounter < 10)
+		{
+			iDragCounter++;
+			return;
+		}
+		var point = new getContainerLocation();
+		
+		//当拖动时
+		if (bDragMode)
+		{
+			window.event.cancelBubble = false;
+			window.event.returnValue = false;
+			if (bDragWidth)
+			{
+				if(!isDragWidth)
+				{
+					return;
+				} 
+				//当拖宽时
+				if (oLine.style.visibility == "hidden") 
+				{
+					oLine.style.visibility = "visible";
+				}
+				var lineLeft = window.event.clientX - point.x;
+				if (lineLeft < oContainer.offsetWidth+oContainer.scrollLeft)
+				{
+					if(lineLeft >= aColumn[iDragWidthHeadIndex].offsetLeft + element.offsetLeft + 5) 
+					{
+						oLine.style.top = oContainer.scrollTop ;
+						oLine.style.height = oContainer.clientHeight;
+						oLine.style.left = lineLeft ;
+					}
+				}
+				else
+				{
+					oLine.style.top = oContainer.scrollTop;
+					oLine.style.height = oContainer.clientHeight;
+					oLine.style.left = oContainer.offsetWidth+oContainer.scrollLeft ;
+				}
+			}
+			else
+			{
+				if (oDragItem)
+				{
+					if(!isDragMove)
+					{
+						return;
+					} 
+					if (oDragItem.style.visibility == "hidden") 
+					{
+						oDragItem.style.visibility = "visible";
+					}
+					oDragItem.style.top = oContainer.scrollTop;
+					dragLeft = window.event.clientX - point.x - oDragItem.offsetWidth / 2;
+					if (dragLeft+oDragItem.offsetWidth < oContainer.offsetWidth + oContainer.scrollLeft)
+					{
+						oDragItem.style.left = dragLeft;
+					}
+					iDragToHeadIndex = getToHeadIndex();
+				}
+			}
+		}
+		else
+		{
+			if(!isDragWidth)
+			{
+				return;
+			} 
+			var el = window.event.srcElement;
+			//得到TR
+			while (el.tagName != "TR" && el)
+			{
+				el = el.parentElement;
+			}
+			if (el.tagName == "TR")
+			{
+				if (el.rowIndex == 0)
+				{
+					el = window.event.srcElement;
+					var offsetX = window.event.offsetX;
+					while (el.tagName != "TD" && el)
+					{
+						offsetX += el.offsetLeft;
+						el = el.parentElement;
+					}
+					setSplitCursor(el,offsetX);
+				}
+			}
+			el = null;
+		}
+	}
+	//鼠标被放起调用的方法
+	function onMouseUp()
+	{
+		if (!bDragMode) 
+		{
+			return;
+		}
+		bDragMode = false;
+		var point = new getContainerLocation();
+		
+		if (bDragWidth)
+		{
+			oLine.style.visibility = "hidden";
+			var el = window.event.srcElement;
+			var dragWidth = window.event.clientX - iDragWidthClientX + aColumn[iDragWidthHeadIndex].offsetWidth;
+			if (dragWidth < 10)
+			{
+				dragWidth = 10;
+			}
+			var tmpWidth = aColumn[iDragWidthHeadIndex].offsetWidth;
+			element.style.width = element.offsetWidth + dragWidth - tmpWidth;
+			aColumn[iDragWidthHeadIndex].width=dragWidth;
+			bDragWidth = false;
+			element.releaseCapture();
+		}
+		else if (sDragContainer == "none")
+		{
+			oDragItem.style.visibility = "hidden";
+			if (iHiliteHeadIndex != -1)
+			{
+				aColumn[iHiliteHeadIndex].style.backgroundColor = "menu"
+				iHiliteHeadIndex = -1;
+			}
+			if (iDragToHeadIndex != -1) 
+			{
+				moveCols(iDragHeadIndex, iDragToHeadIndex);
+			}
+			iLastHeadIndex = -1;
+			iDragToHeadIndex = -1;
+			element.releaseCapture();
+		}
+		else
+		{
+			sDragContainer = "none";
+			oContainer.releaseCapture();
+		}
+	}
+	//得到列的索引
+	function getArrayIndex(el)
+	{
+		for(var i=0;i<aColumn.length;i++)
+		{
+			if (el==aColumn[i])
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	//得到要拖动的列的索引
+	function getDragWidthHeadIndex(x)
+	{
+		var point = new getContainerLocation();
+		for(var i=0;i<iColCount;i++)
+		{
+			if (x-point.x>aColumn[i].offsetLeft && x - point.x<aColumn[i].offsetLeft + aColumn[i].offsetWidth + 5)
+			{
+				iDragWidthHeadIndex = i;
+				break;
+			}
+		}
+	}
+	//得到表格容器的左角的坐标位置
+	function getContainerLocation()
+	{
+		var el = oContainer;
+		var x = 0;
+		var y = 0;
+		while(el)
+		{
+			x = x + el.offsetLeft - el.scrollLeft;
+			y = y + el.offsetTop - el.scrollTop;
+			el = el.offsetParent;
+		}
+		return new Point(x,y);
+	}
+	//得到现在托动到的列
+	function getToHeadIndex()
+	{
+		if (iHiliteHeadIndex != -1)
+		{
+			aColumn[iHiliteHeadIndex].style.backgroundColor = "menu"
+			iHiliteHeadIndex = -1;
+		}
+		var itemLeft = oDragItem.style.posLeft-element.offsetLeft;
+		var toHeadIndex = -1;
+		for(var i=0;i<iColCount;i++)
+		{
+			if (itemLeft<=aColumn[i].offsetLeft + Math.floor(aColumn[i].offsetWidth / 2) && itemLeft>aColumn[i].offsetLeft)
+			{
+				aColumn[i].style.backgroundColor="#ccffcc";
+				iHiliteHeadIndex = i;
+				toHeadIndex = i;
+				break;
+			}
+		}
+		return toHeadIndex;
+	}
+	//移动列
+	function moveCols(fCol, tCol)
+	{
+		var elTextSave = "";
+		if (fCol == tCol) return;
+		if (iSelectHeadIndex != -1) 
+		{
+			elTextSave = aColumn[iSelectHeadIndex].innerText;
+		}
+		moveHeaderCols(fCol, tCol);
+		for(var i=0;i<oTBody.rows.length;i++)
+		{
+			moveBodyCols(i,fCol,tCol);
+		}
+		for(var i=0;i<aColumn.length;i++)
+		{
+			aColumn[i] = null;
+			aColumn[i] = oTHeadRow.children[i];
+			if (elTextSave != "")
+			{
+				if (elTextSave == aColumn[i].innerText)
+				{
+					//改变排序中当前被排序的列的索引
+					iSelectHeadIndex = i;
+					elTextSave = "";
+				}
+			}
+		}
+	}
+	//移动列头
+	function moveHeaderCols(fCol, tCol)
+	{
+		var nCol = 0;
+		var dCol = 0;
+		if (fCol > tCol)
+		{
+			dCol = -1;
+			nCol = fCol - tCol;
+		}
+		else
+		{
+			dCol = 1;
+			nCol = tCol - fCol;
+		}
+		var saveHTML = oTHeadRow.children[fCol].innerHTML;
+		var saveWidth = oTHeadRow.children[fCol].width;
+		for(var i=0;i<nCol;i++)
+		{
+			oTHeadRow.children[fCol].innerHTML = oTHeadRow.children[fCol + dCol].innerHTML;
+			oTHeadRow.children[fCol].width = oTHeadRow.children[fCol + dCol].width;
+			fCol = fCol + dCol;
+		}
+		oTHeadRow.children[tCol].innerHTML = saveHTML;
+		oTHeadRow.children[tCol].width = saveWidth;
+	}
+	//移动表格体
+	function moveBodyCols(iRow, fCol, tCol)
+	{
+		var nCol = 0;
+		var dCol = 0;
+		if (fCol > tCol)
+		{
+			dCol = -1;
+			nCol = fCol - tCol;
+		}
+		else
+		{
+			dCol = 1;
+			nCol = tCol - fCol;
+		}
+		var saveHTML = oTBody.children[iRow].children[fCol].innerHTML;
+		for(var i=0;i<nCol;i++)
+		{
+			oTBody.children[iRow].children[fCol].innerHTML = oTBody.children[iRow].children[fCol + dCol].innerHTML;
+			fCol = fCol + dCol;
+		}
+		oTBody.children[iRow].children[tCol].innerHTML = saveHTML;
+	}
+	
+	function setSplitCursor(el,offsetX)
+	{
+		if (el.tagName == "TD")
+		{
+			if(el.offsetWidth - offsetX<= 5 || el.offsetWidth <=5 )
+			{
+				el.style.cursor='e-resize';
+			}
+			else
+			{
+				el.style.cursor='hand';
+			}
+		}
+	}
+	//<!----------------------选择功能(方法)----------------------------
+	//设置行的样式
+	function setRowStyle(oUnknown, fontColor, bgColor, borderColor)
+	{
+		oUnknown.borderColor = borderColor;
+		oUnknown.runtimeStyle.color = fontColor;
+		oUnknown.runtimeStyle.backgroundColor = bgColor;
+	}
+	//------------------------选择功能(方法)----------------------------->
+	//<!----------------------选择功能(类)-----------------------------
+	function SelectRows()
+	{
+		this.oColRows = new Array();
+		this.bRowAdded = false;
+		this.oLastAddedRow = null;
+	}
+	//得到选中行的数量
+	SelectRows.prototype.getCount = function()
+	{
+		if (!this.bRowAdded)
+		{
+			return 0;
+		}
+		else
+		{
+			return this.oColRows.length ;
+		}
+	}
+	//得到指定索引的行
+	SelectRows.prototype.getSelectRow = function(index)
+	{
+		if (!this.bRowAdded)
+		{
+			return null;
+		}
+		else
+		{
+			return this.oColRows[index];
+		}
+	}
+	//得到最后一行
+	SelectRows.prototype.getLastRow = function()
+	{
+		return this.oLastAddedRow;
+	}
+	//得到所有行
+	SelectRows.prototype.getRows = function()
+	{
+		return this.oColRows;
+	}
+	//判断指定的行是否在该集合中
+	SelectRows.prototype.querySelected = function(oUnknown)
+	{
+		return this.getItemIndex(oUnknown) != -1;
+	}
+	//添加一行
+	SelectRows.prototype.add = function(oUnknown)
+	{
+		this.oColRows[this.oColRows.length] = oUnknown;
+		this.bRowAdded = true;
+		this.oLastAddedRow = oUnknown;
+	}
+	//移除行
+	SelectRows.prototype.remove = function(oUnknown)
+	{
+		var index = this.getItemIndex(oUnknown);
+		if (index != -1)
+		{
+			this.oColRows.splice(index,1);
+		}
+	}
+	//移除所有行
+	SelectRows.prototype.removeAll = function()
+	{
+		if (!this.bRowAdded)
+		{
+			return ;
+		}
+		for(var i=0;i<this.oColRows.length;i++)
+		{
+			this.oColRows[i] = null;
+		}
+		this.oLastAddedRow = null;
+		this.bRowAdded = false;
+		this.oColRows = new Array();
+	}
+	//得到行的索引
+	SelectRows.prototype.getItemIndex = function(oUnknown)
+	{
+		if (!this.bRowAdded)
+		{
+			return -1;
+		}
+		for (var i=0;i<this.oColRows.length;i++)
+		{
+			if (oUnknown == this.oColRows[i])
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	//------------------------选择功能(类)---------------------------->
+	//<!----------------------排序功能(方法)---------------------------->
+	//转化数据类型
+	function convert(sValue,sDataType)
+	{
+		switch(sDataType)
+		{
+				case "int":
+					return parseInt(sValue);
+				case "float":
+					return parseFloat(sValue);
+				case "date":
+					var td=sValue.split("-");   
+					return new Date(td[0],td[1]-1,td[2]); 
+				default:
+					return sValue.toString();
+		}
+	}
+	//比较函数
+	function generateCompareTRs(iCol,sDataType)
+	{
+		return 	function compareTRs(oTR1,oTR2)
+						{
+							var vValue1 = convert(oTR1.cells[iCol].firstChild.nodeValue,sDataType);
+							var vValue2 = convert(oTR2.cells[iCol].firstChild.nodeValue,sDataType);
+							if (vValue1<vValue2)
+							{
+								return -1;	
+							}
+							else if (vValue1 > vValue2)
+							{
+									return 1;
+							}
+							else
+							{
+								return 0;
+							}
+						};
+	}
+	//表格排序
+	function sortTable(iCol)
+	{
+		//是否调转
+		var bReverse = (sCurrentSort == "DOWN");
+		//得到排序类型
+		var sortType = oTHeadRow.children[iCol].sort;
+		//得到行的集合
+		var colDataRows = oTBody.rows;
+		var aTRs = new Array();
+		//将行的集合添加到数组中
+		for (var i=0;i<colDataRows.length;i++)
+		{
+			aTRs[i] = colDataRows[i];
+		}
+		//排序
+		aTRs.sort(generateCompareTRs(iCol,sortType));	
+		//调转	
+		if (bReverse)
+		{
+			aTRs.reverse();	
+		}
+		//将行放入文档碎片
+		var oFragment = document.createDocumentFragment();
+		for (var i=0;i<aTRs.length;i++)
+		{
+			oFragment.appendChild(aTRs[i]);
+		}
+		oTBody.appendChild(oFragment);
+	}
+	//得到列的索引
+	function getArrayIndex(el)
+	{
+		for(var i=0;i<aColumn.length;i++)
+		{
+			if (el==aColumn[i])
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	//判断是否是日期类型
+	function isDate(dateString,dilimeter) 
+	{
+		if (dateString==null) return false; 
+		if (dilimeter=='' || dilimeter==null) 
+		dilimeter = '-'; 
+		var tempy=''; 
+		var tempm=''; 
+		var tempd=''; 
+		var tempArray = null; 
+		if (dateString.length<8 && dateString.length>10) 
+			return false; 
+		tempArray = dateString.split(dilimeter); 
+		if (tempArray.length!=3) 
+			return false; 
+		if (tempArray[0].length==4) 
+		{ 
+			tempy = tempArray[0]; 
+			tempd = tempArray[2]; 
+		} 
+		else 
+		{ 
+			tempy = tempArray[2]; 
+			tempd = tempArray[1]; 
+		} 
+		tempm = tempArray[1]; 
+		var tdateString = tempy + '/'+tempm + '/'+tempd+' 8:0:0';//加八小时是因为我们处于东八区 
+		var tempDate = new Date(tdateString); 
+		if (isNaN(tempDate)) 
+			return false; 
+		if (((tempDate.getUTCFullYear()).toString()==tempy) && (tempDate.getMonth()==parseInt(tempm)-1) && (tempDate.getDate()==parseInt(tempd))) 
+		{ 
+			return true; 
+		} 
+		else 
+		{ 
+			return false; 
+		} 
+	}
+	//字符串转化为日期
+	function cDate(dateString)
+	{
+		var td=dateString.split("-");   
+		return new Date(td[0],td[1]-1,td[2]); 
+	}
+	//------------------------排序功能(方法)---------------------------->
+	//<!----------------------类Point------------------------------------
+	function Point(x,y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	//------------------------类Point----------------------------------->
+//-->
+</script>
+</public:component>

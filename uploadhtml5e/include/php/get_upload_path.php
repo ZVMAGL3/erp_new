@@ -1,0 +1,91 @@
+<?php
+  function get_upload_path($cengci,$pathstr,$fenge="#"){//文件夹层次，文件路径，隔符
+      $arr=explode($fenge,$pathstr);
+	  $newvals=array();
+	  for($i=0;$i<count($arr);$i++){
+	     $filepath=$arr[$i];
+		 if($filepath!=""){
+					if(strpos($filepath,"tmp/tmp_")===false){
+					  $newvals[]=$filepath;
+					}else{
+							$arr1=explode("/",$filepath);
+							$tmpdirname="";
+							for($j=0;$j<2;$j++){
+							  $tmpdirname.=$arr1[$j]."/";
+							}
+							$newpath=str_replace($tmpdirname,"",$filepath);
+							if(strpos($filepath,"/s50/")!==false||strpos($filepath,"/s100/")!==false){
+								$bigpath=str_replace("/s50/","/s100/",$filepath);
+								$path=str_replace("/s100/","/s100/",$bigpath);
+								$path=str_replace("//","/",$path);
+								$path1=str_replace($tmpdirname,"",$path);
+								if(file_exists($cengci.$path)){
+								   CreateDirB(dirname($cengci.$path1)."/");
+								   @rename($cengci.$path,$cengci.$path1); 
+								}
+								$path=str_replace("/s100/","/s50/",$bigpath);
+								$path=str_replace("//","/",$path);
+								$path1=str_replace($tmpdirname,"",$path);
+								if(file_exists($cengci.$path)){
+								    CreateDirB(dirname($cengci.$path1)."/");
+								    @rename($cengci.$path,$cengci.$path1);
+								}
+								$path=str_replace("/s100/","/s80/",$bigpath);
+								$path=str_replace("//","/",$path);
+								$path1=str_replace($tmpdirname,"",$path);
+								if(file_exists($cengci.$path)){
+								   CreateDirB(dirname($cengci.$path1)."/");
+								   @rename($cengci.$path,$cengci.$path1); 
+								}
+							}else if(strpos($filepath,"_s50")!==false||strpos($filepath,"_s100")!==false){
+								$bigpath=str_replace("_s50","_s100",$filepath);
+								$path=str_replace("_s100","_s100",$bigpath);
+								$path=str_replace("//","/",$path);
+								$path1=str_replace($tmpdirname,"",$path);
+						
+								if(file_exists($cengci.$path)){
+                                    CreateDirB(dirname($cengci.$path1)."/");
+								    @rename($cengci.$path,$cengci.$path1);
+								}
+								$path=str_replace("_s100","_s50",$bigpath);
+								$path=str_replace("//","/",$path);
+								$path1=str_replace($tmpdirname,"",$path);
+								
+								
+								if(file_exists($cengci.$path)){
+                                    CreateDirB(dirname($cengci.$path1)."/");
+								    @rename($cengci.$path,$cengci.$path1);
+								}
+								$path=str_replace("_s100","_s80",$bigpath);
+								$path=str_replace("//","/",$path);
+								$path1=str_replace($tmpdirname,"",$path);
+								if(file_exists($cengci.$path)){
+                                    CreateDirB(dirname($cengci.$path1)."/");
+								    @rename($cengci.$path,$cengci.$path1);
+								}
+							}else{
+								if(file_exists($cengci.$filepath)){
+                                    CreateDirB(dirname($cengci.$newpath)."/");
+								    @rename($cengci.$filepath,$cengci.$newpath);
+								}
+							} 
+							$newvals[]=$newpath;
+			 }
+		 }
+	  }
+	 return implode($fenge,$newvals);
+  }
+function CreateDirB($dir){//创建文件夹
+			   $arr=explode("/",$dir);
+			   $dir1="";
+			   for($j=0;$j<count($arr);$j++){
+				  if($arr[$j]!=""){
+					  $dir1.=$arr[$j]."/";
+					  $folder=$dir1;
+					  if(!is_dir($folder)&&$arr[$j]!="./"&&$arr[$j]!="../"&&$arr[$j]!="/"){
+							   mkdir($folder,0777);
+					   }
+				   }
+			   }  
+}
+?>

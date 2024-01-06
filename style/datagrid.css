@@ -1,0 +1,20 @@
+body
+{
+	margin : 0px;
+}
+
+.datagrid
+{
+	behavior: url(../style/datagrid.htc);
+	sortNoneImageUrl: ../style/sortBlank.gif;
+	sortUpImageUrl: ../style/sortUp.gif;
+	sortDownImageUrl: ../style/sortDown.gif;
+	mouseOverBackgroundColor: #C1D2EE;
+	mouseOverBorderColor: #316AC5;
+	position: relative;
+    margin: 0px;
+    width: 100%;
+ 	font: menu;
+	color: windowtext;
+	cursor:default;
+}

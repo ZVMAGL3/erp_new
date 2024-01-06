@@ -1,0 +1,172 @@
+body {
+	margin-top: 0px;
+	background-color: transparent;
+}
+tr.myDragClass td {
+	color: yellow;
+	background-color: black;
+}
+#con {
+	FONT-SIZE: 12px;
+	MARGIN: 0px 0px;
+	; WIDTH: 100%;
+}
+/*
+#tags {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px 0px 0px 10px;
+	WIDTH: 100%;
+	PADDING-TOP: 0px;
+	HEIGHT: 23px;
+}
+#tags li {
+	BACKGROUND: url(../images/tabimages/tagleft.gif) no-repeat left bottom;
+	FLOAT: left;
+	MARGIN-RIGHT: 1px;
+	LIST-STYLE-TYPE: none;
+	HEIGHT: 23px
+}
+#tags li a {
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	BACKGROUND: url(../images/tabimages/tagright.gif) no-repeat right bottom;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	COLOR: #999;
+	LINE-HEIGHT: 23px;
+	PADDING-TOP: 0px;
+	HEIGHT: 23px;
+	TEXT-DECORATION: none
+}
+#tags li.emptyTag {
+	BACKGROUND: none transparent scroll repeat 0% 0%;
+	WIDTH: 4px
+}
+#tags li.selectTag {
+	BACKGROUND-POSITION: left top;
+	MARGIN-BOTTOM: -2px;
+	POSITION: relative;
+	HEIGHT: 25px
+}
+#tags li.selectTag a {
+	BACKGROUND-POSITION: right top;
+	COLOR: #000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px
+}
+*/
+#tagContent {
+	BORDER-RIGHT: #CCC 1px solid;
+	PADDING-RIGHT: 1px;
+	BORDER-TOP: #CCC 1px solid;
+	PADDING-LEFT: 1px;
+	PADDING-BOTTOM: 1px;
+	BORDER-LEFT: #CCC 1px solid;
+	PADDING-TOP: 1px;
+	BORDER-BOTTOM: #CCC 1px solid;
+	background-color: #FFF;
+}
+.tagContent {
+	PADDING-RIGHT: 8px;
+	DISPLAY: none;
+	PADDING-LEFT: 8px;
+	BACKGROUND: url(../images/tabimages/bg.gif) repeat-x;
+	PADDING-BOTTOM: 10px;
+	WIDTH: 100%;
+	COLOR: #474747;
+	PADDING-TOP: 10px;
+	HEIGHT: 100%
+}
+.tagContent div.selectTag {
+	DISPLAY: block
+}
+/*以下为div表格右边CSS*/
+	.maintab {
+	margin: 0 0 0 0;
+}
+.maintab ul {
+	width: 100%;
+	margin: 0 0 0 0;
+}
+.maintab li {
+	overflow: hidden;
+	/*text-overflow: ellipsis;*/
+	border-bottom: 1px solid #ccc;
+	float: left;
+	text-align: left;
+	line-height: 20px;
+}
+.30width {
+	width: 30%;
+	height: 20px;
+}
+.70width {
+	width: 70%;
+	height: 20px;
+}
+.lastdiv {
+	width: 100%;
+	height: 258px;
+	border: #999 dashed 0px;
+	line-height: 15px;
+	color: #666;
+}
+.lastdiv2 {
+	width: 100px;
+	height: 15px;
+	border: #999 dashed 0px;
+	line-height: 15px;
+	color: #666;
+	word-wrap: break-word;
+	word-break: normal;
+}
+.r {
+	border-right: 1px solid #ccc;
+}
+.l {
+	border-left: 1px solid #ccc;
+}
+.t {
+	border-top: 1px solid #ccc
+}
+.b {
+	border-bottom: 1px solid #ccc
+}
+/*
+.panel {
+	background: #FFF;
+	height: 300px;
+	width: 100%;
+	display: none;
+	line-height: 25px;
+	border: #CCC 1px solid;
+}
+.panel_scroll {
+	background: #FFF;
+	height: 272px;
+	width: 98%;
+	overflow-y: scroll;
+}
+.slide {
+	margin: 0;
+	padding: 0;
+	border-top: solid 0px #422410;
+	background: url(../images/highlight.gif) repeat-x left top;
+}
+.btn-slide {
+	background: url(../images/white-arrow.gif) no-repeat right -17px;
+	text-align: center;
+	width: 144px;
+	height: 31px;
+	padding: 5px 5px 0 0;
+	margin: 0 auto;
+	display: block;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	color: #333;
+	text-decoration: none;
+}
+.active {
+	background: url(../images/white-arrow.gif) no-repeat right 8px;
+}*/

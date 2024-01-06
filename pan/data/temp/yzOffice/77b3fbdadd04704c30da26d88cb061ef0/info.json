@@ -1,0 +1,31 @@
+{
+    "currentStep": 1,
+    "success": 1,
+    "taskUuid": "03df3e0673a2d5d0c6cf6d1ea7037c3a",
+    "hideData": [],
+    "steps": [
+        {
+            "name": "upload",
+            "process": "uploadProcess",
+            "status": 2,
+            "result": {
+                "result": 0,
+                "data": "7eb7b16a-f465-4662-b759-934979e66c26\/问题  续.docx",
+                "message": "转换成功"
+            }
+        },
+        {
+            "name": "convert",
+            "process": "convert",
+            "status": 2,
+            "result": {
+                "result": 0,
+                "data": [
+                    "http:\/\/dcs.yozosoft.com\/view\/2020\/03\/18\/MjAwMzE4OTA5NDAwNjc4.html"
+                ],
+                "message": "转换成功",
+                "type": 0
+            }
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* 全兼容可高亮二级缓冲折叠菜单*/
+
+ *{/*通用设置*/
+	margin:0;
+	padding:0;
+	white-space:nowrap;
+	border:0;
+	text-align: left;
+	
+ }
+ body{
+    text-align:center;
+	background:#585858;
+	margin:0;
+	border:0;
+	
+	}
+ a{ cursor:hand;text-decoration:none;}
+ a:hover{}/*这里为链接变换背景*/
+ a:link,a:visited{text-decoration:none;}
+ 
+/*菜单头尾设置*/
+ h1{width:100%;height:32px; line-height:32px;  font-size:15px;color:#FFF;
+ text-align: left;
+ vertical-align:bottom;
+ padding-left:5px;
+ border-bottom:1px solid #333;
+ }/*固定头部*/
+ h1 *{vertical-align:middle;}
+
+
+
+/*一级菜单*/
+.menu{overflow:auto; border:0;}
+/*.menu li,.menu li ul.level2 li.weo,.menu li ul.level2 li.weos{position:relative;}相对定位*/
+.menu li{display:block;height:33px; line-height:33px;padding-left:10px; font-size:12px;color:#969791; overflow:hidden;cursor:default;}
+
+.menu li .span1{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	vertical-align:middle;
+	width:20px;
+	height:32px;
+	line-height:33px;
+	text-align: left;
+	padding-top: 8px;
+	padding-right:5px;
+	}
+
+/*一级菜单两态样式,供JS.menu li a *{vertical-align: bottom;}调用*/
+.menu li.licheck{color:#000;border-bottom:0px solid #000; background-color:#FFF;}/*光标放上时背景色变色*/
+.menu li.licheck *{color:#000;}
+/*.menu li a:hover{color:#000; border:0; background-color:#CCC;}*//*光标放上时背景色变色*/
+
+
+.redfont{color:red;}

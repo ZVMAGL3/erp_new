@@ -1,0 +1,30 @@
+<?php
+include_once "{$_SERVER['PATH_TRANSLATED']}/session.php";
+$const_q_zu='总经理';
+$const_id_fz='0';
+$const_id_bumen='90';
+$const_bumenname='总经办';
+$const_q_fanwei='';
+$const_q_tianj='321,511';
+$const_q_xiug='321,511,308';
+$const_q_shenghe='308,321,511';
+$const_q_pizhun='308,321,511';
+$const_q_zhixing='321,511';
+$const_q_shanc='308,321,511';
+$const_q_cak='308,511,321';
+$const_q_dayin='321,511,308';
+$const_q_xiaohui='321,511';
+$const_q_huis='321,511,308';
+$const_q_seid='321,511';
+$const_q_dian='';
+$regid='';
+$reg_name='';
+$reg_banben='';
+$data_use='';
+$const_jlbhzt='';
+$maxrecord='30';
+if ( $maxrecord == '' )$maxrecord = 20;
+$nowlockd='';
+$usermoban='';
+$nowgsbh='';
+?>

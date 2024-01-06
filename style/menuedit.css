@@ -1,0 +1,519 @@
+body,html,ul,li,div,h1,h2 {
+	/*通用设置*/
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	border: 0;
+	text-align: left;
+	list-style: none;
+	cursor: default;
+	font-size: 12px;
+}
+body {
+	height: 100%;
+	line-height: 100%;
+	width: 100%;
+	border-right: #999 solid 0px;
+	padding-top: 31px;
+	padding-bottom: 0px;
+	overflow-y: auto;
+}
+
+a{
+	cursor: hand;
+	text-decoration: none;
+}
+a:link, a:visited {
+	text-decoration: none;
+}
+a:hover {
+	background-color: #CCC;
+}
+h1 {
+	height: 33px;
+	line-height: 100%;
+	font-size: 12px;
+	color: #999;
+	border-bottom: #999 solid 1px;
+	width: 100%;
+}
+/*菜单头尾设置*/
+h2 {
+	position: fixed;
+	width: 100%;
+	height: 31px;
+	line-height: 31px;
+	background: #FFF;
+	margin-right: 18px;
+	font-size: 12px;
+	padding-left: 6px;
+	display: block;
+	border: 0px solid #333;
+	top:0;
+}
+
+h2 i {
+	vertical-align: middle;
+	padding-right: 3px;
+}
+#ssarry {
+	position: absolute;
+	z-index: 2;
+	display: none;
+}
+/*
+h3 {/尾部/
+	font-size: 12px;
+	height: 26px;
+	text-align: right;
+	background: #F3F3F3;
+	margin: 6px;
+	border: #999 solid 1px;
+}
+h3 a.adds {/尾部add/
+	text-align: center;
+	font-size: 12px;
+	width: auto;
+	height: 100%;
+	background: #E1E1E1;
+	padding-top: 4px;
+	padding-left: 18px;
+	padding-right: 18px;
+	border-left: #C9C9C9 solid 1px;
+	color: #333;
+}*/
+/*容器*/
+.left_menu_edit {
+	width: 100%;
+	border-top:0px solid #FFF;
+	overflow: none;
+	overflow-y: scroll;
+	height: 92%;
+
+}
+.span_left {
+	color: #999;
+	font-size: 12px;
+	width: 20px;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	padding-top: 2px;
+	padding-left: 2px;
+}
+.span_right {
+	color: #999;
+	font-size: 12px;
+	width: 20px;
+	height: 100%;
+	position: absolute;
+	background-color: #CCC;
+	line-height: 100%;
+}
+.span_right img {
+	vertical-align: middle;
+}
+/*加载提示*/
+.menu li ul.level2 li a.Loading {
+	display: block;
+	padding-left: 5px;
+	padding-top: 8px;
+	color: #666;
+	border-top: 0px #CCC dotted;
+	overflow: hidden;
+	cursor: default;
+	background: #FFF;
+	height: 100%;
+	line-height: 100%;
+}
+.menu li ul.level2 li a.Loading img {
+	vertical-align: middle
+}
+.span2img {
+	color: #999;
+	width: 25px;
+}
+
+
+/*div表格样式*/
+.DFtables {
+	width: auto;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+	margin: 8px;
+	left: 0;
+	background-color: #FFF;
+}
+.DFtables-top {
+	margin-top: 2px;
+}
+.DFtables-top-huis {
+	margin-top: 0px;
+}
+.DFtables-top-huis .huisz {
+	background-color: #E8E8E8;
+}
+.DFtables-top-huis .huisz .li_kuan,.DFtables-top-huis .huisz .leftli{
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables-top-huis .huisz i{
+	vertical-align: middle;
+	margin-top:4px;
+}
+.DFtables ul {
+	list-style-type: none;
+	border-top: 0px solid #FFF;
+	border-bottom: 1px solid #999;
+	height: 25px;
+	position: static;
+	overflow: hidden;
+	margin: 0;
+}
+.DFtables ul li {
+	display: table;
+	float: left;
+	width: 200px;
+	height: 25px;
+	line-height: 25px;
+	border-top: 0px solid #FFF;
+	border-left: 1px solid #999;
+	text-align: center;
+	list-style-type: none;
+	vertical-align: middle;
+	font-size: 12px;
+	overflow: hidden;
+}
+.DFtables ul li.w140 {
+	width: 140px;
+}
+.DFtables ul li.textleft {
+	text-align: left;
+	padding-left: 3px;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables ul li.textleft i {
+	height: 16px;
+	line-height: 16px;
+	vertical-align: middle;
+	margin-top: 8%;
+	margin-bottom: 8%; 
+}
+.DFtables ul li.textright {
+	text-align: right;
+	padding-right: 3px;
+}
+.DFtables ul li input {
+	background-color: transparent;
+	padding-left: 3px;
+	font-size: 12px;
+	border: 0px solid #B93133;
+	height: 98%;
+	line-height: 100%;
+	width: 300px;
+}
+.DFtables ul li input.button_ADD {/*按钮添加 ok*/
+	background-color: #333;
+	border: 1px solid #666;
+	width: 100px;
+	color: #FFF;
+	height: 25px;
+	line-height: 19px;
+}
+.DFtables ul li.rightli {/*右边浮动*/
+	float: right;
+	width: 55px;
+	text-align: center;
+	padding-left: 5px;
+}
+.DFtables ul li.rightli_check {/*右边浮动*/
+	float: right;
+	width: 60px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: clip;
+	-o-text-overflow: clip;
+	white-space: nowrap;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+   
+}
+
+.DFtables ul li.rightli_check input, .DFtables ul li.rightli input {/*右边浮动*/
+	width: 18px;
+	height: 18px;
+	line-height: 100%;
+	text-align: center;
+	vertical-align: middle;
+
+}
+.DFtables ul li label {/*右边浮动*/
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	line-height: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+.DFtables ul li.rightli30 {/*右边浮动*/
+	width: 45px;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables ul li.rightli25px {/*右边浮动*/
+	float: right;
+	width: 30px;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables ul li.rightli25px * {/*右边浮动*/
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables ul li.rightlikj {/*右边浮动边距*/
+	float: right;
+	width: 5px;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables ul li.leftli {
+	float: left;
+	width: 50px;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables ul li.li_kuan {
+	width: 70px;
+}
+
+.DFtables ul li.rightli a {
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.DFtables ul li.rightli a , .DFtables ul li.rightli25px a {
+	vertical-align: middle;
+	margin-bottom: 3px;
+}
+.DFtables .menuchangeto {/*转移菜单*/
+	border-bottom: #999 solid 1px;
+	padding: 12px 12px 12px 12px;
+	background: #F9E8E8;
+	vertical-align: middle;
+
+}
+.DFtables .menuchangeto .changeli {/*转移菜单*/
+    border-bottom: 1px solid #CCC;
+}
+
+.DFtables .menuchangeto, .DFtables ul .rightli_check label {/*转移菜单ul*/
+	vertical-align: middle;
+}
+.DFtables .menuchangeto a {/*转移菜单ul*/
+	float:left;
+	display:inline-block;
+	height:28px;
+	line-height:28px;
+	width: 100px;
+    padding:2px 15px 2px 2px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	vertical-align: middle;
+	color:#333;
+	border:0px solid #333;
+	text-align: left;
+	border-radius: 5px;
+}
+.DFtables .menuchangeto a,.DFtables .menuchangeto a input{/*转移菜单ul*/
+	line-height: 28px;
+}
+.DFtables .menuchangeto .button {/*转移菜单ul*/
+	height: 28px;
+	line-height: 28px;
+	background:#FFF;
+	color: #333;
+	text-align: center;
+	margin-top: 5px;
+	padding-left:8px;
+	padding-right: 8px;
+	border-radius: 3px;border: 1px solid #333;
+}
+.clear{
+	clear: both;
+	height: 0;
+	width: 0;
+}
+.DFtables ul.headbg {/*表头背景*/
+	background: #E0E0E0;
+}
+.DFtables ul.headbgloadcheck {/*表头背景*/
+	background: #5E5D5D;
+}
+.DFtables ul.headbgloadcheck input {/*表头背景里面的表单*/
+	color: #E0E0E0;
+	vertical-align: middle;
+}
+.DFtables ul.headbg input {/*表头背景里面的表单*/
+	vertical-align: middle;
+	line-height: 100%;
+}
+.DFtables ul li.headbh {/*表头编号*/
+	font-size: 14px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	vertical-align: middle;
+	line-height: 21px;
+}
+.DFtables ul li.headbh .greenfont {/*表头序号图标*/
+	color: #B3AFAF;
+}
+.DFtables ul.headbgloadcheck .headbh , .DFtables ul.headbgloadcheck  {/*表头背景*/
+	color: #FFFFFF;
+}
+.DFtables ul li:first-child {
+	border-left: 0;
+}
+.DFtables ul li.menus {
+	display: none;
+	height: 100%;
+	line-height: 100%;
+	border: 0px #F00E12 solid;
+	vertical-align: middle;
+}
+.DFtables ul.hovers{/*这里为背景变色*/
+	background: url('../images/hover.png') repeat-x center center;
+}
+.DFtables ul.hovers,.DFtables ul.hovers li.headbh, .DFtables ul.hovers input{/*这里为背景变色*/
+	color: #000;font-weight: bold;
+}
+
+.DFtables ul.nodataul {/*无数据提示*/
+	padding-left: 7px;
+	line-height: 22px;
+	color: red;
+}
+
+.DFtables ul.nodataul * {/*无数据提示显示*/
+	vertical-align: middle;
+}
+.DFtables li.hovers2, .DFtables li.hovers2 input, .DFtables li.hovers2 div {/*这里为背景变色*/
+	background-color: #FF5154;
+	background-image: url('');
+	color: #000;
+}
+.DFtables ul li,.DFtables ul li i,.DFtables ul li div,.DFtables li{/*右边浮动*/
+	height: 25px;
+	line-height: 25px;
+	vertical-align:middle;
+}
+
+.DFtables .menus div.mss {
+	vertical-align: middle;
+	height: 100%;
+	line-height: 100%;
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	text-align: center;
+}
+.DFtables .menus div.mss img {
+	vertical-align: middle;
+	text-align: center;
+	padding-top: 20%;
+	display: block;
+	padding-left: 4px;
+	line-height: 100%;
+}
+
+.DFtables ul li, .DFtables ul li, .DFtables ul li .leftli, .DFtables ul,  .DFtables ul li.rightli_check, .DFtables ul li label {
+	line-height: 100%;
+	vertical-align: middle;
+}
+.DFtables ul li.rightli_check{
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.middle{
+	vertical-align: middle;
+}
+
+
+
+.DFtables#ZhiZheQuanXian{/*职权分配的职位清单*/
+	position: fixed;
+	float: left;
+	z-index: 2;
+	top:30px;
+	left:19px;
+	width:130px;
+	overflow: hidden;
+	overflow-y: auto;
+	max-height: 80%;
+}
+.DFtables#ZQright{/*职权分配的右边内容*/
+	position: fixed;
+	float:right;
+	z-index: 1;
+	top:20px;
+	left:150px;
+	width:auto;
+	min-width: 70%;
+	background: #F2F2F2;
+	border: 1px solid #999;
+	height: auto;
+	overflow: hidden;
+	overflow-y: auto;
+	padding: 0;
+	margin:0;
+	bottom:20;
+	right: 0px
+}
+/*div表格样式end if*/
+#menu_html{
+	overflow-y: scroll;
+}
+.DFtables .head,.DFtables1 .head{
+	margin: 0;
+	padding: 0;
+}
+.tables2,.DFtables .DFtables1{
+	vertical-align: top;
+	width: 100%;
+	display: inline-table;
+	margin-bottom:0px;
+}
+.tables2 .twomenu{
+	width: 100%;
+	top: 0;
+	margin: 0;
+	padding: 0;
+    
+}
+.tables2 .twomenu ul{
+	width: 100%;
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0
+}
+.tables2 .twomenu ul li.rightli{
+	position: absolute;
+	float:right;
+	right:0;
+	left:auto;
+	display: inline-block;
+}
+.tables2 .twomenu ul li,.DFtables ul li,.DFtables1 ul li{
+	vertical-align: middle
+}

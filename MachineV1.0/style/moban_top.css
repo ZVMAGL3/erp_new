@@ -1,0 +1,510 @@
+@charset "utf-8";
+* {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+a, a:focus, a:active, a * {
+    outline: none;
+    color: #000;
+    border: 0;
+    text-decoration: none;
+    outline-style: none; /*FF使用*/
+} /* for IE 去链接的虚框*/
+a * {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    vertical-align: middle;
+}
+a:hover {
+    background: #E0E0E0;
+    vertical-align: middle;
+    text-align: center;
+    cursor: default;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    border: 0px solid #333;
+    /*background-image: url("../images/desk_img/003.jpg");*/
+    background-size:cover;
+    overflow: hidden;
+}
+.topall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 75px;
+    bottom: auto;
+    overflow: hidden;
+    
+    padding: 0;
+    margin: 0;
+    border: 0px solid #FFF;
+    z-index: 2;
+}
+.topall ul.STYLE_fbname {
+    padding-left: 0px;
+    padding-top: -5px;
+    padding-bottom: auto;
+    padding-right: auto;
+    vertical-align: middle;
+    color: #CCC;
+    font-size: 20px;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    
+}
+.topall ul.STYLE_fbname * {
+    vertical-align: middle;
+}
+.topall ul.STYLE_fbname img {
+    height: 45px;
+    margin-top: 16px;
+    margin-left: 66px;
+}
+.topall ul li.menu1 {
+    padding-left: 3px;
+    padding-right: auto;
+    padding-top: auto;
+    padding-bottom: auto;
+    width: 12%;
+    float: left;
+    border: 0 solid #F00;
+    color: #999;
+}
+.topall ul li.menu2 {
+    position: relative;
+    left: -18px;
+    top: -7px;
+    right: auto;
+    float: left;
+    padding-left: 0px;
+    padding-right: auto;
+    padding-top: auto;
+    padding-bottom: auto;
+    width: auto;
+    border: 0 solid #F00;
+}
+/*TAB top选项导航*/
+#headindextop {
+    FONT-SIZE: 12px;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    PADDING-left: 266px;
+    margin: 0;
+    HEIGHT: 56px;
+    width: auto;
+    overflow: none;
+    float: left;
+    vertical-align: bottom;
+    border: 0px solid #FFF;
+    background: #333;
+    display: flex;
+}
+#headindextop ul {
+    PADDING: 0;
+    margin: 0;
+    margin-top: 8px;
+    margin-bottom: 0;
+    HEIGHT: 38px;
+    border: 0;
+    overflow: none;
+    float: left;
+    cursor: default;
+    padding-top: 18px;
+    margin-left: 0px;
+    position: relative;
+}
+#headindextop ul li {
+    BACKGROUND: #939393; /*#939393*/
+    MARGIN-RIGHT: 2px;
+    margin-left: 0;
+    liST-STYLE-TYPE: none;
+    HEIGHT: 28px;
+    line-height: 28px;
+    top: 3px;
+    bottom: 0px;
+    padding: 0 17px 0 18px;
+    border: none;
+    color: #333;
+    font-weight: bold;
+    border-radius: 0px;
+}
+#headindextop ul li.selectTag {
+    margin-top: -6px;
+    margin-bottom: 0px;
+    HEIGHT: 33px;
+    line-height: 33px;
+    white-space: nowrap;
+    border: 0;
+    border-bottom: 0px solid #E9E7E7;
+    color: #000;
+    background: #E9E7E7;
+    float: left;
+    overflow: none;
+    position: relative;
+}
+#headindextop ul li.selectbefore { /*之前的选择标签*/
+    background: #1EB300;
+    color: #000;
+}
+#headindextop ul li.overTag {
+    color: #000;
+    BACKGROUND: #E5E5E5;
+}
+#headindextop ul li.selectTagdesk {
+    float: left;
+    margin-top: -6px;
+    margin-bottom: 0px;
+    HEIGHT: 33px;
+    line-height: 33px;
+    white-space: nowrap;
+    border: 0;
+    border-bottom: 0px solid #E9E7E7;
+    color: #000;
+    BACKGROUND: #FFFFFF;
+    overflow: none;
+    position: relative;
+}
+#headindextop ul .closetop { /*关闭按钮*/
+    position: absolute;
+    float: right;
+    right: 3px;
+    left: auto;
+    width: 38px;
+    top: 15px;
+    height: 25px;
+    line-height: 20px;
+    bottom: auto;
+    margin-top: 1px;
+    font-size: 16px;
+    text-align: right;
+    color: #666;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+
+#main_left_div { /*leftdiv*/
+    /*background-image: url("../images/bgtouming.png");*/
+    position: fixed;
+    height: auto;
+    width: 78px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: auto;
+    z-index: 5;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    border: 0;
+    text-align: left;
+    cursor: default;
+    font-size: 12px;
+    background: #333;
+    color: #FFF;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+}
+/*左侧一级菜单*/
+#main_left_div .menu {
+    overflow-y: auto;
+    height: 100%;
+    padding-left: 5px;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    float: left;
+}
+/*.menu li,.menu li ul.level2 li.weo,.menu li ul.level2 li.weos{position:relative;}相对定位*/
+#main_left_div a li{
+    color: #FFF;
+}
+
+#main_left_div .menu li {
+    display: block;
+    height: 50px;
+    width: 55px;
+    line-height: 70px;
+    padding-left: 0px;
+    border: 0px solid #333;
+    margin-top: 3px;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 8px;
+    margin-left: 5px;
+}
+#main_left_div h1 {
+    width: 100%;
+    padding-top: 12px;
+    height: 60px;
+    text-align: center;
+    vertical-align: bottom;
+    border-top: 0px dotted #666;
+    border-bottom: 0px dotted #666;
+    margin: 0
+} /*固定头部*/
+#main_left_div h1 img {
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);/**/
+    background:#CCC ;/**/
+    padding: 4px;
+    margin-left: -2px;
+    border-radius: 8px;
+} /*固定头部*/
+#main_left_div h2 {
+    width: 100%;
+    padding-top: 0px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+    
+    text-align: center;
+    vertical-align: bottom;
+    border-bottom: 1px dotted #666;
+    margin: 0;
+    margin-bottom: 5px
+} /*固定头部*/
+
+#main_left_div .menu i {
+    position: absolute;
+    width:18px;
+    height: 18px;
+    float: left;
+    left: 28px;
+    right: auto;
+    margin-top: 8px;
+    bottom: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+#main_left_div .menu i.bigi {
+    position: absolute;
+    width:26px;
+    height: 26px;
+    float: left;
+    left: 25px;
+    right: auto;
+    margin-top: 0px;
+    bottom: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+/*一级菜单两态样式,供JS.menu li a *{vertical-align: bottom;}调用*/
+#main_left_div .menu li.licheck, #main_left_div .menu li:hover {
+    color: #333;
+    background-image: url("../images/bgtouming_bai.png");
+    font-weight: bold;
+    border: 0px solid #FFF;
+} 
+/*左边菜单下方两个按钮*/
+#main_left_div .menubottom {
+    position: absolute;
+    float: left;
+    left: 0px;
+    right: auto;
+    margin-top: 7px;
+    top:auto;
+    height:auto;
+    bottom: 22px;
+    width:100%;
+    text-align: center;
+    vertical-align: middle;
+    border:0px solid #000;
+}
+
+#main_left_div .menubottom li.message img{/*小铃铛*/
+    width:30px;
+    height: auto;
+    border-radius:50%;
+    border:0px solid #333;
+    margin-top: 8px;
+    margin-bottom: 3px;
+}
+#main_left_div .menubottom li.message img:hover{/*小铃铛*/
+    background-color: #FFF;
+}
+#main_left_div .menubottom li.userimg img{/*用户图像*/
+    width:45px;
+    border-radius:28px;
+    border:2px solid #333;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);/**/
+}
+#main_left_div .menubottom li.userimg:hover{/*用户图像变换背景*/
+    background-color: #CCC;
+}
+
+/*光标放上时背景色变色*/
+/*.menu li a:hover{color:#000;  background-color:#CCC;}*/ /*光标放上时背景色变色*/
+/*#tagContent {
+	height:0px;
+	BORDER-RIGHT: #CCC 0px solid;
+    BORDER-TOP: #CCC 0px solid; 
+    BORDER-LEFT: #CCC 0px solid; 
+	BORDER-BOTTOM: #CCC 1px  solid;
+	}
+.tagContent { DISPLAY: none;}
+
+#tagContent DIV.selectTag { DISPLAY: block;}*/
+.main_right_div { /*rightdiv*/
+    position: fixed;
+    height: 100%;
+    width: auto;
+    background: #FFF;
+    top: 56px;
+    bottom: 0px;
+    left: 78px;
+    right: 0px;
+    z-index: 2;
+    overflow: auto;
+}
+/*=========================================================================  【桌面菜单开始*】 */
+.main_right_div .menudesk {
+
+	width:100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-left: 20px;
+    background: #FFF;
+    border: 0px solid #333;
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.menudesk ul {
+	float: left;
+	margin: 6px;
+	width:auto;
+	max-width: 138px;
+	height: auto;
+	margin-bottom: 10px;
+	margin-top: 6px;
+    background:#504FF0;
+    border: 0px solid #504FF0;
+    box-shadow: 2px 3px 18px rgba(0,0,0,0.18);
+    border-radius:25px 5px 3px 3px;
+    padding-bottom: 3px;
+ 
+}
+
+.menudesk ul li.overli {
+	float: left;
+	margin-top: 0px;
+	width: 138px;
+	height: 35px;
+	line-height: 30px;
+    font-size: 12px;
+	border-radius: 0px;
+    background: #FFF;
+	color: #000;
+	vertical-align: bottom;
+	position: relative;
+    cursor:default;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.menudesk ul li.clickstyle, .clickstyle {/*光标放入时执行效果*/
+	background-color: #CCC;
+    color: #504FF0;
+}
+
+.menudesk ul li.menudeskhead, .menudeskhead {/*头部菜单*/
+	width: auto;
+	height: 45px;
+	line-height: 50px;
+	padding-left: 13px;
+	vertical-align: bottom;
+	bottom: 0px;
+	color: #FFF;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.menudesk ul li .deskbh {/*桌面标签编号*/
+	float: left;
+	font-size: 16px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	vertical-align: middle;
+	color:#999;
+	line-height: 23px;
+	margin-top: -2px;
+	margin-left: -1px;
+}
+
+.menudesk ul li div.head00 {
+	height: 100%;
+    line-height: 95%;
+    width: 35px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: 3px;
+	border: 0px solid #EC1014;
+	color: #000;
+	
+}
+.menudesk ul li div.head00 img{/*菜单图标*/
+	height: 16px;
+    margin-top: 10px;
+    width: auto;
+    border:0px solid #CCC;
+    border-radius: 50%;
+
+}
+
+.menudesk ul li div.head01 {
+	position: absolute;
+	float: left;
+	z-index: 7;
+	top: auto;
+	bottom: 8px;
+	left: auto;
+	right: auto;
+	width: 90px;
+	height: 18px;
+	line-height: 18px;
+	vertical-align: bottom;
+	text-align: left;
+	padding-left: 35px;
+	padding-right: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.main_right_div .deskbottom .rightul{        /*桌面下方靠右*/
+	float: right;
+    top:0; 
+	right:22px;
+	left:auto;
+	width:auto;
+    border:0px solid red;
+}
+.nocopytext { /*禁止选中文字*/
+    -webkit-user-select: none;  /*Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */ /* No support for these yet, use at own risk */
+    -o-user-select: none;/**/
+    user-select: none;/**/
+}
+
+.nocopytext2 { /*禁止选中文字*/
+    display:flex;
+    flex-direction: column;
+}

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>js蓝色手风琴图标菜单特效 - 站长素材</title>
+<link rel="stylesheet" href="./assets/css/iconfont.css">
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <div class="middle">
+    <ul class="menu">
+      <li class="item" id="profile">
+        <a href="#profile" class="btn"><i class="iconfont icon-user"></i>我的</a>
+        <div class="smenu">
+          <a href="javascript:void(0);">发布</a>
+          <a href="javascript:void(0);">图片</a>
+        </div>
+      </li>
+      <li class="item" id="messages">
+        <a href="#messages" class="btn"><i class="iconfont icon-mail"></i>邮件</a>
+        <div class="smenu">
+          <a href="javascript:void(0);">写邮件</a>
+          <a href="javascript:void(0);">草稿箱</a>
+          <a href="javascript:void(0);">已发送</a>
+          <a href="javascript:void(0);">垃圾箱</a>
+        </div>
+      </li>
+      <li class="item" id="settings">
+        <a href="#settings" class="btn"><i class="iconfont icon-setting"></i>设置</a>
+        <div class="smenu">
+          <a href="javascript:void(0);">密码</a>
+          <a href="javascript:void(0);">语言</a>
+        </div>
+      </li>
+      <li class="item">
+        <a href="javascript:void(0);" class="btn"><i class="iconfont icon-logout"></i>注销</a>
+      </li>
+    </ul>
+  </div>
+</body>
+<script>
+  // 使其能收缩
+  const handler = function(e) {
+    if (location.hash === this.getAttribute('href')) {
+      e.preventDefault();
+      location.href = location.href.slice(0, -location.hash.length + 1)
+    }
+  }
+  document.querySelectorAll('.btn').forEach(a => {
+    a.addEventListener('click', handler, false);
+  });
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Opera、傲游、搜狗、世界之窗. 不支持Safari、IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</html>

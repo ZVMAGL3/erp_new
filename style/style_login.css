@@ -1,0 +1,253 @@
+
+/*	全局定义　*/
+html,body {
+	height: 100%;
+	overflow:hidden;
+    font-size: 14px;
+	margin: 0;
+	padding:0;
+	color:#666;
+}
+.copyright{
+	color:#333;
+	padding:6px;
+	padding-left:15px;
+	position:fixed;
+	bottom:45px;
+	top:auto;
+	left:0px;
+	right:auto;
+	width:100%;
+	
+	
+	}
+.loginback {
+	background: url("../MachineV1.0/images/desk_img/004.jpg");
+    /* 背景图垂直、水平均居中 */
+    background-position: center center;
+    /* 背景图不平铺 */
+    background-repeat: no-repeat;
+    /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+    background-attachment: fixed;
+    /* 让背景图基于容器大小伸缩 */
+    background-size: cover;
+    /* 设置背景颜色，背景图加载过程中会显示背景色 */
+    background-color: #464646;
+	color: #fff;
+
+}
+.regback {
+	background:#15CCAD;
+	color: #FFF;
+}
+:focus {
+	outline: none;
+}
+/* for Firefox去链接的虚*/
+a {
+    text-decoration: none;
+  }
+a:hover {
+    color: #000000;
+    text-decoration: none;
+    }
+form {
+    margin: 0px;
+}
+/*设置样式*/
+
+.set_right_bottom{
+	position:fixed;
+	top:auto;
+	bottom:9px;
+	left:auto;
+	right:25px;
+	width:auto;
+	border:0px solid #000000;
+	}
+.set_right_bottom ul{
+	border:1px solid #000
+	}
+
+.set_right_bottom img{
+	width:auto;
+	height:auto;
+	padding-top:5px;
+	padding-bottom:3px;
+	}
+.set_right_bottom *{
+	font-size:12px;
+	vertical-align:middle;
+	text-align:center;
+	color:#666;
+	}
+.set_right_bottom a:hover ul{
+	background-color:#FFF;
+	border:0px solid #333;
+	border-radius:10px;
+	color:#000;
+	padding:0;
+	}
+.huiyuanzhuche{
+	font-size:25px;
+	color:#FFF;
+	line-height:55px;
+
+	}
+.set_right_bottom ul{
+	margin:0;
+	padding:0;
+	width:100px;
+	height:85px;
+	float:right;
+	border:0px solid #000000;
+    }
+/*头像圆形*/
+.divcss5{
+	margin:10px auto;
+	color:#000;
+	
+} 
+.divcss5 img.logo{
+	border:1px dashed #999; 
+	border-radius:30%;
+	width:auto;
+	height:120px;
+	padding:12px;
+	margin:5px;
+	color:#000000;
+	margin-bottom:20px
+	
+	} 
+/**/
+
+.cong{
+	border:0PX solid #333;
+	margin:auto auto;
+	 position: absolute;
+    left: 50%;
+    top: 40%;
+    width:470px;
+    height:300px;
+    margin-left:-240px;
+    margin-top:-220px;
+	}
+.cong .divcss5{
+	vertical-align:middle;
+	text-align:center;
+	margin-bottom:18px;
+	}
+
+.cong ul,.cong ul li{
+	margin:0;
+	padding:0;
+	list-style:none;
+	height:40px;
+	line-height:39px;
+	}
+.cong ul{
+	margin:0;
+	margin-top:15px;
+	padding:0;
+	border:1px solid #000;
+	background-color:#FFF;
+	position:relative;
+    
+	}
+.boxshadow{/*元素阴影*/
+	box-shadow: #999 0px 0px 12px 1px
+	}
+.cong ul .rightdiv{
+	position:absolute;
+	top:-1px;
+	height:30px;
+	line-height:39px;
+	width:40px;
+	right:-36px;
+	border:0px solid #000000;
+	vertical-align:middle;
+	text-align:center;
+	}
+.cong ul .rightdiv *{
+	padding-top:20%;
+	}
+.cong ul.hide{
+	display:none;
+	}
+.cong ul.ullogin{
+	margin:0;
+	margin-top:30px;
+	padding:0;
+	border:1px solid #666;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	
+	}
+.cong ul.ullogin input{
+	margin:0;
+	padding:0;
+	border:0;
+	background-color:#999;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	width:100%;
+	color:#000;
+	font-size:18px;
+	cursor:pointer;
+	}
+.cong ul li{
+	float:left;
+	display: inline;
+	width:auto;
+	}
+.cong ul li.lione{
+	background-color:#333;
+	width:150px;
+	text-align:center;
+	}
+
+.cong ul li input{
+	height:40px;
+	line-height:40px;
+	width:306px;
+	margin:0;
+	padding:0;
+	padding-left:3px;
+	padding-right:3px;
+	border:0;
+	display: inline-block;
+    float: left;
+    left:5px;
+    right: 5px;
+	color:#999;
+	}
+
+.cong .hei01{
+	border:2px solid #333;
+    }
+	
+	
+/*以下为验证码样式*/
+.nocode {  
+	display: inline-block;
+    width: 70px;  
+    height: 26px;
+	line-height:26px;
+}
+.code {  
+	display: inline-block;
+	font-size:12px;
+    color: #ff0000;  
+    font-family: Tahoma, Geneva, sans-serif;  
+    font-style: italic;  
+    font-weight: bold;  
+    text-align: center;  
+    width: 70px;  
+    height: 26px;  
+    line-height: 26px;
+    cursor: pointer;  
+    border:0px solid #e2b4a2;
+    background: #FFF;
+} 

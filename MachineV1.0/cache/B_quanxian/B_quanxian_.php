@@ -1,0 +1,30 @@
+<?php
+include_once "{$_SERVER['PATH_TRANSLATED']}/session.php";
+$const_q_zu='';
+$const_id_fz='';
+$const_id_bumen='';
+$const_bumenname='';
+$const_q_fanwei='';
+$const_q_tianj='';
+$const_q_xiug='';
+$const_q_shenghe='';
+$const_q_pizhun='';
+$const_q_zhixing='';
+$const_q_shanc='';
+$const_q_cak='';
+$const_q_dayin='';
+$const_q_xiaohui='';
+$const_q_huis='';
+$const_q_seid='';
+$const_q_dian='';
+$regid='';
+$reg_name='';
+$reg_banben='';
+$data_use='';
+$const_jlbhzt='';
+$maxrecord='30';
+if ( $maxrecord == '' )$maxrecord = 20;
+$nowlockd='';
+$usermoban='';
+$nowgsbh='';
+?>

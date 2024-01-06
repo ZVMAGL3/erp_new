@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+* {
+	/*通用设置*/
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	text-align: center;
+	list-style: none;
+	border: 0;
+	color:#FFF;
+
+}
+body {
+	width:100%;
+	text-align: center;
+	background-color: #333;
+	margin:0;
+	border:0;
+	}
+a {
+	width:100%;
+	cursor: hand;
+	outline: none;
+	/* for firefox 去虚框*/
+	border: 0;
+	text-decoration:none;
+}
+a:hover {
+	background-color: #CCC;
+	color:#F7070B;
+}
+a:link,a:visited {
+	text-decoration: none;
+}
+
+/*menu style*/
+.menuul{
+	width:90%;
+	vertical-align:middle;
+	margin-left:3px;
+	margin-right:3px;
+	border:0;
+}
+.menuul li{
+	width:100%;
+	vertical-align:middle;
+	height:40px;
+	line-height:40px;
+	color:#FFF;
+	cursor:default;
+	border:0px solid #EDE4E4;
+}
+.menuul li.overstyle{
+	width:100%;
+	color:#000;
+	background-color:#F9F9F9;
+}
+.menuul li *{
+	vertical-align: middle;
+	
+}
+/*desk end*/
+.button_ADD {/*按钮添加 ok*/
+	background-color: #333;
+}
+
+.redfont{color:red;}

@@ -1,0 +1,35 @@
+/*redLine*/
+span.redLine_mSel_main {overflow:hidden;margin:0;padding:0 16px 0 4px;background:url(redLine_bg.gif) no-repeat right -40px #f0f0f0;border:#fff outset 1px;text-align:left;cursor:pointer;font-size:12px;height:20px;line-height:16px;zoom:1;display:inline-block; vertical-align:middle;}
+
+.redLine_mSel_list {display:none;position:absolute;margin:2px 0 0 0;padding:7px 7px;background-color:#f0f0f0;border:#fff outset 1px;list-style:none;text-align:left;font-size:12px;z-index:100; max-height:350px; overflow-y:auto;}
+.redLine_mSel_list ul { width:100%;}
+.redLine_mSel_list li {border-top:#fff groove 1px;border-top:#fff outset 1px;height:19px; line-height:19px;}
+.redLine_mSel_list li.mSel_start{ height:15px; line-height:15px; display:none;}
+.redLine_mSel_list li.mSel_end{ height:12px; line-height:12px;}
+.redLine_mSel_list li a {display:block;overflow:hidden;margin:0;margin:0px 0;padding:0 2px;line-height:18px;text-decoration:none;color:#000;height:18px;}
+.redLine_mSel_list li a:hover,.redLine_mSel_list li.mSel_on a {background:url(redLine_bg.gif) no-repeat left 2px;color:#fff;}
+.redLine_mSel_list li a.mSel_disable {font-style:italic;}
+.redLine_mSel_list li a.mSel_disable:hover {background:none;color:#000;}
+
+/*blueCircle Download by http://www.jb51.net*/
+span.blueCircle_mSel_main {overflow:hidden;margin:0;padding:0 20px 0 10px;background:url(blueCircle_bg.gif) no-repeat;vertical-align:middle;line-height:25px;text-align:left;cursor:pointer;font-size:13px;color:#000;width:160px;height:25px;zoom:1;display:inline-block;}
+.blueCircle_mSel_list {display:none;position:absolute;margin:-7px 0 0 -2px;padding:0;list-style:none;text-align:left;font-size:13px;width:190px;z-index:10008;}
+.blueCircle_mSel_list li {background-color:#fcfcfc;border:#6D92AB solid;border-width:0 2px;height:25px;}
+.blueCircle_mSel_list li.mSel_start {line-height:0;font-size:0;height:5px;}
+.blueCircle_mSel_list li.mSel_end {background:url(blueCircle_bg.gif) no-repeat left bottom;border:none;font-size:0;line-height:0;height:6px;}
+.blueCircle_mSel_list li a {display:block;overflow:hidden;padding:0 10px;line-height:25px;text-decoration:none;color:#79A2BD;height:25px;}
+.blueCircle_mSel_list li a:hover {background-color:#B1C3D9;color:#fff;}
+.blueCircle_mSel_list li.mSel_on a {background-color:#7FA9C6;color:#fff;}
+.blueCircle_mSel_list li a.mSel_disable {font-style:italic;}
+.blueCircle_mSel_list li a.mSel_disable:hover {background:none;color:#79A2BD;}
+/*orangeHeart*/
+span.orangeHeart_mSel_main {overflow:hidden;margin:0;padding:0 20px 0 5px;background:url(orangeHeart_bg.gif) no-repeat;vertical-align:middle;line-height:20px;text-align:left;cursor:pointer;font-size:13px;color:#908B85;width:40px;height:20px;zoom:1;display:inline-block;}
+.orangeHeart_mSel_list {display:none;position:absolute;margin:-7px 0 0 -2px;padding:0;list-style:none;text-align:left;font-size:13px;width:65px;z-index:10008;}
+.orangeHeart_mSel_list li {background-color:#2A231E;border:#4B4640 solid;border-width:0 1px;height:20px;}
+.orangeHeart_mSel_list li.mSel_start {line-height:0;font-size:0;height:3px;}
+.orangeHeart_mSel_list li.mSel_end {background:url(orangeHeart_bg.gif) no-repeat left bottom;border:none;font-size:0;line-height:0;height:3px;}
+.orangeHeart_mSel_list li a {display:block;overflow:hidden;padding:0 5px;line-height:25px;text-decoration:none;color:#908B85;height:20px;}
+.orangeHeart_mSel_list li a:hover {background-color:#666;color:#fff;}
+.orangeHeart_mSel_list li.mSel_on a {background-color:#51483D;color:#fff;}
+.orangeHeart_mSel_list li a.mSel_disable {font-style:italic;}
+.orangeHeart_mSel_list li a.mSel_disable:hover {background:none;color:#908B85;}
