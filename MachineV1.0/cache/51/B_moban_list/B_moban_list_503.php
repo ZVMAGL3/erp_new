@@ -29,13 +29,13 @@ global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_zidua
 	$page_first = ( $page - 1 ) * $maxrecord + 1;
 	$page_end = $page_first + $maxrecord - 1;
 	$nowjilucont = $page_end - $page_first;
-
 if ( "1" . $databiao == "1" ) {
    echo nonelist();
 } else {
    $Tablecol_list="id,sys_id_login,sys_login,sys_id_zu,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_nowbh,sys_id_bumen,sys_huis,sys_shenpi,sys_web_shenpi,sys_adddate,sys_adddate_g,sys_shenpi_all,ZD_XingMing,ZD_XingBie,ZD_ShenFenZhengHao,ZD_QiShiGongZuoShiJian,ZD_SuoJieChuLaoDongHeTongQiXian,ZD_LiZhiYuanYin,ZD_JieChuLaoDongHeTongShiJian,ZD_LaoDongZheQianZi,sys_chaosong,sys_paixu";
 
    $sql2 = "select (@rownum:=@rownum+1) as rownum,SQP_JieChuLaoDongHeTongZhengMingShu.id  from `SQP_JieChuLaoDongHeTongZhengMingShu`,(select @rownum:=0) as SQP_JieChuLaoDongHeTongZhengMingShu where  sys_yfzuid='$hy' and sys_huis='$huis' "; //这里得到查询id清单的sql
+   echo $sql2;
    if($sys_guanxibiao_id != '' && $GuanXi_id != ""){$sql2 .=" and  sys_gx_id_{$sys_guanxibiao_id}='{$GuanXi_id}'";}
    $sql2 =sql_search($databiao,$sql2,$nowkeyword, 0);
    $sql2 .= " order by $px_ziduan $pxv"; //这里得到排序

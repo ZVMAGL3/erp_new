@@ -262,8 +262,8 @@ echo"</form>";
 echo"<script>guanximenucopy('$ToHtmlID');YanZhen_ChongFu_ZuLoad('$strmk_id','SYS_GongHao,SYS_ShouJi','sys_yuangongdanganbiao','$ToHtmlID');inputfocusfirst('#$ToHtmlID  #content_foot .htmlleirong','id');</script>
 <div class='moban_set_menu'>
 <A class='selectTag' onClick=SelectTag_Menu('tagContent',this,'$ToHtmlID')>编辑</A>
-<A  onClick=SelectTag_Menu('DeskMenuDiv204_MenuDiv_264',this,'$ToHtmlID','42',$strmk_id)>交流记录</A>
 <A  onClick=SelectTag_Menu('DeskMenuDiv204_MenuDiv_324',this,'$ToHtmlID','41',$strmk_id)>检测和测量资源内校记录</A>
+<A  onClick=SelectTag_Menu('DeskMenuDiv204_MenuDiv_264',this,'$ToHtmlID','42',$strmk_id)>交流记录</A>
 <A title='修改记录'  onClick=SelectTag_Menu('DeskMenuDiv204_MenuDiv_368',this,'$ToHtmlID','368',$strmk_id)>E+</A>
 </div>
 

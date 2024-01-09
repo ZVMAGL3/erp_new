@@ -146,8 +146,8 @@ echo"<font id='editsuccess' class='font_red'></font></li></ul></br></br></div></
 echo"
 <div class='moban_set_menu'>
 <A class='selectTag' onClick=SelectTag_Menu_mobile('tagContent',this,'DeskMenuDiv204')>编辑</A>
-<A  onClick=SelectTag_Menu('DeskMenuDiv204_MenuDiv_264',this,'DeskMenuDiv204','42',$strmk_id)>交流记录</A>
 <A  onClick=SelectTag_Menu('DeskMenuDiv204_MenuDiv_324',this,'DeskMenuDiv204','41',$strmk_id)>检测和测量资源内校记录</A>
+<A  onClick=SelectTag_Menu('DeskMenuDiv204_MenuDiv_264',this,'DeskMenuDiv204','42',$strmk_id)>交流记录</A>
 <A title='修改记录'  onClick=SelectTag_Menu_mobile('DeskMenuDiv204_MenuDiv_368',this,'DeskMenuDiv204','368',$strmk_id)>E+</A>
 <A onClick=GuanXi(this,'DeskMenuDiv204')>+</A>
 </div>

@@ -184,8 +184,8 @@ function AjaxLoad(datapage, act, datahtml, callback, types, ToHtmlID, donghua, e
             sys_const_biaoqian_id: sys_const_biaoqian_id
         },
         success: function (data) {
-            // console.log(datapage,act)
-            // console.log(data);
+            console.log(datapage,act)
+            console.log(data);
             // alert(datapage)
 
             if (callback == 'data') {

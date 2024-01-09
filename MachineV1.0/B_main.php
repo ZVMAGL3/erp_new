@@ -32,7 +32,7 @@ if ( isset( $_SESSION[ 'reg_name' ] ) ) { //公司名称
 }
 $nowloginxinxi = "&nbsp;&nbsp;&nbsp;&nbsp;用户：{$reg_name}> {$const_bumenname}({$const_id_bumen}) >{$const_q_zu}({$SYS_QuanXian})>{$SYS_UserName}({$bh})";
 //$SYS_QuanXian="";
-
+echo $nowloginxinxi;
 if ( $SYS_QuanXian . '1' == '1' ) {
     //echo "<font color='red'><center><br><br><br>权限提示！<br> 对不起，您未被授权！<br> 请与您上级管理员联系，以取得权限后操作！</center></font>";
     //exit;
