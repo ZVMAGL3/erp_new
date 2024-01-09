@@ -63,9 +63,9 @@ function foots(){//分页
    //-------------------关系筛选END
 	
 	$sql=sql_search($databiao, $sql2, $nowkeyword, 0 );
-	//echo "<script>alert('$sql');</script>";
 	//exit;
 	$rs=mysqli_query( $Conn , $sql );
+	// echo "<script>alert('$sql');</script>";
 	$record_count=mysqli_num_rows($rs);//统计总记录数
 	$page_count=ceil($record_count/$maxrecord);//进一取整 总页数
     if ($record_count>0){

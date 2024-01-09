@@ -779,7 +779,7 @@ function shuqianmenu_update() { //书签更新
 		$connect -> query($sql);
 }
 function shuqianmenu_user_update() { //用户记忆功能
-	global $connect,$bh,$hy,$const_id_fz,$SYS_UserName,$SYS_Company_id,$zu,$sys_id_bumen,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
+	global $connect,$db_vip,$bh,$hy,$const_id_fz,$SYS_UserName,$SYS_Company_id,$zu,$sys_id_bumen,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
 	$sys_id_bumen_const=$sys_id_bumen;
 	$hy_const=$hy;
 	$bh_const=$bh;
@@ -837,13 +837,13 @@ function shuqianmenu_user_update() { //用户记忆功能
 
 	//===================================================================================================判断
 	$sqlaa = "select id From `sys_biaoqian_user` where sys_const_re_id='$re_id' and sys_yfzuid='$hy_const' and sys_id_login='$bh_const'";
-		//echo $sql;
-	$rsaa = $connect -> query($sqlaa);
-	$countcords=$connect -> numRows($rsaa['result']);
+	echo $sqlaa;
+	$rsaa = $db_vip -> query($sqlaa);
+	$countcords=$db_vip -> numRows($rsaa['result']);
 	if($countcords==0){//没有时添加
 		$sql = "INSERT INTO `sys_biaoqian_user` (sys_const_biaoqian_id,sys_const_keyword,sys_const_company_id,sys_const_id_bumen,sys_const_hy,sys_const_bh,sys_const_shenpi,sys_const_shenpi_all,sys_const_chaosong,sys_const_adddate,sys_const_qx,sys_const_pagetype,sys_const_page,sys_const_big_id,sys_const_huis,sys_const_px_name,sys_const_pxv,sys_const_pok,sys_const_tuodongok,sys_const_s_h,sys_const_q_h,sys_const_c_ok,sys_const_b_ok,sys_const_C_xu_now,sys_const_Start_Suoding,sys_const_End_Suoding,sys_const_prev_zd,sys_const_ChangePrev_zd,sys_const_ChangeNext_zd,sys_const_this_zd,sys_const_zu,sys_const_zd,sys_const_ShaiXuanSql,sys_const_ShaiXuanSql_other,sys_login,sys_id_fz,sys_id_bumen,sys_adddate,sys_const_re_id,sys_yfzuid,sys_id_login) VALUES ('$sys_const_biaoqian_id', '$sys_const_keyword', '$SYS_Company_id','$sys_id_bumen','$hy','$bh','$sys_const_shenpi','$sys_const_shenpi_all','$sys_const_chaosong','$sys_adddate','$sys_const_qx','$sys_const_pagetype','$page','$big_id','$huis','$px_name','$pxv','$pok','$sys_const_tuodongok','$sys_const_s_h','$sys_const_q_h','$sys_const_c_ok','$sys_const_b_ok','$sys_const_C_xu_now','$sys_const_Start_Suoding','$sys_const_End_Suoding','$sys_const_prev_zd','$sys_const_ChangePrev_zd','$sys_const_ChangeNext_zd','$sys_const_this_zd','$zu','$zd','$ShaiXuanSql','$ShaiXuanSql_other','$SYS_UserName','$const_id_fz','$sys_id_bumen_const','$nowdata','$re_id','$hy_const','$bh_const')";
 		
-		$connect -> query($sql);
+		$db_vip -> query($sql);
 	}else{//修改
 		//`sys_const_huis` ='$huis',`sys_const_ShaiXuanSql` ='$ShaiXuanSql',
 		$sql = "UPDATE  `sys_biaoqian_user`  set 
@@ -889,7 +889,7 @@ function shuqianmenu_user_update() { //用户记忆功能
 	
 	    // echo $sql;
 	    //if ( SYS_str( $Xcoid_txt ) == 0 ) { //当为0时不为系统字段 1代表为系统字段//检查不为系统字段时执行
-		$connect -> query($sql);
+		$db_vip -> query($sql);
 	}
 }
 

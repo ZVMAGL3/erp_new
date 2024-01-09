@@ -184,8 +184,9 @@ function AjaxLoad(datapage, act, datahtml, callback, types, ToHtmlID, donghua, e
             sys_const_biaoqian_id: sys_const_biaoqian_id
         },
         success: function (data) {
-                // console.log(data);
-                // alert(datapage)
+            // console.log(datapage,act)
+            // console.log(data);
+            // alert(datapage)
 
             if (callback == 'data') {
                 // alert(data);
@@ -875,7 +876,7 @@ function moban_set_liucheng(ths, ToHtmlID) {
         re_id: re_id,
     }, function (data) {
         data=JSON.parse(data)
-        console.log(data)
+        // console.log(data)
         // var data = 
         // {
         //     re_id:256,
@@ -944,7 +945,6 @@ function LiuCheng_search(ths,nowkeyword=''){
         act: "list3",
         nowkeyword
     }, function (data) {
-        console.log(data)
         $(ths).find('.main_right_div_box').html(data)
     })
 }
@@ -994,10 +994,7 @@ function ADDLiuCheng_course(ths,re_id){
     $('.LiuCheng_search').show() 
 }
 function newProcess(ths,data,re_id){
-    var div = `
-        <div class="LiuCheng_unit" name='${data.re_id}'>${data.sys_card}</div>
-    `
-    console.log(re_id)
+    var div = `<div class="LiuCheng_unit" name='${data.re_id}'>${data.sys_card}</div>`
     var dom = $(LiuCheng_unit_div(0,"",div,{name:'确定',onclick:`LiuCheng_save_edits(this,${re_id})`})).get(0)
     $(ths).parent().parent().find('.LiuCheng_content').append(dom)
     LiuCheng_unit_edit($(dom).find('.LiuCheng_unit_edit'),data.re_id)
@@ -1009,14 +1006,12 @@ function LiuCheng_save_edits(ths,re_id){
         return ;
     }
     $(ths).text('编辑').off().on('click',function(){
-        console.log(re_id)
         LiuCheng_unit_edit($(ths),re_id)
     })
     $(ths).prev().remove()
     LiuCheng_unit_box.find('.LiuCheng_unit_name').attr('readonly',true)
     LiuCheng_unit_box.find('.LiuCheng_unit_del').remove()
     LiuCheng_unit_box.find('.LiuCheng_sign').html('<i class="fa fa-zhuanyi">').off()
-    console.log(re_id)
     LiuCheng_unit_box.removeClass('LiuCheng_undone')
     LiuCheng_unit_box.find('.LiuCheng_unit[name="0"]').each(function(index, element) {
         if(index){
@@ -1026,7 +1021,7 @@ function LiuCheng_save_edits(ths,re_id){
         }
         $(this).remove()  
     });
-    FlowLink = LiuCheng_unit_box.find('.LiuCheng_unit').off().map(function(){
+    FlowLink = LiuCheng_unit_box.find('.LiuCheng_unit').off().draggable('destroy').droppable('destroy').map(function(){
         return $(this).attr('name')
     }).get()
     data={
@@ -1065,7 +1060,6 @@ function LiuCheng_unit_div(re_id,LiuChengName,div,button,editable=false){
     `
 }
 function LiuCheng_unit_edit(ths,re_id){
-    console.log(re_id)
     $(ths).text('确定').attr('onclick','').off().on('click',function(){
         LiuCheng_save_edits(ths,re_id)
     })
@@ -1080,6 +1074,7 @@ function LiuCheng_unit_edit(ths,re_id){
             })
             LiuCheng_addDelBut_nuit($(this))
         }
+        LiuChengTuoDong($(this))
     });
 
     dom.find('.LiuCheng_unit_name').attr('readonly',false)
@@ -1089,6 +1084,46 @@ function LiuCheng_unit_edit(ths,re_id){
     var div = dom.find('.LiuCheng_unit_box_inside')
     div.append(ADDLiuCheng_dom(1,0))
     div.prepend(ADDLiuCheng_dom(0,0))
+}
+function LiuChengTuoDong(ths){
+    ths.draggable({
+        cursor: 'move',
+        revert: 'invalid',  // 如果拖动未放置在有效的目标上，则还原到初始位置
+        helper: 'clone',    // 创建拖动时的克隆元素
+        start: function(event, ui) {
+            // 在拖动开始时执行的逻辑
+            // 这里可以添加一些代码，例如记录初始位置等
+            // ths.hide()
+        },
+        stop: function(event, ui) {
+            // 在拖动结束时执行的逻辑
+            // 显示原本的标签
+            // ths.show();
+            const droppedElement = ui.helper;  // 获取拖动时的克隆元素
+            ths.attr('name',droppedElement.attr('name'))
+            ths.html(droppedElement.html())
+        }
+    }).droppable({
+        accept: '.LiuCheng_unit',  // 指定可接受的元素
+        drop: function(event, ui) {
+            // 在元素放置时执行的逻辑
+            // 这里可以添加一些代码，例如处理交换位置的逻辑
+            const droppedElement = ui.helper;  // 获取拖动时的克隆元素
+
+            // 在这里添加检查是否有可交换元素的逻辑
+            // 示例：如果有可交换元素，则输出目标元素的信息
+            if(droppedElement.closest('.LiuCheng_unit_box').attr('re_id') == ths.closest('.LiuCheng_unit_box').attr('re_id')){
+                var re_id1 = droppedElement.attr('name')
+                var html1 = droppedElement.html()
+                droppedElement.attr('name',ths.attr('name'))
+                droppedElement.html(ths.html())
+                ths.attr('name',re_id1)
+                ths.html(html1)
+            }else{
+                // console.log('不在一个区域')
+            }
+        }
+    })
 }
 function LiuCheng_sign_aftermath(ths){
     var item = ADDLiuCheng_dom(1,-1)
@@ -1135,6 +1170,7 @@ function LiuCheng_del_examine(ths){
 }
 function LiuCheng_choose(newRe_id,sys_card){
     let dom = $('.LiuCheng_choose')
+    LiuChengTuoDong(dom)
     if(dom.attr('name') == 0){
         ADDLiuCheng_plan(dom,0)
     }

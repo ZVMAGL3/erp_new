@@ -75,7 +75,7 @@ $Use_SyS_Div = 'DeskMenuDiv' . $Menu_checd_Id; //使用哪层DIV
 <script language='JavaScript' src='../js/jq.seidfoot.js' type='text/javascript' charset='utf-8'></script>
 <script language='JavaScript' src='../js/jq.menu.js' type='text/javascript' charset='utf-8'></script>
 <script type="text/javascript" src='../js/jq.seidfootedit.js'  charset='utf-8'></script>
-
+<script type="text/javascript" src="../js/jquery-ui-1.13.2/jquery-ui.js" charset='utf-8'></script>
 
 <script type="text/javascript" src='../js/laydate-v5.3.1/laydate.js' charset='utf-8'></script>
 <script type="text/javascript" src='../js/hztopy-min.js' charset='utf-8'></script>

@@ -29,7 +29,7 @@ function menuoverclickstyle(divname,overstylename,cheeckstyle){//这里为切换
 	$(divname).on('mouseover',function(){if(!$(this).hasClass(cheeckstyle)){$(this).addClass(overstylename);}})
 	.on('mouseout',function() {$(this).removeClass(overstylename);})
 	.on('click',function() {$(this).removeClass(overstylename);$(divname).removeClass(cheeckstyle);$(this).addClass(cheeckstyle);});
-	}
+}
 function changeon(ths){//这里为切换 over click 切换效果
 	
 	thisclass=$(ths).attr('class');
@@ -84,7 +84,7 @@ function ZhiZheQuanXian_GET_date(ths){//职能数据加载二级菜单数据
 	  });
 	   //alert($("#"+Sys_Menu_id).length);
 	};
-    }
+}
 //--------------------------------------------------------------------------------------------------我的公司
 function callmenu_gongsi(){//(act,表名）
 	//alert('0');
@@ -94,14 +94,12 @@ function callmenu_gongsi(){//(act,表名）
   $("#menu_html").html("<iframe border='0' style='width:100%;height:98%;border:0' src='../m/Machine_MobileV1.0/M_set.php?act=list'></iframe>");
  
 }
-
-
   //---------------------------------------------------------------------------切换及生成TOP菜单
 function PostAddTopMenu(nowre_id,fieldsname){
   //if (fieldsname!=''||fieldsname!='undefined'){
 	// alert(nowre_id+"_"+fieldsname);
 	$.post("moban_set_data.php",{act:'TopsMenu',re_id:nowre_id,fieldsname:fieldsname},function(data){
-		// alert(data);
+		console.log(data);
 		//$.post('B_moban_top.php', {act: "list",re_id: 0});//更新缓存
 	});
 	//};

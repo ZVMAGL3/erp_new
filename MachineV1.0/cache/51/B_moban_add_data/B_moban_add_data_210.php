@@ -15,7 +15,7 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		if ( $const_q_tianj >= 0 ) { //有修改权限时
 		
 		//--------------------------------------以下为查询到表的信息
-	    $sql = "select sys_zt,sys_zt_bianhao From `sys_jlmb` where sys_yfzuid='$hy' and mdb_name_SYS='SQP_88' ";
+	    $sql = "select sys_zt,sys_zt_bianhao From `sys_jlmb` where sys_yfzuid='$hy' and mdb_name_SYS='SQP_TeShuGongXuJianKongJiLuBiao' ";
 	    //echo $sql;
 	    $rs = mysqli_query(  $Conn , $sql );
 	    $row = mysqli_fetch_array( $rs );
@@ -27,7 +27,7 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 	    mysqli_free_result( $rs );                          //释放内存
 	
 	    //--------------------------------------以下为查询到自动编号
-	    $sql = "select MAX(sys_bh) AS sys_bh From `SQP_88` where sys_yfzuid='$hy' and sys_zt='$r_zt' and sys_zt_bianhao='$r_zt_bianhao' ";
+	    $sql = "select MAX(sys_bh) AS sys_bh From `SQP_TeShuGongXuJianKongJiLuBiao` where sys_yfzuid='$hy' and sys_zt='$r_zt' and sys_zt_bianhao='$r_zt_bianhao' ";
 	    //echo $sql;
 	    $rs = mysqli_query(  $Conn , $sql );
 	    $row = mysqli_fetch_array( $rs );
@@ -46,7 +46,7 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		$nowdata = date( 'Y-m-d H:i:s' );       //当前时间
 		
 		//--------------------------------------以下为得交数据
-		$sql = "insert into  `SQP_88`  (,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values (,'$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
+		$sql = "insert into  `SQP_TeShuGongXuJianKongJiLuBiao`  (,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values (,'$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
 		mysqli_query( $Conn,$sql );
 		echo "<script></script>";
         $nowid = mysqli_insert_id($Conn)
@@ -54,9 +54,9 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
         $sys_editcontent='首次建档;';
         if($sys_editcontent!=''){
             $sys_postzd_list = "sys_re_id,sys_edit_id,sys_editcontent";
-	        $sys_postvalue_list = "'525','$nowid','$sys_editcontent'";		
+	        $sys_postvalue_list = "'210','$nowid','$sys_editcontent'";		
 	        Jilu_add_Modular( 'sys_xiuguaijilu', $sys_postzd_list, $sys_postvalue_list); //添加数据 并生成添加的id
-	        LiYi_Add(525,$nowid,534,'+');       //利益函数 这里奖励货币
+	        LiYi_Add(210,$nowid,534,'+');       //利益函数 这里奖励货币
         }
 
 		echo "$nowid";

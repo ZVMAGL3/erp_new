@@ -24,7 +24,6 @@ function AddTopMenu(nowarr) {
                     Top_SelectTag($(this).attr('id'));
                     $(this).find('li').removeClass('selectbefore'); //清除之前识别的菜单样式
                     DeskMenu('body', $(this).attr('id'));
-                    
                 }).on('dblclick', '#Top_DeskMenuDiv' + arr1[0], function () {
                     //alert(arr1[0]+';'+arr1[1]);
                     DelTopMenu(this);

@@ -113,7 +113,6 @@ function JL_updata_changdata() {
 	if ( isset( $_POST[ 'newvale' ] ) )     $newvale = trim( $_POST[ 'newvale' ] );                      //修改后的值
 	UpdataJilu($tablename,$id,$ziduan,$newvale);
 }
-
 //[ok]======================================================================================================修改记录
 function edit_biao_col() { //修改单独表中指定字段的值【单条与多条均可】
 	global $re_id,$Conn;
@@ -207,7 +206,6 @@ function MimaXG() {
 		mysqli_free_result( $rs ); //释放内存
 	}; //if end
 }; //function end
-
 //======================================================================================================修改
 function edit_Text_Post() {
 	global $bh, $hy, $reg_num;
@@ -226,7 +224,6 @@ function edit_Text_Post() {
 		echo( '保存成功！' );
 	}; // if end
 }; //function end
-
 //======================================================================================================添加修改单独表
 function daohangmenu() { //修改单独表中指定字段的值，及添加值 //act=daohangmenu.$fieldsname=总经理.newfieldsname=总经理2.fieldsTable=msc_zhiwei.newfieldsnameZD=zu.bigid=43.bigZD=id.Tsid=1.Tszd=id.GXzd=bumen;
 	global $Conn, $re_id; //得到全局变量
@@ -270,9 +267,7 @@ function daohangmenu() { //修改单独表中指定字段的值，及添加值 /
 		Jilu_update_Modular( $fieldsTable,$wheretext,$newfieldsnameZD,$newfieldsname ,$Conn); //更新单条的对应表
 	};
 };
-
-        ////*************************************************表处理*************************************////
-
+////*************************************************表处理*************************************////
 //[ok]======================================================================================================添加修改质量记录清单
 function Table_Edit_Jlmb() {
 	global $Conn, $hy, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen; //得到全局变量
@@ -294,7 +289,6 @@ function Table_Edit_Jlmb() {
 		update_sys_top_menu($nowTsid,$newfieldsname);                                            //更新sys_top_menu菜单名
 	}
 }
-
 //======================================================================================================删除表、表备注
 function biao_del() {
 	$fieldsname = '';
@@ -303,7 +297,6 @@ function biao_del() {
 		table_del_Modular( $fieldsname ); //$Table_Name表名
 	};
 };
-
 //======================================================================================================添加、修改字段及说明
 function ziduan_edit() { //添加也在这里
 	global $Conn, $xt_m_ziduan, $databiao; //得到全局变量
@@ -328,7 +321,6 @@ function ziduan_edit() { //添加也在这里
 	};
 
 };
-
 //======================================================================================================修改字段说明中权限
 function ziduan_beizhu_edit(){
 		
@@ -417,7 +409,6 @@ function ziduan_beizhu_edit(){
 
 	//end if
 };
-
 //======================================================================================================删除字段
 function ziduan_del() {
 	global $Conn, $databiao; //得到全局变量
@@ -427,7 +418,6 @@ function ziduan_del() {
 		ziduan_del_Modular( $databiao, $fieldsname ); //删除字段
 	}
 }
-
 //======================================================================================================修改权限
 function quanxian() {
 	global $databiao, $re_id;
@@ -440,7 +430,6 @@ function quanxian() {
 	$nowbeizhu = updateN( colbeizhu( $databiao, $nowziduan ), $beizhucolid, $thisvalue, ',' ); //得到备注并更换
 	ziduan_edit_Modular( $databiao, $nowziduan, $nowziduan, $nowbeizhu, '', '' ); //更新备注
 };
-
 //=================================================================================================以下为表头动态改变
 function e_kd() { //表头拖动改变列宽更新数据
 	//echo (zd_xu)
@@ -456,7 +445,6 @@ function e_kd() { //表头拖动改变列宽更新数据
 	/**/
 	
 };
-
 function e_col() { //表头列位置改变
 	global $Conn, $c_ok, $b_ok, $databiao, $re_id, $scroll_left; //得到全局变量
 	
@@ -501,7 +489,6 @@ function e_col() { //表头列位置改变
 	echo '<script>document.all.content.scrollLeft=' . $scroll_left . ';</script>';//返回横向滚动条位置
     /**/
 };
-
 //【ok】================================================================================================职能分配表编辑
 function Edit_Bmquanxian() {
 	global $Connadmin,$Conn; //得到全局变量
@@ -645,7 +632,6 @@ function Edit_ZWquanxian_Update_hengxiang() {                                   
 	    mysqli_query(  $Connadmin , $sql );
 	}
 }
-
 function Edit_ZWquanxian_Update_new() { //职权更新
     global $hy,$db;
 	$modRoles_pc = $_SESSION['modRoles_pc'];
@@ -755,7 +741,6 @@ function Edit_ZWquanxian_Update_new() { //职权更新
 
     echo json_encode($returnData, JSON_UNESCAPED_UNICODE);
 }
-
 //[ok]======================================================================================================头部导航Menu添加修改
 function TopsMenu() {
 	global $Conn, $re_id, $hy, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen; //得到全局变量
@@ -771,7 +756,7 @@ function TopsMenu() {
 	$row = mysqli_fetch_array( $rs );
 	$count_rows = mysqli_num_rows( $rs ); //得到总数
 	$Menu_Id_List = trim( $row[ 'Menu_Id_List' ], ',' ); //查询到所有标签
-
+	
 	if ( $count_rows == 0 ) { //没有数据时便添加一条记录
 		if ( $re_id == 0 ) { //为桌面选定时
 			Jilu_add_Modular( 'sys_top_menu', 'Menu_checd_Id', $re_id); //添加一条
@@ -781,18 +766,17 @@ function TopsMenu() {
 			Jilu_add_Modular( 'sys_top_menu', $sys_postzd01, $sys_postvalue01); //添加一条
 		};
 	} else { //执行更新
-		Jilu_update_Modular( 'sys_top_menu', "`sys_id_login`='$bh'", 'Menu_checd_Id', $re_id ,$Conn); //设定显示列
+		Jilu_update_Modular( 'sys_top_menu', "`sys_id_login`='$bh'", 'Menu_checd_Id', $re_id ); //设定显示列
 		if ( $re_id > 0 ) { //为其它标签时
 			if ( getN_TWOFH($Menu_Id_List, $re_id ,',','_') < 0 ) { //当没有时，添加标签
 				$sys_postvalue = $Menu_Id_List . ',' . $sys_postvalue;
-				Jilu_update_Modular( 'sys_top_menu', "`sys_id_login`='$bh'", 'Menu_Id_List', trim( $sys_postvalue, ',' ) ,$Conn); //设定显示列
+				Jilu_update_Modular( 'sys_top_menu', "`sys_id_login`='$bh'", 'Menu_Id_List', trim( $sys_postvalue, ',' )); //设定显示列
 			}
 		}
 	}
 	mysqli_free_result( $rs ); //释放内存
     
 }
-
 //[ok]======================================================================================================头部导航Menu删除
 function Top_Menu_Del() {
 	global $Conn, $re_id, $hy, $bh; //得到全局变量
@@ -829,7 +813,6 @@ function Top_Menu_Del() {
 
 	};
 };
-
 //更新标签表
 function updateSysTopMenu($newval,$arr,$idx,$id){
 	global $Conn; //得到全局变量
@@ -845,7 +828,6 @@ function updateSysTopMenu($newval,$arr,$idx,$id){
 	mysqli_query(  $Conn , $sql );
 	// echo mysqli_error($Conn);
 }
-
 //[ok]======================================================================================================验证单行文本框重值
 function YanZhenChongFu() {
 	global $Conn, $hy; //得到全局变量
@@ -954,7 +936,6 @@ function add() {
 	//echo ( $databiao."_".$sys_postzd_list."_".$sys_post_ADD_value_list );
 	Jilu_add_Modular( $databiao, $sys_postzd_list, $sys_post_ADD_value_list); //添加数据
 };
-
 //[ok]=========================================================================================修改记录
 function edit() {
 	global $Conn, $databiao, $hy, $now_xianshi, $sys_postvalue_list, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen,$re_id; //得到全局变量
@@ -1014,7 +995,6 @@ function edit() {
 		};
 	}
 };
-
 //======================================================================================================编辑数据单条，ID
 function Edit_zd() {
 	global $Conn;
@@ -1030,7 +1010,6 @@ function Edit_zd() {
 		Jilu_update_Modular( $Table_Name, "`id`='$ZDid'", $zd, $ZDval ,$Conn);
 	};
 };
-
 //【ok】====================================================================================================== 关系表统计数据
 function sys_count() {
 	global $Conn;
@@ -1039,8 +1018,7 @@ function sys_count() {
 	if ( isset( $_POST[ 'parentdataid' ] ) )$parentdataid = $_POST[ 'parentdataid' ];     //父数据id
 	sys_count_updata($parentre_id,$re_id,$parentdataid);                                  //更新父级统计字段
 }
-
-//============================================================================================================ 奖罚更新
+//=========================================================================================================== 奖罚更新
 function JiangFaUpdate() { //修改单独表中指定字段的值
 	global $re_id,$Conn;
 	$sys_jiangli_rmb=$sys_jiangli_jifen=$sys_chufa_rmb=$sys_chufa_jifen='';
@@ -1058,7 +1036,6 @@ function JiangFaUpdate() { //修改单独表中指定字段的值
 	    mysqli_query( $Conn,$sql );
 	}
 }
-
 mysqli_close($Conn);//关闭数据库
 //mysqli_close($Connadmin);//关闭云数据库
 ?>

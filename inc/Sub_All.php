@@ -1094,9 +1094,9 @@ function Jilu_add_Modular( $Table_Name , $sys_postzd_list, $sys_postvalue_list )
 
 
 //[ok]======================================================================================================更新单、多条记录全部更新
-function Jilu_update_Modular( $Table_Name , $wheretext, $Xcoid, $Xcoid_txt, $connect ) { //$Table_Name表名,$Ycoid,原字段$Ycoid_txt,原字段值$Xcoid,更新字段$Xcoid_txt更新值
-    global $db;
-    $connect = Changedb( $Table_Name ); //依据表自动选择数据库
+function Jilu_update_Modular( $Table_Name , $wheretext, $Xcoid, $Xcoid_txt ) { //$Table_Name表名,$Ycoid,原字段$Ycoid_txt,原字段值$Xcoid,更新字段$Xcoid_txt更新值
+    global $Conn,$Connadmin;
+    $connect = ChangeConn( $Table_Name ); //依据表自动选择数据库
 
     IsNullExit( $Table_Name ); //为空时停止往下执行。
 
@@ -1109,8 +1109,8 @@ function Jilu_update_Modular( $Table_Name , $wheretext, $Xcoid, $Xcoid_txt, $con
     //以下为修改字段类型时执行
     if ( $Xcoid == 'zd_xianshi_input_id' ) { //当为修改权限表 并且修改的是字段类型时
         $sql = "select * From  $Table_Name where $wheretext"; //查询到对应记录
-        $rs = $connect -> query($sql);
-        $row = mysqli_fetch_array( $rs['result'] );
+        $rs = mysqli_query($connect,$sql);
+        $row = mysqli_fetch_array( $rs);
         $nx_zd_xianshi_input_id = $row[ 'zd_xianshi_input_id' ]; //得到zd_xianshi_input_id
         $nx_re_id = $row[ 're_id' ];
         $nx_mdb_name = $row[ 'mdb_name' ];
@@ -1119,8 +1119,8 @@ function Jilu_update_Modular( $Table_Name , $wheretext, $Xcoid, $Xcoid_txt, $con
         mysqli_free_result( $rs ); //释放内存
         //查询到需修改的类型参数
         $sql2 = "select * From  `msc_inputtype` where id='$nx_zd_xianshi_input_id'"; //查询到对应记录
-        $rs2 = $db -> query($sql2);
-        $row2 = mysqli_fetch_array( $rs2['result'] );
+        $rs2 = mysqli_query($Connadmin,$sql2);
+        $row2 = mysqli_fetch_array( $rs2);
         $msc_dataleixin = $row2[ 'dataleixin' ]; //得到dataleixin
         $msc_Moren = $row2[ 'Moren' ]; //得到Moren
         //以下为修改字段类型
@@ -1131,7 +1131,7 @@ function Jilu_update_Modular( $Table_Name , $wheretext, $Xcoid, $Xcoid_txt, $con
     $sql = "UPDATE  `$Table_Name`  set `$Xcoid` ='$Xcoid_txt',`sys_adddate_g`='$nowdate' WHERE $wheretext ";
     //echo $sql;
     //if ( SYS_str( $Xcoid_txt ) == 0 ) { //当为0时不为系统字段 1代表为系统字段//检查不为系统字段时执行
-    $connect -> query($sql);
+    mysqli_query($connect,$sql);
     //};
     if ( $Table_Name == 'sys_jlmb' ) { //当修改sys_jlmb时
 

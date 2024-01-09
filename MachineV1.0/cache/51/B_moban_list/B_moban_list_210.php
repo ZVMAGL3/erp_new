@@ -10,14 +10,14 @@ $startime = microtime( true ); //这里计算时间开始
 
 global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_ziduan,$pxv,$Conn,$hy;
 	$r_cow_height="28";
-	$databiao="SQP_88";
+	$databiao="SQP_TeShuGongXuJianKongJiLuBiao";
 	$const_shaixuan="";
-	$SYS_ALL_ziduan_list="id";
+	$SYS_ALL_ziduan_list="id,sys_nowbh";
 	$xianshi_ZD_num="1";
-	$xianshi_KD_num="75";
+	$xianshi_KD_num="159";
 	$shuoding_num="1";
 	$maxrecord="50";
-	$FormattingXianShi_idlist="";
+	$FormattingXianShi_idlist="1";
 	$zu_all_list="";
 	if ( isset( $_REQUEST[ 'page' ] ) ){$page = intval( $_REQUEST[ 'page' ] );}else{$page = 1;};//页码接收
 	if ( isset( $_REQUEST[ 'sys_guanxibiao_id' ] ) ){$sys_guanxibiao_id = intval( $_REQUEST[ 'sys_guanxibiao_id' ] );}else{$sys_guanxibiao_id = '';};         //关系表re_id
@@ -33,9 +33,9 @@ global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_zidua
 if ( "1" . $databiao == "1" ) {
    echo nonelist();
 } else {
-   $Tablecol_list="id";
+   $Tablecol_list="id,sys_id_login,sys_login,sys_id_zu,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_nowbh,sys_huis,sys_id_bumen,sys_shenpi,sys_web_shenpi,sys_adddate,sys_adddate_g,sys_shenpi_all,sys_chaosong,sys_paixu";
 
-   $sql2 = "select (@rownum:=@rownum+1) as rownum,SQP_88.id  from `SQP_88`,(select @rownum:=0) as SQP_88 where  sys_yfzuid='$hy' and sys_huis='$huis' "; //这里得到查询id清单的sql
+   $sql2 = "select (@rownum:=@rownum+1) as rownum,SQP_TeShuGongXuJianKongJiLuBiao.id  from `SQP_TeShuGongXuJianKongJiLuBiao`,(select @rownum:=0) as SQP_TeShuGongXuJianKongJiLuBiao where  sys_yfzuid='$hy' and sys_huis='$huis' "; //这里得到查询id清单的sql
    if($sys_guanxibiao_id != '' && $GuanXi_id != ""){$sql2 .=" and  sys_gx_id_{$sys_guanxibiao_id}='{$GuanXi_id}'";}
    $sql2 =sql_search($databiao,$sql2,$nowkeyword, 0);
    $sql2 .= " order by $px_ziduan $pxv"; //这里得到排序
@@ -45,10 +45,10 @@ if ( "1" . $databiao == "1" ) {
    if ( !$sql_all_id_list ) {
       echo( "<div class='nodata' tabindex='-1'><div class='nodata_center'><i class='fa fa-nodata' style='margin-top:-1px'></i>&nbsp; Sorry, No Data！</div></div>" );
    } else { 
-      $sql = "select  id  from `SQP_88` where id in($sql_all_id_list) and sys_yfzuid='$hy' and sys_huis='$huis'";
+      $sql = "select  id,sys_nowbh  from `SQP_TeShuGongXuJianKongJiLuBiao` where id in($sql_all_id_list) and sys_yfzuid='$hy' and sys_huis='$huis'";
       $sql .= " order by $px_ziduan $pxv";
       $rs = mysqli_query( $Conn, $sql );
-      echo( "<div id='para'  tabindex='-1' class='tables'  style='border:0;border-bottom:1px solid #CCC;min-width:100%;width:75'>" );
+      echo( "<div id='para'  tabindex='-1' class='tables'  style='border:0;border-bottom:1px solid #CCC;min-width:100%;width:159'>" );
 
 	      $i = 0;
 	      while ( $row = mysqli_fetch_array( $rs ) ) {
@@ -69,6 +69,7 @@ if ( "1" . $databiao == "1" ) {
 			echo( "<li class='cols1 shuodingli'  title='$now_id'  style='height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px;text-align:center;'></li>" );
 	
 	
+              echo("<li id='c_tdtop1'  class='shuodingli  border_shuoding  ET_sys_nowbh$now_id F_M_XS_1' ET='ET_sys_nowbh'  xstypeid='1' name='sys_nowbh' style='height:28px;line-height:28px;width:80px;'>".DeleteHtml($row['sys_nowbh'])."</li>");
 
               if ($const_q_shanc < 0) { //没有权限时 
                 $nowdisabled = " disabled='true' ";
