@@ -45,9 +45,9 @@ if ($act=='Del_To_Huis' and $id >''){
 };
 //[ok]============================================================================批量 删除到回收站
 function dels(){
-    global $Conn,$id,$const_q_shanc,$re_id,$DELtablename;//得到全局变量
+    global $Conn,$id,$sys_q_shanc,$re_id,$DELtablename;//得到全局变量
     $str2=$rs=$sql=$i='';
-    if ($const_q_shanc>-1){//有删除权限
+    if ($sys_q_shanc>-1){//有删除权限
        $str2=explode(',',$id);//字符串转为数组
        $countArry=count($str2);
        for ($i=0 ;$i< $countArry;$i++){
@@ -59,10 +59,10 @@ function dels(){
 };
 //[ok]============================================================================批量 回收数据
 function dels_huis(){
-   global $Conn,$id,$const_q_huis,$re_id,$DELtablename;//得到全局变量
+   global $Conn,$id,$sys_q_huis,$re_id,$DELtablename;//得到全局变量
    //echo("$re_id'_'$DELtablename'_'$id");
    $str2=$rs=$sql=$i='';
-   if ($const_q_huis>-1){//有回收权限
+   if ($sys_q_huis>-1){//有回收权限
        $str2=explode(',',$id);//字符串转为数组
        $countArry=count($str2);
        for ($i=0 ;$i< $countArry;$i++){
@@ -75,10 +75,10 @@ function dels_huis(){
 
 //[ok]============================================================================分类修改
 function changeidzu(){
-    global $Conn,$id,$const_q_xiug,$re_id,$DELtablename;//得到全局变量
+    global $Conn,$id,$sys_q_xiug,$re_id,$DELtablename;//得到全局变量
 	$changeid_zu=$str2=$rs=$sql=$i='';
     if (isset($_POST['changeid_zu'])) $changeid_zu=trim($_POST['changeid_zu'],',');//批量改变的sys_id_zu
-    if ($const_q_xiug > -1){;//有删除权限
+    if ($sys_q_xiug > -1){;//有删除权限
        $str2=explode(',',$id);
        $countArry=count($str2);
        for ($i=0 ;$i<$countArry;$i++){
@@ -90,12 +90,12 @@ function changeidzu(){
    
 //[ok]============================================================================所有人修改
 function changeidlogin(){
-   global $Conn,$id,$const_q_xiug,$re_id,$DELtablename;//得到全局变量
+   global $Conn,$id,$sys_q_xiug,$re_id,$DELtablename;//得到全局变量
    $str2=$changeid_login=$changeid_loginame=$i='';
    
    if (isset($_POST['changeid_login'])) $changeid_login=$_POST['changeid_login'];//批量改变的id_login
    if (isset($_POST['changeid_loginame'])) $changeid_loginame=$_POST['changeid_loginame'];//批量改变的login
-   if ($const_q_xiug > -1){//有删除权限
+   if ($sys_q_xiug > -1){//有删除权限
       $str2=explode(',',$id);
       $countArry=count($str2);
       for ($i=0 ;$i< $countArry;$i++){
@@ -109,11 +109,11 @@ function changeidlogin(){
 
 //[ok]============================================================================彻底删除数据
 function dels_true(){
-   global $Conn,$id,$const_q_shanc,$re_id,$DELtablename;//得到全局变量
+   global $Conn,$id,$sys_q_shanc,$re_id,$DELtablename;//得到全局变量
    $str2=$rs=$sql=$i='';
    $str2=explode(',',$id);
    $countArry=count($str2);
-   if ($const_q_xiug > -1){//有删除权限
+   if ($sys_q_xiug > -1){//有删除权限
       for ($i=0 ;$i< $countArry;$i++){
          $sql='delete  From '.$DELtablename.' where id='.trim($str2[$i]);
 	     mysqli_query( $Conn , $sql );//执行完全删除

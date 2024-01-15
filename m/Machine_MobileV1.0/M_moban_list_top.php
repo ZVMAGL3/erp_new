@@ -48,7 +48,7 @@ if ( $act == 'left' ) {
 //==================================================================================================表头
 function toplist() { //表头
 	$Htmlcache= '' ;
-	global $Conn,$hy, $re_id, $databiao, $databiao_SYS1,$const_q_shanc, $databiao_SYS, $xianshi_KD_num, $shuoding_num, $databiao1, $ToHtmlID, $scroll_left, $scroll_left, $const_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name,$SYS_UserName;
+	global $Conn,$hy, $re_id, $databiao, $databiao_SYS1,$sys_q_shanc, $databiao_SYS, $xianshi_KD_num, $shuoding_num, $databiao1, $ToHtmlID, $scroll_left, $scroll_left, $sys_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name,$SYS_UserName;
 
 	$II = $ES_xianshi = $S_xianshi = $datezd = $c_kuandu = $colls = $classss = $getN_XTZD = $getN_XTZD_Name = '';
 
@@ -59,7 +59,7 @@ function toplist() { //表头
 	$Htmlcache.= "$wjbh<div  id='theObjTable' name='headall' class='tables' style='border:0;padding:0;margin:0;min-width:100%;width:25px;width:" . $xianshi_KD_num . "px'  onselectstart=self.event.returnValue=false>" ;
 	$Htmlcache.= "<ul class='thead' style='min-width:100%;width:" . $xianshi_KD_num . "px'>" ;
 	$Htmlcache.= "<li class='cols1 shuodingli wjbhparnt'></li>" ;
-	//if ( $const_q_cak < 0 ) { //这个是当没有权限时执行
+	//if ( $sys_q_cak < 0 ) { //这个是当没有权限时执行
 		//echo "<li style='width:100px;'>您没有该表查看权限</li>";
 	//} else
 	if ( '1' . $databiao_SYS1 == '1' ) { //没有初始化时
@@ -115,12 +115,12 @@ function toplist() { //表头
 
 	};
 	$Htmlcache.= '</ul></div>' ;
-	//$Htmlcache.= "<script>copy('#theObjTable','#banner_left','.shuodingli','$ToHtmlID');$('#".$ToHtmlID." #const_now_login').val('$SYS_UserName');</script>"; //这里为拷贝生成滚动条
+	//$Htmlcache.= "<script>copy('#theObjTable','#banner_left','.shuodingli','$ToHtmlID');$('#".$ToHtmlID." #sys_now_login').val('$SYS_UserName');</script>"; //这里为拷贝生成滚动条
 	
 
 	
 	if ( $databiao . '1' != '1'
-		and $const_q_shanc >= 0 ) { //没有权限时
+		and $sys_q_shanc >= 0 ) { //没有权限时
 		//$Htmlcache.= "<script>$('#" . $ToHtmlID . " #chkall').attr({'disabled':false,'title':''});</script>";
 	};
 	

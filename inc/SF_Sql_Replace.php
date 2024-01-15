@@ -5,7 +5,7 @@ header('Content-type: text/html; charset=utf-8');//设定本页编码
 //=======================================================================以下为参数设定
 $xt_m_ziduan=$xt_m_ziduan_Name=$xt_m_ziduan_hidden=$SF_str_start=$SF_str_end=$SF_SQL=$Sqlarr=$All_XT_ZiDuan='';
 
-  $xt_m_ziduan='id,sys_zt,sys_zt_bianhao,sys_nowbh,sys_id_zu,sys_huis,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_id_login,sys_login,sys_shenpi,sys_web_shenpi,sys_shenpi_all,sys_adddate,sys_adddate_g,sys_leixin,hy,sys_bh,sys_chaosong';//公用部份关键词
+  $xt_m_ziduan='id,sys_zt,sys_zt_bianhao,sys_nowbh,sys_id_zu,sys_huis,sys_yfzuid,sys_id_fz,bumen_id,sys_id_login,sys_login,sys_shenpi,sys_web_shenpi,sys_shenpi_all,sys_adddate,sys_adddate_g,sys_leixin,hy,sys_bh,sys_chaosong';//公用部份关键词
   
   $xt_m_ziduan_Name='ID,[系统]字头,[系统]字头编号,记录编号,分类,回收,公司ID,分支,部门,编制人工号,编制人,审核人,批准人,Web审批,添加时间,更新时间,leixin,hy,[系统]自动编号,经办人';//公用部份关键词对应名称
   

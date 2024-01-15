@@ -12,8 +12,8 @@ $urlindex = "http://" . $urlhost;
 $nowurlall = $urlindex . $urlto;
 //echo $nowurlall;
 //============================================================================ 【接收必需的_SESSION值】
-$re_id = $big_id = $strmk_id = $bh = $hy = $SYS_UserName = $SYS_QuanXian = $const_id_login = $sys_shenpi = $sys_shenpi_all = $sys_chaosong = '';
-$sys_id_login = $sys_id_bumen = $page = 0;
+$re_id = $big_id = $strmk_id = $bh = $hy = $SYS_UserName = $SYS_QuanXian = $sys_id_login = $sys_shenpi = $sys_shenpi_all = $sys_chaosong = '';
+$sys_id_login = $bumen_id = $page = 0;
 
 if ( isset( $_SESSION[ 'user_id' ] ) )$user_id = intval( $_SESSION[ 'user_id' ] ); //会员 id         9001
 if ( isset( $_SESSION[ 'P_M' ] ) )$P_M = intval( $_SESSION[ 'P_M' ] ); //会员 id         9001
@@ -41,8 +41,7 @@ if ( isset( $_SESSION[ 'SYS_QuanXian_index' ] ) ){
     extract($SYS_QuanXian_index);
 }
 
-if ( isset( $_SESSION[ 'const_id_login' ] ) )$const_id_login = $_SESSION[ 'const_id_login' ] ; //员工档案id       1
-//echo $const_id_login;
+if ( isset( $_SESSION[ 'const_id_login' ] ) )$sys_id_login = $_SESSION[ 'const_id_login' ] ; //员工档案id
 //echo $SYS_UserName;
 
 //============================================================================ 【接收参数开始】
@@ -56,7 +55,7 @@ if ( isset( $_REQUEST[ 'sys_shenpi' ] ) )$sys_shenpi = $_REQUEST[ 'sys_shenpi' ]
 if ( isset( $_REQUEST[ 'sys_shenpi_all' ] ) )$sys_shenpi_all = $_REQUEST[ 'sys_shenpi_all' ]; //批准人
 if ( isset( $_REQUEST[ 'sys_chaosong' ] ) )$sys_chaosong = $_REQUEST[ 'sys_chaosong' ]; //经办人
 
-if ( isset( $_REQUEST[ 'sys_id_bumen' ] ) )$sys_id_bumen = intval( $_REQUEST[ 'sys_id_bumen' ] ); //部门ID接收
+if ( isset( $_REQUEST[ 'bumen_id' ] ) )$bumen_id = intval( $_REQUEST[ 'bumen_id' ] ); //部门ID接收
 if ( isset( $_REQUEST[ 'sys_adddate' ] ) )$sys_adddate = $_REQUEST[ 'sys_adddate' ]; //添加时间 更新时间
 
 //echo $sys_adddate;

@@ -25,7 +25,6 @@ if ( $const_q_xiug >= 0 ) { //有修改权限时
     if( isset($_POST["ZD_BeiZhu"]) ){$ZD_BeiZhu=$_POST["ZD_BeiZhu"];}else{$ZD_BeiZhu='';};       //备注
     if( isset($_POST["sys_shenpi"]) ){$sys_shenpi=$_POST["sys_shenpi"];}else{$sys_shenpi='';};       //审核
     if( isset($_POST["sys_shenpi_all"]) ){$sys_shenpi_all=$_POST["sys_shenpi_all"];}else{$sys_shenpi_all='';};       //批准
-    if( isset($_POST["sys_gx_id_529"]) ){$sys_gx_id_529=$_POST["sys_gx_id_529"];}else{$sys_gx_id_529='';};       //[关系]用户和公司关系ID
 
     //-----------------------------------------------------------查询原记录
     $sql2 = "select * From  `SQP_QingJiaDiaoXiuJiaBanWaiChuDan`  where `id`='$strmk_id'";
@@ -39,7 +38,6 @@ if ( $const_q_xiug >= 0 ) { //有修改权限时
     $Y_ZD_BeiZhu=$row2['ZD_BeiZhu'];
     $Y_sys_shenpi=$row2['sys_shenpi'];
     $Y_sys_shenpi_all=$row2['sys_shenpi_all'];
-    $Y_sys_gx_id_529=$row2['sys_gx_id_529'];
     
     mysqli_free_result( $rs2 ); //释放内存
 
@@ -76,9 +74,7 @@ if ( $const_q_xiug >= 0 ) { //有修改权限时
 	if($Y_sys_shenpi_all!=$sys_shenpi_all){
 		$sys_editcontent.='批准:  '.$Y_sys_shenpi_all.'=>'.$sys_shenpi_all.';</br>';
 	};
-	if($Y_sys_gx_id_529!=$sys_gx_id_529){
-		$sys_editcontent.='[关系]用户和公司关系ID:  '.$Y_sys_gx_id_529.'=>'.$sys_gx_id_529.';</br>';
-	};
+	echo $sys_editcontent;
 if($sys_editcontent!=''){
     $sys_postzd_list = "sys_re_id,sys_edit_id,sys_editcontent";
 	$sys_postvalue_list = "'494','$strmk_id','$sys_editcontent'";		
@@ -91,6 +87,6 @@ if($sys_editcontent!=''){
 
 
 }
-echo "<script>sys_count('529','494','$sys_gx_id_529');</script>";
+echo "<script></script>";
 mysqli_close( $Conn ); //关闭数据库
 ?>

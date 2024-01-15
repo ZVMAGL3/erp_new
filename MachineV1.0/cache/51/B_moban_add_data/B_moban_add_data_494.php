@@ -48,25 +48,14 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
             if( isset($_POST["ZD_ShenQingShiJian"]) ){$ZD_ShenQingShiJian=$_POST["ZD_ShenQingShiJian"];}else{$ZD_ShenQingShiJian='';};       //申请时间
             if( isset($_POST["ShiYou"]) ){$ShiYou=$_POST["ShiYou"];}else{$ShiYou='';};       //事由
             if( isset($_POST["ZD_BeiZhu"]) ){$ZD_BeiZhu=$_POST["ZD_BeiZhu"];}else{$ZD_BeiZhu='';};       //备注
-            if( isset($_POST["sys_shenpi"]) ){$sys_shenpi=$_POST["sys_shenpi"];}else{$sys_shenpi='';};       //审核
-            if( isset($_POST["sys_shenpi_all"]) ){$sys_shenpi_all=$_POST["sys_shenpi_all"];}else{$sys_shenpi_all='';};       //批准
-            if( isset($_POST["sys_gx_id_529"]) ){$sys_gx_id_529=$_POST["sys_gx_id_529"];}else{$sys_gx_id_529='';};       //[关系]用户和公司关系ID
 
 		$nowdata = date( 'Y-m-d H:i:s' );       //当前时间
 		
 		//--------------------------------------以下为得交数据
-		$sql = "insert into  `SQP_QingJiaDiaoXiuJiaBanWaiChuDan`  (ZhiWu,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values ('$ZhiWu','$ZD_ShenQingRen','$sys_id_zu','$ZD_ShenQingShiJian','$ShiYou','$ZD_BeiZhu','$sys_shenpi','$sys_shenpi_all','$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
+		$sql = "insert into  `SQP_QingJiaDiaoXiuJiaBanWaiChuDan`  (ZhiWu,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values ('$ZhiWu','$ZD_ShenQingRen','$sys_id_zu','$ZD_ShenQingShiJian','$ShiYou','$ZD_BeiZhu','$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
 		mysqli_query( $Conn,$sql );
-		echo "<script>sys_count('529','494','$sys_gx_id_529');</script>";
-		//--------------------------------------以下为查询数据
-		$sql = "select id From `SQP_QingJiaDiaoXiuJiaBanWaiChuDan` where   ZhiWu='$ZhiWu' and ZD_ShenQingRen='$ZD_ShenQingRen' and sys_id_zu='$sys_id_zu' and ZD_ShenQingShiJian='$ZD_ShenQingShiJian' and ShiYou='$ShiYou' and ZD_BeiZhu='$ZD_BeiZhu' and sys_shenpi='$sys_shenpi' and sys_shenpi_all='$sys_shenpi_all'   order by `id` desc";
-	    //echo $sql;
-	    $rs = mysqli_query(  $Conn , $sql );
-	    if ( $rs ) {
-		   $row = mysqli_fetch_array( $rs );
-		   $nowid = $row[ 'id' ];
-	    };
-		mysqli_free_result( $rs ); //释放内存
+		echo "<script></script>";
+        $nowid = mysqli_insert_id($Conn);
         //--------------------------------------以下为操作记录提交
         $sys_editcontent='首次建档;';
         if($sys_editcontent!=''){

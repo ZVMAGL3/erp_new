@@ -546,7 +546,7 @@ function Get_Renming22( $id ) {
 
 //[ok]=========================================================================【增加任命人员职位】
 function Add_Renming( $id ) {
-    global $db,$Connadmin, $hy, $zhiwei_id;
+    global $db,$Connadmin, $hy, $zhiwei_id,$user_id;
 
     //-----------------------------------------------------------------人员对应职位查询
     $sql = $rs = $Get_Renming = '';
@@ -565,14 +565,14 @@ function Add_Renming( $id ) {
     mysqli_query( $Connadmin, $sql );
     mysqli_close( $Connadmin ); //关闭数据库
     
-    selectQuanXian($hy,$id,$db);
+    selectQuanXian($hy,$user_id,$db);
 
     return $Get_Renming;
 }
 
 //[ok]=========================================================================【删除任命人员职位】
 function Del_Renming( $id ) {
-    global $db,$Connadmin, $hy, $zhiwei_id;
+    global $db,$Connadmin, $hy, $zhiwei_id,$user_id;
 
     //-----------------------------------------------------------------人员对应职位查询
     $sql = $rs = $Get_Renming = '';
@@ -591,7 +591,7 @@ function Del_Renming( $id ) {
     mysqli_query( $Connadmin, $sql );
     mysqli_close( $Connadmin ); //关闭数据库 
 
-    selectQuanXian($hy,$id,$db);
+    selectQuanXian($hy,$user_id,$db);
 
     return $Get_Renming;
 }

@@ -5,7 +5,7 @@ include_once( 'M_quanxian.php' ); //接收职位权限信息
 
 //------------------------------------------------------------------以下为查询到相关信息
 $sql = $rs = $row = '';
-$sql = "select * From `msc_user_reg` where id='$const_id_login' "; //用户登录表
+$sql = "select * From `msc_user_reg` where id='$sys_id_login' "; //用户登录表
 //echo '<br><br><br><br><br>'.$sql;
 $rs = mysqli_query( $Connadmin, $sql );
 $row = mysqli_fetch_array( $rs );
@@ -15,12 +15,6 @@ $row = mysqli_fetch_array( $rs );
 //$nowzzzt = intval( $row[ 'sys_zzzt' ] );                        //在职状态0为在职，1为离职
 //$userjib = $row[ 'jib' ];                                       //级别工种
 $SYS_UserName = $row[ 'SYS_UserName' ]; //姓名
-//$nowreg_num=$row[ "reg_num" ];                                  //公司注册号
-//$const_id_fz = intval( $row[ 'sys_id_fz' ] );                   //分支
-
-//if ( '1' . $const_id_fz == '1' ){$const_id_fz = 0;};
-//$SYS_QuanXian = $row[ 'SYS_QuanXian' ];                         //权限         
-//$const_id_bumen = $row[ 'sys_id_bumen' ];                       //部门
 $SYS_photo = $row[ 'SYS_photo' ]; //头像
 $SYS_XingBie = $row[ 'SYS_XingBie' ]; //性别
 $DiZhi = $row[ 'SYS_DiZhi' ]; //地址
@@ -30,9 +24,9 @@ $SYS_qianmin = $row[ 'SYS_qianmin' ]; //签名
 $touxiang = file_exists("../../images/user_touxiang/".$user_id.".png")?1:0 ;
 
 //$mor_qh = $row[ 'mor_qh' ];                                 //区号
-//echo $const_id_bumen;
+//echo $bumen_id;
 //exit();
-//echo "const_id_login:$const_id_login";//这里测试
+//echo "sys_id_login:$sys_id_login";//这里测试
 mysqli_free_result( $rs ); //释放内存
 
 mysqli_close( $Connadmin ); //关闭数据库
@@ -77,10 +71,10 @@ mysqli_close( $Connadmin ); //关闭数据库
                 <li class="sex" >
                     <a href="" style="pointer-events:none">性别<font color="#CCC"> . Gender</font><em id='sex_text'><?php echo $SYS_XingBie  ?></em></a>
                 </li>
-                <li><a href="M_edit.php?id=<?php echo $const_id_login ?>&Tablename=msc_user_reg&zdname=SYS_DiZhi&TitleName=联络地址&InputType=input&thisvale=<?php echo $DiZhi ?>">联络地址<font color="#CCC"> . C.add </font><em><?php echo $DiZhi  ?></em></a></li>
-                <li><a href="M_edit.php?id=<?php echo $const_id_login ?>&Tablename=msc_user_reg&zdname=SYS_ShouJi&TitleName=手机&InputType=input&thisvale=<?php echo $SYS_ShouJi ?>">手机<font color="#CCC"> . Mob</font><em><?php echo $SYS_ShouJi  ?></em></a></li>
-                <li><a href="M_edit.php?id=<?php echo $const_id_login ?>&Tablename=msc_user_reg&zdname=SYS_Email&TitleName=邮箱&InputType=input&thisvale=<?php echo $SYS_Email ?>">邮箱<font color="#CCC"> . E_mail</font><em><?php echo $SYS_Email  ?></em></a></li>
-                <li><a href="M_edit.php?id=<?php echo $const_id_login ?>&Tablename=msc_user_reg&zdname=SYS_qianmin&TitleName=个性签名&InputType=input&thisvale=<?php echo $SYS_qianmin ?>">工作格言<font color="#CCC"> . Wrok Motto</font><em><?php echo $SYS_qianmin  ?></em></a></li>
+                <li><a href="M_edit.php?id=<?php echo $sys_id_login ?>&Tablename=msc_user_reg&zdname=SYS_DiZhi&TitleName=联络地址&InputType=input&thisvale=<?php echo $DiZhi ?>">联络地址<font color="#CCC"> . C.add </font><em><?php echo $DiZhi  ?></em></a></li>
+                <li><a href="M_edit.php?id=<?php echo $sys_id_login ?>&Tablename=msc_user_reg&zdname=SYS_ShouJi&TitleName=手机&InputType=input&thisvale=<?php echo $SYS_ShouJi ?>">手机<font color="#CCC"> . Mob</font><em><?php echo $SYS_ShouJi  ?></em></a></li>
+                <li><a href="M_edit.php?id=<?php echo $sys_id_login ?>&Tablename=msc_user_reg&zdname=SYS_Email&TitleName=邮箱&InputType=input&thisvale=<?php echo $SYS_Email ?>">邮箱<font color="#CCC"> . E_mail</font><em><?php echo $SYS_Email  ?></em></a></li>
+                <li><a href="M_edit.php?id=<?php echo $sys_id_login ?>&Tablename=msc_user_reg&zdname=SYS_qianmin&TitleName=个性签名&InputType=input&thisvale=<?php echo $SYS_qianmin ?>">工作格言<font color="#CCC"> . Wrok Motto</font><em><?php echo $SYS_qianmin  ?></em></a></li>
             </ul>
         </div>
     </div>
@@ -186,7 +180,9 @@ mysqli_close( $Connadmin ); //关闭数据库
             id:<?php echo $user_id ?>,
             Tablename:'msc_user_reg',
             zdname:'SYS_XingBie',
-            TitleName:'性别',InputType:'input',thisvale:labelText
+            TitleName:'性别',
+            InputType:'input',
+            thisvale:labelText
         },function(data){
             console.log(data)
         });

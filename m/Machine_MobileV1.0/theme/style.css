@@ -367,6 +367,7 @@ label {
     left: 50%;
     transform: translate(-50%,-0%);
     overflow: hidden;
+    z-index: 100;
 }
 
 .XingBie_bac{

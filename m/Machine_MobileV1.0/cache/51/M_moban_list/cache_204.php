@@ -36,7 +36,7 @@ $shuoding_num_list="";
 if ( "1" . $databiao == "1" ) {
    echo nonelist();
 } else {
-   $Tablecol_list="id,sys_nowbh,SYS_GongHao,SYS_UserName,SYS_PassWord,SYS_QuanXian,XingBie,SYS_DianHua,SYS_ShouJi,GongZi,ZD_GongZiFaFangZhangHu,SYS_ShenFenZheng,ZD_XianZhuDiZhi,QQ,SYS_Email,sys_id_zu,sys_yfzuid,SYS_StartDate,SYS_EndDate,zzzt,ZD_ZhaoPian,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,ZD_HunYinZhuangTai,sys_shenpi,sys_id_bumen,sys_id_fz,sys_web_shenpi,sys_shenpi_all,sys_adddate,sys_adddate_g,sys_login,sys_id_login,sys_gx_id_204,sys_chaosong,ZD_ZhengJian,sys_paixu,sys_count_506,sys_count_264";
+   $Tablecol_list="id,sys_nowbh,SYS_GongHao,SYS_UserName,SYS_PassWord,SYS_QuanXian,XingBie,SYS_DianHua,SYS_ShouJi,GongZi,ZD_GongZiFaFangZhangHu,SYS_ShenFenZheng,ZD_XianZhuDiZhi,QQ,SYS_Email,sys_id_zu,sys_yfzuid,SYS_StartDate,SYS_EndDate,zzzt,ZD_ZhaoPian,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,ZD_HunYinZhuangTai,sys_shenpi,bumen_id,sys_id_fz,sys_web_shenpi,sys_shenpi_all,sys_adddate,sys_adddate_g,sys_login,sys_id_login,sys_gx_id_204,sys_chaosong,ZD_ZhengJian,sys_paixu,sys_count_506,sys_count_264";
 
    $sql2 = "select (@rownum:=@rownum+1) as rownum,sys_yuangongdanganbiao.id  from `sys_yuangongdanganbiao`,(select @rownum:=0) as sys_yuangongdanganbiao where  sys_yfzuid='$hy' and sys_huis='$huis' "; //这里得到查询id清单的sql
     if($sys_guanxibiao_id != '' && $GuanXi_id != ""){$sql2 .=" and  sys_gx_id_{$sys_guanxibiao_id}='{$GuanXi_id}'";}

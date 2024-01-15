@@ -8,7 +8,7 @@ $CACHE_ROOT=$curfile= '';
 //=======================================================================系统参数开始
 $xt_m_ziduan = $xt_m_ziduan_Name = $xt_m_ziduan_hidden = $SF_str_start = $SF_str_end = $SF_SQL = $Sqlarr = $All_XT_ZiDuan = '';
 
-$xt_m_ziduan = 'id,sys_zt,sys_zt_bianhao,sys_nowbh,sys_id_zu,sys_huis,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_id_login,sys_login,sys_shenpi,sys_web_shenpi,sys_shenpi_all,sys_adddate,sys_adddate_g,sys_leixin,hy,sys_bh,sys_chaosong,sys_paixu'; //公用部份关键词
+$xt_m_ziduan = 'id,sys_zt,sys_zt_bianhao,sys_nowbh,sys_id_zu,sys_huis,sys_yfzuid,sys_id_fz,bumen_id,sys_id_login,sys_login,sys_shenpi,sys_web_shenpi,sys_shenpi_all,sys_adddate,sys_adddate_g,sys_leixin,hy,sys_bh,sys_chaosong,sys_paixu'; //公用部份关键词
 
 $xt_m_ziduan_Name = 'ID,[系统]字头,[系统]字头编号,自动编号,分类,回收状态,公司ID,分支,部门,编制人工号,编制人,审核,允许WEB访问,批准,编制时间,更新时间,类型,会员,[系统]自动编号,经办人,排序'; //公用部份关键词对应名称
 $Axt_m_ziduan_hidden = 'sys_zt_bianhao,sys_zt,sys_bh,sys_id_login,sys_yfzuid,sys_huis,sys_id'; //这里需隐藏的字段
@@ -109,9 +109,7 @@ function update_sys_top_menu($re_id,$name) { //  321，顾客档案表
 		}
 	}
 	mysqli_free_result( $rs ); //释放内存
-} //function end
-
-
+} //function end	
     
 //【ok】=========================================================================清除所有html标签
 function DeleteHtml( $str ) {
@@ -127,42 +125,4 @@ function DeleteHtml( $str ) {
 	//$str = preg_replace( "/  /", "", $str ); //匹配html中的空格
 	return trim( $str ); //返回字符串
 };
-
-// //【ok】=========================================================================end function
-// global $re_id,$const_q_fanwei,$const_q_tianj,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin,$const_q_huis,$const_q_seid,$const_q_dian,$const_q_shenghe,$const_q_pizhun,$const_q_xiaohui;
-// 		        $const_q_fanwei = Q_fanwei_ID( $const_q_fanwei, $re_id );    //查询到权限id等级值 0-4
-// 		        $const_q_tianj = getN( $const_q_tianj, $re_id );             //是否有添加权限
-// 		        if ( $bh == '9001' )$const_q_tianj = 0;
-
-// 		        $const_q_xiug = getN( $const_q_xiug, $re_id );               //是否有修改权限
-// 		        if ( $bh == '9001' )$const_q_xiug = 0;
-
-// 		        $const_q_shanc = getN( $const_q_shanc, $re_id );             //是否有删除权限
-// 		        if ( $bh == '9001' )$const_q_shanc = 0;
-		        
-//                 $const_q_xiaohui = getN( $const_q_xiaohui, $re_id );         //是否有删除权限
-// 		        if ( $bh == '9001' )$const_q_xiaohui = 0;
-
-// 		        $const_q_cak = getN( $const_q_cak, $re_id );                 //是否有查看权限
-// 		        if ( $bh == '9001' )$const_q_cak = 0;
-
-// 		        $const_q_dayin = getN( $const_q_dayin, $re_id );             //是否有打印权限
-// 		        if ( $bh == '9001' )$const_q_dayin = 0;
- 
-// 		        $const_q_huis = getN( $const_q_huis, $re_id );               //是否有回收权限
-// 		        if ( $bh == '9001' )$const_q_huis = 0;
-        
-// 		        $const_q_seid = getN( $const_q_seid, $re_id );               //是否有设定权限
-// 		        if ( $bh == '9001' )$const_q_seid = 0;
-// 		        if ( $const_q_seid == -1 )$const_q_disabled = " disabled ";
-     
-// 		        $const_q_dian = getN( $const_q_dian, $re_id );               //是否有**权限
-// 		        if ( $bh == '9001' )$const_q_dian = 0;
-    
-// 		        $const_q_shenghe = getN( $const_q_shenghe, $re_id );           //是否有展示权限
-// 		        if ( $bh == '9001' )$const_q_shenghe = 0;
-    
-// 		        $const_q_pizhun = getN( $const_q_pizhun, $re_id );           //是否有审批权限
-// 		        if ( $bh == '9001' )$const_q_pizhun = 0;
-
-// ?>
+?>

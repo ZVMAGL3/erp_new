@@ -62,7 +62,8 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
         $sys_adddate_g = $row[ 'sys_adddate_g' ]; //更新时间
         mysqli_free_result( $rs ); //释放内存
     }
-    if($const_id_login != '1'){//当不为开发者时
+    $readonly = '';
+    if($sys_id_login != '1'){//当不为开发者时
         $readonly=" readonly='readonly'";
     }
 
@@ -171,7 +172,7 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
                 <li class='cols01'>更新时间:</li>
                 <li class='cols02'>&nbsp;<?php echo $sys_adddate_g ?></li>
             </ul>
-            <?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+            <?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
             <ul>
                 <li class='cols01'> &nbsp;</li>
                 <li class='cols02'>

@@ -48,7 +48,7 @@ if ( "1" . $databiao == "1" ) {
       $sql = "select  id,user_id,sys_yfzuid,state,SYS_GongHao,zhiwei_id,add_time,new_time,Remark  from `msc_user_hy` where id in($sql_all_id_list) and sys_yfzuid='$hy' and sys_huis='$huis'";
       $sql .= " order by $px_ziduan $pxv";
       $rs = mysqli_query( $Connadmin, $sql );
-      echo( "<div id='para'  tabindex='-1' class='tables'  style='border:0;border-bottom:1px solid #CCC;min-width:100%;width: 971px'>" );
+      echo( "<div id='para'  tabindex='-1' class='tables'  style='border:0;border-bottom:1px solid #CCC;min-width:100%;width:971'>" );
 
 	      $i = 0;
 	      while ( $row = mysqli_fetch_array( $rs ) ) {
@@ -65,7 +65,7 @@ if ( "1" . $databiao == "1" ) {
 	                echo( "  onDblclick=edit_data(this,'$now_id','$ToHtmlID','$hy')");
 				}
 			//}
-			echo( "  style='height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px;min-width:100%;width:971px'> " );
+			echo( "  style='height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px;min-width:100%;'> " );
 			echo( "<li class='cols1 shuodingli'  title='$now_id'  style='height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px;text-align:center;'></li>" );
 	
 	

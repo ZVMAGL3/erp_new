@@ -41,8 +41,8 @@
 		$state="";
 		$SYS_GongHao="";
 		$zhiwei_id="";
-		$add_time="";
-		$new_time="";
+		$add_time="CURRENT_TIMESTAMP";
+		$new_time="CURRENT_TIMESTAMP";
 		$Remark="";
 
 };
@@ -182,7 +182,7 @@ if ( strpos($const_q_tianj, "529") !== false  ) { //有添加权限时
 		
 		</div>
 		</form>
-		<div id='clonecopy2'>&nbsp;</div><script>YanZhen_ChongFu_ZuLoad(0,'','msc_user_hy','$ToHtmlID');form_add_copy('$ToHtmlID');inputfocusfirst('#".$ToHtmlID."_content_foot .htmlleirong','id');form_weikong('#post_form','DeskMenuDiv529');</script>";
+		<div id='clonecopy2'>&nbsp;</div><script>YanZhen_ChongFu_ZuLoad(0,'','msc_user_hy','$ToHtmlID');form_add_copy('$ToHtmlID');inputfocusfirst('#".$ToHtmlID."_content_foot .htmlleirong','id');</script>";
 
 ?>
 

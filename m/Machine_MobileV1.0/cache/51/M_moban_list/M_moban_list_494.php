@@ -14,7 +14,7 @@ $databiao="SQP_QingJiaDiaoXiuJiaBanWaiChuDan";
 $const_shaixuan="";
 $SYS_ALL_ziduan_list="id,ZD_ShenQingRen,ShiYou,ZD_ShenQingShiJian,sys_id_login,sys_shenpi_all";
 $xianshi_ZD_num="2";
-$xianshi_KD_num="2080";
+$xianshi_KD_num="2195";
 $shuoding_num_list="ZD_ShenQingShiJian";
 	   $maxrecord="20";
        $FormattingXianShi_idlist="1,24,23,15,25,2,20,22";
@@ -36,7 +36,7 @@ $shuoding_num_list="ZD_ShenQingShiJian";
 if ( "1" . $databiao == "1" ) {
    echo nonelist();
 } else {
-   $Tablecol_list="sys_nowbh,ZhiWu,id,sys_id_login,sys_login,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_bumen,sys_web_shenpi,sys_adddate_g,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all,sys_adddate,sys_chaosong,sys_paixu,sys_gx_id_529";
+   $Tablecol_list="sys_nowbh,ZhiWu,id,sys_id_login,sys_login,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_bumen,sys_web_shenpi,sys_adddate_g,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all,sys_adddate,sys_chaosong,sys_paixu";
 
    $sql2 = "select (@rownum:=@rownum+1) as rownum,SQP_QingJiaDiaoXiuJiaBanWaiChuDan.id  from `SQP_QingJiaDiaoXiuJiaBanWaiChuDan`,(select @rownum:=0) as SQP_QingJiaDiaoXiuJiaBanWaiChuDan where  sys_yfzuid='$hy' and sys_huis='$huis' "; //这里得到查询id清单的sql
     if($sys_guanxibiao_id != '' && $GuanXi_id != ""){$sql2 .=" and  sys_gx_id_{$sys_guanxibiao_id}='{$GuanXi_id}'";}

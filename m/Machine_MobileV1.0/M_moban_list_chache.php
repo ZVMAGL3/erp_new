@@ -30,7 +30,7 @@ if ( $re_id != 0 ) {
     }
     $Conn = ChangeConn( $databiao ); //选择数据库
 
-    $const_shaixuan = $row[ 'shaixuan' ]; //筛选代码
+    $sys_shaixuan = $row[ 'shaixuan' ]; //筛选代码
     //0【字段中文名称】,1【显示宽度】,2【必填】,3【无重复】,4【显示类型】,5【显示】,6【锁定】,7【添加】,8【修改】,9【百度搜索】,10【显示高度】,11【m显示】,12【m锁定】,13【】,14【】
     $SYS_ALL_ziduan = Tablecol_list_beizhu_cols( $databiao, 11 ); //显示列清单
     $shuoding_num_list = Tablecol_list_beizhu_cols( $databiao, 12 ); //锁定列清单
@@ -67,7 +67,7 @@ if ( $act = 'list' ) {
 //==========================================================================================中间表格数据
 function lists() {
     $Htmlcache = $Htmlcache07 = '';
-    global $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $const_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $const_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $const_id_fz, $SYS_QuanXian, $const_id_bumen, $const_q_tianj, $const_q_xiug, $const_q_shanc, $const_q_cak, $const_q_dayin, $const_q_huis, $const_q_seid, $const_q_dian, $const_q_shenghe, $const_q_pizhun, $const_q_zu, $databiao, $ToHtmlID, $SYS_ALL_ziduan_list, $nowkeyword, $Conn, $xianshi_ZD_Arry, $xianshi_KD_num, $r_cow_height, $nowjilucont, $page_first, $page_end, $startime, $xt_m_ziduan, $xt_m_ziduan_Name, $xianshi_ZD_num, $const_shaixuan, $page, $act, $nowzu, $px_ziduan, $shuoding_num_list, $zd, $pxv, $pok; //全局变量
+    global $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $sys_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $sys_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $sys_id_fz, $SYS_QuanXian, $bumen_id, $sys_q_xiug, $sys_q_shanc, $sys_q_cak, $sys_q_dayin, $sys_q_huis, $sys_q_seid, $sys_q_dian, $sys_q_shenghe, $sys_q_pizhun, $sys_q_zu, $databiao, $ToHtmlID, $SYS_ALL_ziduan_list, $nowkeyword, $Conn, $xianshi_ZD_Arry, $xianshi_KD_num, $r_cow_height, $nowjilucont, $page_first, $page_end, $startime, $xt_m_ziduan, $xt_m_ziduan_Name, $xianshi_ZD_num, $sys_shaixuan, $page, $act, $nowzu, $px_ziduan, $shuoding_num_list, $zd, $pxv, $pok; //全局变量
     //echo $startime;
 
     $IsConn = IsConn( $databiao ); //查出所属表的数据库
@@ -87,10 +87,10 @@ function lists() {
 
     $Htmlcache .= '$startime = microtime( true ); //这里计算时间开始' . "\n\n";
 
-    $Htmlcache .= 'global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_ziduan,$pxv,$' . $IsConn . ';' . "\n"
+    $Htmlcache .= 'global $sys_q_cak,$ToHtmlID,$sys_q_shanc,$sys_q_xiug,$nowkeyword,$px_ziduan,$pxv,$' . $IsConn . ';' . "\n"
     . '$r_cow_height="' . $r_cow_height . '";' . "\n"
     . '$databiao="' . $databiao . '";' . "\n"
-    . '$const_shaixuan="' . $const_shaixuan . '";' . "\n"
+    . '$sys_shaixuan="' . $sys_shaixuan . '";' . "\n"
     . '$SYS_ALL_ziduan_list="' . $SYS_ALL_ziduan_list . '";' . "\n"
     . '$xianshi_ZD_num="' . $xianshi_ZD_num . '";' . "\n"
     . '$xianshi_KD_num="' . $xianshi_KD_num . '";' . "\n"
@@ -109,7 +109,7 @@ function lists() {
 	   $page_first = ( $page - 1 ) * $maxrecord + 1;
 	   $page_end = $page_first + $maxrecord - 1;
 	   $nowjilucont = $page_end - $page_first;
-	   if ( isset( $_REQUEST[ \'sys_const_pagetype\' ] ) ){$sys_const_pagetype = $_REQUEST[ \'sys_const_pagetype\' ];}else{$sys_const_pagetype = \'listpage\';};
+	   if ( isset( $_REQUEST[ \'sys_sys_pagetype\' ] ) ){$sys_sys_pagetype = $_REQUEST[ \'sys_sys_pagetype\' ];}else{$sys_sys_pagetype = \'listpage\';};
 	' . "\n\n";
 
 
@@ -148,7 +148,7 @@ function lists() {
     $Htmlcache .= '      $i = 0;' . "\n";
     $Htmlcache .= '      while ( $row = mysqli_fetch_array( $rs ) ) {' . "\n";
     $Htmlcache .= '        $now_id_login = $row[ "sys_id_login" ]; //得到员工工号 ' . "\n";
-    $Htmlcache .= '        if ( $const_q_cak >= 0 or $now_id_login == $bh ) {' . "\n";
+    $Htmlcache .= '        if ( $sys_q_cak >= 0 or $now_id_login == $bh ) {' . "\n";
     $Htmlcache .= '            $i++;' . "\n";
     $Htmlcache .= '            $now_id = $row[ "id" ];' . "\n";
     $Htmlcache .= '            $now_shenpi_all = $row[ "sys_shenpi_all" ]; //审批' . "\n";
@@ -166,7 +166,7 @@ function lists() {
     $Htmlcache .= '   $ymdate = $endtime - $startime;' . "\n";
     $Htmlcache .= '   $ymdate = round( $ymdate, 3 );' . "\n";
     $nowtongji = "'#" . $ToHtmlID . " #tongji'";
-    $Htmlcache .= '   echo \'<script>$("#loadingtimes").html("\'.$ymdate.\'ms");list_data_end_mobile("\'.$sys_const_pagetype.\'","'.$ToHtmlID.'");</script>\';' . "\n";
+    $Htmlcache .= '   echo \'<script>$("#loadingtimes").html("\'.$ymdate.\'ms");list_data_end_mobile("\'.$sys_sys_pagetype.\'","'.$ToHtmlID.'");</script>\';' . "\n";
     $Htmlcache .= '};' . "\n";
     //$Htmlcache .= " echo( \"<script>ListLoadEND('".$ToHtmlID."');</script>\" );" . "\n";
     $Htmlcache .= 'mysqli_close( $' . $IsConn . ' ); //关闭数据库' . "\n";

@@ -303,7 +303,7 @@ function XianJieBiao_SET() {
 
 //[ok]=========================================================================================添加 修改记录
 function edit() {
-	global $Conn, $databiao, $hy, $r_zt, $r_zt_bianhao, $now_xianshi, $sys_postvalue_list, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen; //得到全局变量
+	global $Conn, $databiao, $hy, $r_zt, $r_zt_bianhao, $now_xianshi, $sys_postvalue_list, $bh, $SYS_UserName, $sys_id_fz, $bumen_id; //得到全局变量
 	$Y_re_id = $strmk_id = $rs = $sql = $sys_postzd_list = $i = $sys_post_ADD_value_list = $Ubound_postzd_list = $nowdates = $now_xianshi_value = '';
 	if ( isset( $_REQUEST[ 'sys_guanxibiao_id' ] ) ) {
 		$sys_guanxibiao_id = intval( trim( $_REQUEST[ 'sys_guanxibiao_id' ] ) ); //==================得到关系表的ID

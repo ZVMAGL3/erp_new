@@ -13,7 +13,7 @@
 		}
 	
 		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_Connadmin.php";
-		global $strmk_id,$Connadmin,$const_q_xiug,$const_id_login,$bh,$hy,$SYS_UserName,$const_id_fz,$const_id_bumen;
+		global $strmk_id,$Connadmin,$const_q_xiug,$const_id_login,$bh,$hy,$SYS_UserName,$const_id_fz,$bumen_id;
 		
 		
 if ( $const_q_xiug >= 0 ) { //有修改权限时

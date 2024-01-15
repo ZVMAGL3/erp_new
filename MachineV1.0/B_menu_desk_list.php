@@ -42,17 +42,17 @@ switch ( $act ) {
 //================================================================================================桌面菜单显示 
 
 function menuA() {
-    global $hy,$db,$db_vip,$const_q_zu,$SYS_UserName,$bh,$zwid;
+    global $hy,$db,$db_vip,$sys_q_zu,$SYS_UserName,$bh,$zwid;
     $Htmlcache = '';
     //=========================================================================权限及相关设置信息文件包含
-    include_once '../inc/B_const_chache.php';
+    include_once '../inc/B_sys_chache.php';
     //========================================================================= 生成动态文件内容
-    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($const_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
+    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($sys_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
     // echo $bigmenuarry;
 
 
-    $const_menuaquanxian = "$const_q_cak,$const_q_tianj,$const_q_xiug,";
-    $const_menuaquanxian = QuChong( $const_menuaquanxian );
+    $sys_menuaquanxian = "$sys_q_cak,$sys_q_tianj,$sys_q_xiug,";
+    $sys_menuaquanxian = QuChong( $sys_menuaquanxian );
 
 
     //$Htmlcache .= '<?php' . "";
@@ -73,7 +73,7 @@ function menuA() {
             $NOW_menubigid = $row[ 'id' ];
             $NOW_quanxian = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'id', "Id_MenuBigClass='$NOW_menubigid' and sys_huis=0" ) ); //查询到实际大类菜单
             //$NOW_quanxian = $row[ 'quanxian' ];
-            $NOW_quanxian = TWOarryy_find_chong( $NOW_quanxian, $const_menuaquanxian ); //得到交集
+            $NOW_quanxian = TWOarryy_find_chong( $NOW_quanxian, $sys_menuaquanxian ); //得到交集
             $i++;
             if ( $i < 10 )$i = '0' . $i;
             $nowval = $row[ 'sys_GuoChengMingChen' ];
@@ -88,9 +88,9 @@ function menuA() {
         };
     };
     $Htmlcache .= "</div>";
-    //$nowloginxinxi=$reg_name.' > '.$const_q_zu.' > '.$SYS_UserName.'('.$bh.')';
+    //$nowloginxinxi=$reg_name.' > '.$sys_q_zu.' > '.$SYS_UserName.'('.$bh.')';
 
-    $Htmlcache .= "<div class='deskbottom'>$reg_name > $const_bumenname ($const_q_zu) > $SYS_UserName ($bh) <ul class='rightul'>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！<marquee width='1px'></marquee></ul> </div>";
+    $Htmlcache .= "<div class='deskbottom'>$reg_name > $bumen_name ($sys_q_zu) > $SYS_UserName ($bh) <ul class='rightul'>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！<marquee width='1px'></marquee></ul> </div>";
     $Htmlcache .= "<script>menuoverclickstyle('div.menudesk ul li.overli','overstyle','clickstyle');</script>";
     //echo $Htmlcache;
     //$Htmlcache .= ''>';
@@ -102,16 +102,16 @@ function menuA() {
 //================================================================================================桌面菜单显示 
 
 function menuB() {
-    global $hy,$db,$db_vip,$const_q_zu,$SYS_UserName,$bh,$zwid,$nowkeyword;
+    global $hy,$db,$db_vip,$sys_q_zu,$SYS_UserName,$bh,$zwid,$nowkeyword;
     $Htmlcache = '';
 
     //=========================================================================权限及相关设置信息文件包含
-    include_once '../inc/B_const_chache.php';
+    include_once '../inc/B_sys_chache.php';
     //========================================================================= 生成动态文件内容
-    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($const_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
+    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($sys_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
 
-    $const_menuaquanxian = "$const_q_cak,$const_q_tianj,$const_q_xiug,";
-    $const_menuaquanxian = QuChong( $const_menuaquanxian );
+    $sys_menuaquanxian = "$sys_q_cak,$sys_q_tianj,$sys_q_xiug,";
+    $sys_menuaquanxian = QuChong( $sys_menuaquanxian );
 
 
     $Htmlcache .= "<div class='shell'>";
@@ -131,9 +131,9 @@ function menuB() {
         while ( $row = mysqli_fetch_array( $rs['result'] ) ) {
             $HtmlcacheTem = '';
             $NOW_menubigid = $row[ 'id' ];
-            // $sys_card = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb','sys_card',"Id_MenuBigClass='$NOW_menubigid' and id in($const_menuaquanxian) and sys_huis=0" ) ); //查询到实际大类菜单
+            // $sys_card = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb','sys_card',"Id_MenuBigClass='$NOW_menubigid' and id in($sys_menuaquanxian) and sys_huis=0" ) ); //查询到实际大类菜单
             //$NOW_quanxian = $row[ 'quanxian' ];
-            $sql = "select id,sys_card From sys_jlmb where Id_MenuBigClass='$NOW_menubigid' and id in($const_menuaquanxian) and sys_huis=0 and sys_card LIKE '%$nowkeyword%' order by id Asc";
+            $sql = "select id,sys_card From sys_jlmb where Id_MenuBigClass='$NOW_menubigid' and id in($sys_menuaquanxian) and sys_huis=0 and sys_card LIKE '%$nowkeyword%' order by id Asc";
             $rs2 = $db_vip -> query($sql);
             if($i){
                 $HtmlcacheTem .= "<div class='divider'></div>";
@@ -161,22 +161,22 @@ function menuB() {
     $Htmlcache .= "</div>";
     $Htmlcache .= "</div>";
 
-    $Htmlcache .= "<div class='deskbottom'>$reg_name > $const_bumenname ($const_q_zu) > $SYS_UserName ($bh) <ul class='rightul'>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！<marquee width='1px'></marquee></ul> </div>";
+    $Htmlcache .= "<div class='deskbottom'>$reg_name > $bumen_name ($sys_q_zu) > $SYS_UserName ($bh) <ul class='rightul'>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！<marquee width='1px'></marquee></ul> </div>";
     $Htmlcache .= "<script>menuoverclickstyle('div.menudesk ul li.overli','overstyle','clickstyle');</script>";
     echo $Htmlcache;
 
 };
 function menuC() {
-    global $hy,$db,$db_vip,$const_q_zu,$SYS_UserName,$bh,$zwid,$nowkeyword;
+    global $hy,$db,$db_vip,$sys_q_zu,$SYS_UserName,$bh,$zwid,$nowkeyword;
     $Htmlcache = '';
 
     //=========================================================================权限及相关设置信息文件包含
-    include_once '../inc/B_const_chache.php';
+    include_once '../inc/B_sys_chache.php';
     //========================================================================= 生成动态文件内容
-    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($const_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
+    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($sys_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
 
-    $const_menuaquanxian = "$const_q_cak,$const_q_tianj,$const_q_xiug,";
-    $const_menuaquanxian = QuChong( $const_menuaquanxian );
+    $sys_menuaquanxian = "$sys_q_cak,$sys_q_tianj,$sys_q_xiug,";
+    $sys_menuaquanxian = QuChong( $sys_menuaquanxian );
 
 
     $Htmlcache .= "<div class='shell'>";
@@ -196,9 +196,9 @@ function menuC() {
         while ( $row = mysqli_fetch_array( $rs['result'] ) ) {
             $HtmlcacheTem = '';
             $NOW_menubigid = $row[ 'id' ];
-            // $sys_card = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb','sys_card',"Id_MenuBigClass='$NOW_menubigid' and id in($const_menuaquanxian) and sys_huis=0" ) ); //查询到实际大类菜单
+            // $sys_card = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb','sys_card',"Id_MenuBigClass='$NOW_menubigid' and id in($sys_menuaquanxian) and sys_huis=0" ) ); //查询到实际大类菜单
             //$NOW_quanxian = $row[ 'quanxian' ];
-            $sql = "select id,sys_card From sys_jlmb where Id_MenuBigClass='$NOW_menubigid' and id in($const_menuaquanxian) and sys_huis=0 and sys_card LIKE '%$nowkeyword%' order by id Asc";
+            $sql = "select id,sys_card From sys_jlmb where Id_MenuBigClass='$NOW_menubigid' and id in($sys_menuaquanxian) and sys_huis=0 and sys_card LIKE '%$nowkeyword%' order by id Asc";
             $rs2 = $db_vip -> query($sql);
             if($i){
                 $HtmlcacheTem .= "<div class='divider'></div>";
@@ -226,7 +226,7 @@ function menuC() {
     $Htmlcache .= "</div>";
     $Htmlcache .= "</div>";
 
-    $Htmlcache .= "<div class='deskbottom'>$reg_name > $const_bumenname ($const_q_zu) > $SYS_UserName ($bh) <ul class='rightul'>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！<marquee width='1px'></marquee></ul> </div>";
+    $Htmlcache .= "<div class='deskbottom'>$reg_name > $bumen_name ($sys_q_zu) > $SYS_UserName ($bh) <ul class='rightul'>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！<marquee width='1px'></marquee></ul> </div>";
     $Htmlcache .= "<script>menuoverclickstyle('div.menudesk ul li.overli','overstyle','clickstyle');</script>";
     echo $Htmlcache;
 
@@ -252,7 +252,7 @@ function menuA_date( $nsquanxian ) {
         if ( $ttcard <> '' )$ttcard = $ttcard . ' ';
         $ttstartdate = $row[ 'startdate' ]; //条款
         if ( $ttstartdate <> '' )$ttstartdate = $ttstartdate;
-        //if ( $const_q_cak >= 0 or $const_q_tianj >= 0 or $const_q_xiug >= 0 or $const_q_shanc >= 0 or $const_q_dayin >= 0 or $const_q_huis >= 0 ) {
+        //if ( $sys_q_cak >= 0 or $sys_q_tianj >= 0 or $sys_q_xiug >= 0 or $sys_q_shanc >= 0 or $sys_q_dayin >= 0 or $sys_q_huis >= 0 ) {
         $nowcard = $row[ 'sys_card' ];
         $nowmenuimg = $row[ 'menuimg' ];
         //$nowclickhtml="alert('0')";

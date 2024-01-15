@@ -88,44 +88,7 @@ if($act == 'error'){
             // echo $destination;
             move_uploaded_file($uploadedFile, $destination);
         }
-        echo 64;
     }
     mysqli_close( $Connadmin ); //关闭数据库 
 }
-
-
-// if ( $act == 'add_mobile' ) { //当接收到处理指令时
-//     //----------------------------------查询是否有重复值
-//     //echo $hy;
-//     if ( $name . '1' == '1' ) {
-//         echo "$textsname名称，不能为空！";
-//     } else {
-//         $sql = $rs = $record_count = '';
-        
-//         $sql = "select id,$colsname From `$tablename` where ($colsname='$name' or yyzzhao='$yyzzhao') and sys_yfzuid='$hy' order by id Asc";
-//         //echo $sql.'_'; 
-//         $rs = mysqli_query( $Connadmin, $sql );
-//         $record_count = mysqli_num_rows( $rs ); //统计总记录数
-//         mysqli_free_result( $rs ); //释放内存
-
-//         if ( $record_count > 0 ) { //有重复值时
-//             echo "已有\"" . $name . "\",禁止添加。";
-//         } else { //允许添加
-//             //echo"可以添加";
-//             $sql = $rs = '';
-//             $nowdata = date( 'Y-m-d H:i:s' );
-
-//             $sys_postzd_list = "$colsname,yyzzhao,faren,address,tel,webhttp,email,sys_org_img,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate"; //加上系统默认值
-//             $sys_postvalue_list = "'$name','$yyzzhao','$faren','$address','$tel','$webhttp','$email','$sys_org_img','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata'";
-//             //echo $sys_postvalue_list;
-//             //--------------------------------------以下为执行添加
-//             $sql = "insert into `$tablename` ($sys_postzd_list) values ($sys_postvalue_list)";
-//             mysqli_query( $Connadmin, $sql ); //执行添加
-//             echo "添加成功！"; /*这里只能禁止修改*/
-//         }
-//     }
-//     //echo $name;
-// } else {
-//     echo '指令错误！';
-// }
 ?>

@@ -56,7 +56,7 @@ if ( $act == 'list' ) {
 function lists() {
     $Htmlcache = $Htmlcache_data = '';
     //exit;
-    global $hy, $re_id,$Conn2, $Conn, $const_q_tianj, $maxrecord, $ToHtmlID, $strmk_id, $databiao, $xt_m_ziduan, $xt_m_ziduan_Name, $file_name, $SYS_Company_id;
+    global $hy, $re_id,$Conn2, $Conn, $sys_q_tianj, $maxrecord, $ToHtmlID, $strmk_id, $databiao, $xt_m_ziduan, $xt_m_ziduan_Name, $file_name, $SYS_Company_id;
     $rs = $sql = $row = $firstinputname = $nowUboundarry = $qx_wuchongfu = $TianJia_POST_Arry = $Wuchongfu_Arry = $zd_Default = $wuchongfu_html = $bitian_Arry = $zhiduanarryNull = $zhiduanarrydata = $sys_gx_id_rows = '';
     $IsConn = IsConn( $databiao ); //查出所属表的数据库
     $zu_all_list = zu_all_list( $re_id ); //查询到分组清单
@@ -152,7 +152,7 @@ function lists() {
 	    include_once "{$_SERVER[\'PATH_TRANSLATED\']}/session.php";
 	    include_once \'B_quanxian.php\';
 	    include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/B_' . $IsConn . '.php";
-	    global $strmk_id,$' . $IsConn . ',$const_q_tianj,$ToHtmlID;
+	    global $strmk_id,$' . $IsConn . ',$sys_q_tianj,$ToHtmlID;
 		$Table_name="' . $databiao . '";
 		$sys_re_id_02="' . $re_id . '";
 		$getdate=getdate();
@@ -389,9 +389,9 @@ function lists() {
                             $Htmlcache_ul = '';
                             //===============================================================数据输出
                             if ( $zd_en_name == 'sys_shenpi' ) { //当属于审核执行
-                                $Htmlcache_ul .= 'if ( strpos($const_q_shenghe, "' . $re_id . '") !== false ) { //有审核权限时' . "\n";
+                                $Htmlcache_ul .= 'if ( strpos($sys_q_shenghe, "' . $re_id . '") !== false ) { //有审核权限时' . "\n";
                             } elseif ( $zd_en_name == 'sys_shenpi_all' ) { //当属于批准执行
-                                $Htmlcache_ul .= 'if ( strpos($const_q_pizhun, "' . $re_id . '") !== false ) { //有批准权限时' . "\n";
+                                $Htmlcache_ul .= 'if ( strpos($sys_q_pizhun, "' . $re_id . '") !== false ) { //有批准权限时' . "\n";
                             }
                                 //===============================================================版式选择时
                             if ( $sys_banshi == 2 ) { //1数据表，2文件自动化 3其它
@@ -477,7 +477,7 @@ function lists() {
     //===============================================================输出下方按钮
     $Htmlcache .= "echo\"<ul style='height:15px;'><li style='width:98%'></li></ul>\";\n"; //间隔空白处
 
-    $Htmlcache .= 'if ( strpos($const_q_tianj, "' . $re_id . '") !== false  ) { //有添加权限时' . "\n";
+    $Htmlcache .= 'if ( strpos($sys_q_tianj, "' . $re_id . '") !== false  ) { //有添加权限时' . "\n";
 
     $Htmlcache .= "       echo\"<ul>$sys_banshi_html2
           <li style='text-align:right;width:220px'><i class='fa fa-sitting-ziduan'  title='设定添加字段。'/>&nbsp;</li>
@@ -499,7 +499,7 @@ function lists() {
 		</form>
 		<div id='clonecopy2'>&nbsp;</div>";
 
-    $Htmlcache .= "<script>YanZhen_ChongFu_ZuLoad(0,'$Wuchongfu_Arry','$databiao','" . '$ToHtmlID' . "');form_add_copy('" . '$ToHtmlID' . "');inputfocusfirst('#\"." . '$ToHtmlID' . ".\"_content_foot .htmlleirong','$firstinputname');form_weikong('#post_form','" . $ToHtmlID . "');</script>\";\n\n"; //输出js
+    $Htmlcache .= "<script>YanZhen_ChongFu_ZuLoad(0,'$Wuchongfu_Arry','$databiao','" . '$ToHtmlID' . "');form_add_copy('" . '$ToHtmlID' . "');inputfocusfirst('#\"." . '$ToHtmlID' . ".\"_content_foot .htmlleirong','$firstinputname');</script>\";\n\n"; //输出js
     $Htmlcache .= "?>" . "\n\n";
     //echo '"; ? >';
     //$cache->caching();

@@ -13,7 +13,6 @@ if ( $act == 'list' ) { //当接收到处理指令时
 //[ok]=========================================================================【记录清单  输出数据】
 function listdata( $id ) {
     global $Connadmin, $Conn, $re_id, $hy, $parent_id,$topZhiWeiIdxList,$modRoles;
-    // echo $parent_id;
     $father_id = 0;
     if(in_array($parent_id,$modRoles)){
         $sql = "
@@ -39,7 +38,7 @@ function listdata( $id ) {
             $row = mysqli_fetch_array( $rs );
             mysqli_free_result( $rs ); //释放内存
         }
-        $father_id = $row[ 'id' ]; //标准名称
+        $father_id = $row[ 'id' ];
     }else{
         // echo '不可修改';
     }
@@ -61,7 +60,6 @@ function listdata( $id ) {
     $id2 = $row2[ 'id' ]; //id
 
     $alertStr = "alert('你无权修改该职位的权限!')";
-
     if(!in_array($parent_id,$topZhiWeiIdxList)){
         $onclick = 'thistripnt_mobile("Edit_ZWquanxian_Update",this,"' . $hy . '")';
         $onchange = "thistripnt_zhiwei_mobile('Edit_ZWquanxian_Update',this,'$hy')";
@@ -81,7 +79,7 @@ function listdata( $id ) {
     $listdata .= "<dt class='title'>管辖范围:</dt>";
 
     $sys_q_fanwei = $row[ 'sys_q_fanwei' ]; //sys_q_fanwei 权限范围
-    $father_sys_q_fanwei = $father_row[ 'sys_q_fanwei' ]; //sys_q_fanwei 权限范围
+    $father_sys_q_fanwei = $father_row?$father_row[ 'sys_q_fanwei' ]:0; //sys_q_fanwei 权限范围
     $options = ["个人", "部门", "公司", "集团"];
     $listdata2 = '';
     foreach($options as $key => $item){
@@ -100,7 +98,7 @@ function listdata( $id ) {
     $index = array('sys_q_tianj','sys_q_shenghe','sys_q_pizhun','sys_q_cak','sys_q_xiug','sys_q_shanc','sys_q_huis','sys_q_dayin','sys_q_xiaohui','sys_q_zhixing','sys_q_seid');
     $index_str_list = array('编制','审核','批准','查看','修订','删除','回收','打印','销毁','分配','设置');
     foreach($index as $key => $item){
-        if( getN( $father_row[ $item ], $id ,',') >= 0 || getN( $row[ $item ], $id ,',') >= 0){        
+        if( getN( $row[ $item ], $id ,',') >= 0 || ($father_row && getN( $father_row[ $item ], $id ,',') >= 0) ){        
             if( getN( $row[ $item ], $id ,',') >= 0){ $show='28'; }else{$show='27'; };
             $index_str = $index_str_list[$key];
             $listdata .= "<li onclick=$onchange name='$item'  value='{$parent_id}' bumenid='{$parent_id}' at='{$id2}'>$index_str<dd class='hui'><i class='fa fa-{$show}-3'></i></dd></li>";

@@ -158,7 +158,7 @@ function listdata3( $id ) {
 
 function Table_quchong() {
 
-    global $Conn, $Connadmin, $hy, $nowgsbh, $const_jlbhzt; //得到全局变量
+    global $Conn, $Connadmin, $hy, $nowgsbh, $sys_jlbhzt; //得到全局变量
 
     $listdata4='';
     $sql = "select * From `sys_menubigclass` where sys_huis=0 and sys_yfzuid='$hy' order by sys_GuoChengMingChen asc";

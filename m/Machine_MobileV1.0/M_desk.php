@@ -1,14 +1,14 @@
 <?php
  include_once( '../../session.php' );                   //接收session信息
  include_once( 'M_quanxian.php' );                      //接收职位权限信息
-//$const_id="";
+//$sys_id="";
 //$nrr='2';
-//$const_id .= '_'.$nrr;
+//$sys_id .= '_'.$nrr;
 //$str = 'hello_world_hello_world';
 //$replace = ',';
 //$search = '_';
 //echo "<br><br><br><br>". str_ireplace($search, $replace, $str);
-//echo "<br><br><br><br>".$const_id;
+//echo "<br><br><br><br>".$sys_id;
 ?>
 
 <html>
@@ -23,8 +23,7 @@
 	<link href="theme/style.css" rel="stylesheet" type="text/css"/>
     <link href='../../style/menuimage.css' rel='stylesheet' type='text/css' />
 	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript" src="../../js/jq-top.js"></script> 
-	
+	<script type="text/javascript" src="../../js/jq-top.js"></script>
 </head>
 
 <body>

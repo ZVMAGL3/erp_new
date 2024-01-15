@@ -2,7 +2,7 @@
 include_once "{$_SERVER['PATH_TRANSLATED']}/session.php";
 $const_q_zu='测试部主任';
 $const_id_fz='0';
-$const_id_bumen='134';
+$bumen_id='134';
 $const_bumenname='测试部';
 $const_q_fanwei='502_1';
 $const_q_tianj='';

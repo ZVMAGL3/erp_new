@@ -20,21 +20,21 @@ echo( "<script>guanximenucopy_mobile('DeskMenuDiv494');YanZhen_ChongFu_ZuLoad_mo
 echo"<p></p><form id='post_form' autocomplete='off' SYS_Company_id='$SYS_Company_id' strmk_id='$strmk_id' zu_all_list='$zu_all_list'><div id='mobanaddbox' class='NowULTable nocopytext'>";
 echo"
                             <ul><li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;职务:</li>
-                            <li class='cols02 reset_list'><input type='text' typeid='24' name='ZhiWu' id='ZhiWu' class='addboxinput inputfocus'   value='$row[ZhiWu]'  style='width:100%'    readonly='readonly' />
+                            <li class='cols02 reset_list'><input type='text' typeid='24' name='ZhiWu' id='ZhiWu' class='addboxinput inputfocus'   value='$row[ZhiWu]'    readonly='readonly' />
                             <div class='cols03 font_red yanzheng' id='ZhiWu_bitian'></div>
                             </li>
                             </ul>
                         ";
 echo"
                             <ul><li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;申请人:</li>
-                            <li class='cols02 reset_list'><input type='text' typeid='23' name='ZD_ShenQingRen' id='ZD_ShenQingRen' class='addboxinput inputfocus'   value='$row[ZD_ShenQingRen]'  style='width:100%'    readonly='readonly' />
+                            <li class='cols02 reset_list'><input type='text' typeid='23' name='ZD_ShenQingRen' id='ZD_ShenQingRen' class='addboxinput inputfocus'   value='$row[ZD_ShenQingRen]'    readonly='readonly' />
                             <div class='cols03 font_red yanzheng' id='ZD_ShenQingRen_bitian'></div>
                             </li>
                             </ul>
                         ";
 echo"
                             <ul><li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;申请时间:</li>
-                            <li class='cols02 reset_list'><input type='text' typeid='25' name='ZD_ShenQingShiJian' id='ZD_ShenQingShiJian' class='addboxinput inputfocus'   value='$row[ZD_ShenQingShiJian]'  style='width:100%'    readonly='readonly' />
+                            <li class='cols02 reset_list'><input type='text' typeid='25' name='ZD_ShenQingShiJian' id='ZD_ShenQingShiJian' class='addboxinput inputfocus'   value='$row[ZD_ShenQingShiJian]'    readonly='readonly' />
                             <div class='cols03 font_red yanzheng' id='ZD_ShenQingShiJian_bitian'></div>
                             </li>
                             </ul>
@@ -56,22 +56,22 @@ echo"<ul><li class='cols01'>分类:</li>
 			   </li>
 			   </ul>";
 echo"<ul><li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;事由:</li>
-               <li class='cols02 reset_list'><textarea type='textarea' typeid='2' name='ShiYou' id='ShiYou' class='addboxinput inputfocus' style='width:100%;height:25px;'   >$row[ShiYou]</textarea>
+               <li class='cols02 reset_list'><textarea type='textarea' typeid='2' name='ShiYou' id='ShiYou' class='addboxinput inputfocus' 25px;'   >$row[ShiYou]</textarea>
 			   <div class='cols03 font_red yanzheng' id='ShiYou_bitian'></div>
 			   </li>
 			   </ul>";
 echo"<ul><li class='cols01'>备注:</li>
-               <li class='cols02 reset_list'><input type='text' typeid='1' name='ZD_BeiZhu' id='ZD_BeiZhu' class='addboxinput inputfocus'  value='$row[ZD_BeiZhu]'  style='width:100%'   />
+               <li class='cols02 reset_list'><input type='text' typeid='1' name='ZD_BeiZhu' id='ZD_BeiZhu' class='addboxinput inputfocus' value='$row[ZD_BeiZhu]'   />
 			   <div class='cols03 font_red yanzheng' id='ZD_BeiZhu_bitian'></div>
 			   </li>
 			   </ul>";
 echo"<ul><li class='cols01'>审核:</li>
-               <li class='cols02 reset_list'><input type='text' typeid='20' name='sys_shenpi' id='sys_shenpi' class='addboxinput inputfocus'  placeholder='请审核'  y-value='$row[sys_shenpi]'  value='$row[sys_shenpi]'  onclick='SignSH(this)' style='width:100%'    readonly='readonly' /><a class='jia jiaok'  onclick='SignSH(this)'><i class='fa fa-20-3'></i></a>
+               <li class='cols02 reset_list'><input type='text' typeid='20' name='sys_shenpi' id='sys_shenpi' class='addboxinput inputfocus'  placeholder='请审核'  y-value='$row[sys_shenpi]'  value='$row[sys_shenpi]'  onclick='SignSH(this)'    readonly='readonly' /><a class='jia jiaok'  onclick='SignSH(this)'><i class='fa fa-20-3'></i></a>
 			   <div class='cols03 font_red yanzheng' id='sys_shenpi_bitian'></div>
 			   </li>
 			   </ul>";
 echo"<ul><li class='cols01'>批准:</li>
-               <li class='cols02 reset_list'><input type='text' typeid='22' name='sys_shenpi_all' id='sys_shenpi_all' class='addboxinput inputfocus' placeholder='请批准'  y-value='$row[sys_shenpi_all]'  value='$row[sys_shenpi_all]'  onclick='SignPZ(this)' style='width:100%'    readonly='readonly' /><a class='jia jiaok'  onclick='SignPZ(this)'><i class='fa fa-20-4'></i></a>
+               <li class='cols02 reset_list'><input type='text' typeid='22' name='sys_shenpi_all' id='sys_shenpi_all' class='addboxinput inputfocus' placeholder='请批准'  y-value='$row[sys_shenpi_all]'  value='$row[sys_shenpi_all]'  onclick='SignPZ(this)'    readonly='readonly' /><a class='jia jiaok'  onclick='SignPZ(this)'><i class='fa fa-20-4'></i></a>
 			   <div class='cols03 font_red yanzheng' id='sys_shenpi_all_bitian'></div>
 			   </li>
 			   </ul>";

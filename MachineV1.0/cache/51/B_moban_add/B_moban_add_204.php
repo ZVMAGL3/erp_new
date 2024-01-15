@@ -306,7 +306,7 @@ if ( strpos($const_q_tianj, "204") !== false  ) { //有添加权限时
 		
 		</div>
 		</form>
-		<div id='clonecopy2'>&nbsp;</div><script>YanZhen_ChongFu_ZuLoad(0,'SYS_GongHao,SYS_ShouJi','sys_yuangongdanganbiao','$ToHtmlID');form_add_copy('$ToHtmlID');inputfocusfirst('#".$ToHtmlID."_content_foot .htmlleirong','id');form_weikong('#post_form','DeskMenuDiv204');</script>";
+		<div id='clonecopy2'>&nbsp;</div><script>YanZhen_ChongFu_ZuLoad(0,'SYS_GongHao,SYS_ShouJi','sys_yuangongdanganbiao','$ToHtmlID');form_add_copy('$ToHtmlID');inputfocusfirst('#".$ToHtmlID."_content_foot .htmlleirong','id');</script>";
 
 ?>
 

@@ -22,7 +22,7 @@ if ( $act == 'list' ) {
 
 function lists() {
     $Htmlcache = $Htmlcache_post = '';
-    global $Conn, $databiao, $strmk_id, $bitian_Arry, $const_q_tianj, $re_id, $const_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name, $ToHtmlID; //得到全局变量
+    global $Conn, $databiao, $strmk_id, $bitian_Arry, $sys_q_tianj, $re_id, $sys_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name, $ToHtmlID; //得到全局变量
     $IsConn = IsConn( $databiao ); //查出所属表的数据库
 
 
@@ -49,8 +49,8 @@ include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/Sub_All.php";
 		    echo "<script>UpdatePhp_Zw($SYS_QuanXian);</script>";
 		}
 		include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/B_' . $IsConn . '.php";
-        global $strmk_id,$' . $IsConn . ',$const_q_tianj;
-		if ( $const_q_tianj >= 0 ) { //有修改权限时
+        global $strmk_id,$' . $IsConn . ',$sys_q_tianj;
+		if ( $sys_q_tianj >= 0 ) { //有修改权限时
 		
 		//--------------------------------------以下为查询到表的信息
 	    $sql = "select sys_zt,sys_zt_bianhao From `sys_jlmb` where sys_yfzuid=\'$hy\' and mdb_name_SYS=\'' . $databiao . '\' ";
@@ -143,8 +143,8 @@ include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/Sub_All.php";
             }
         }
 
-        $sys_postzd_list = trim( $sys_postzd_list, ',' ) . ',sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate';
-        $sys_postvalue_list = trim( $sys_postvalue_list, ',' ) . ',\'$nowbh\',\'$bh_y\',\'$r_zt\',\'$r_zt_bianhao\',\'0\',\'$bh\',\'$SYS_UserName\',\'$hy\',\'$const_id_fz\',\'$const_id_bumen\',\'$nowdata\'';
+        $sys_postzd_list = trim( $sys_postzd_list, ',' ) . ',sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,bumen_id,sys_adddate';
+        $sys_postvalue_list = trim( $sys_postvalue_list, ',' ) . ',\'$nowbh\',\'$bh_y\',\'$r_zt\',\'$r_zt_bianhao\',\'0\',\'$bh\',\'$SYS_UserName\',\'$hy\',\'$sys_id_fz\',\'$bumen_id\',\'$nowdata\'';
         //echo $Htmlcache_sql;
         $where = trim( $where, 'and' );
         $Htmlcache .= '
@@ -154,7 +154,7 @@ include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/Sub_All.php";
 		$sql = "insert into  `' . $databiao . '`  (' . $sys_postzd_list . ') values (' . $sys_postvalue_list . ')";
 		mysqli_query( $' . $IsConn . ',$sql );
 		echo "<script>' . $sys_countarry . '</script>";
-        $nowid = mysqli_insert_id($' . $IsConn . ')';
+        $nowid = mysqli_insert_id($' . $IsConn . ');';
         $Htmlcache .= '
         //--------------------------------------以下为操作记录提交
         $sys_editcontent=\'首次建档;\';

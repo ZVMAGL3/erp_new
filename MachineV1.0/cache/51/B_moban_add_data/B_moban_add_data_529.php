@@ -56,15 +56,7 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		$sql = "insert into  `msc_user_hy`  (user_id,state,SYS_GongHao,zhiwei_id,add_time,new_time,Remark,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values ('$user_id','$state','$SYS_GongHao','$zhiwei_id','$add_time','$new_time','$Remark','$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
 		mysqli_query( $Connadmin,$sql );
 		echo "<script></script>";
-		//--------------------------------------以下为查询数据
-		$sql = "select id From `msc_user_hy` where   user_id='$user_id' and state='$state' and SYS_GongHao='$SYS_GongHao' and zhiwei_id='$zhiwei_id' and add_time='$add_time' and new_time='$new_time' and Remark='$Remark'   order by `id` desc";
-	    //echo $sql;
-	    $rs = mysqli_query(  $Conn , $sql );
-	    if ( $rs ) {
-		   $row = mysqli_fetch_array( $rs );
-		   $nowid = $row[ 'id' ];
-	    };
-		mysqli_free_result( $rs ); //释放内存
+        $nowid = mysqli_insert_id($Connadmin);
         //--------------------------------------以下为操作记录提交
         $sys_editcontent='首次建档;';
         if($sys_editcontent!=''){

@@ -57,9 +57,9 @@ include_once '../inc/Sub_All.php' ;
 
 // 【ok】======================================================================= : 依据标准
   function biaozhun(){
-     global $Conn,$re_id,$All_XT_ZiDuan,$hy,$bh,$const_q_tianj,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin,$const_q_huis,$const_q_seid,$const_q_dian,$const_q_shenghe;//引用权限 //得到全局变量
-	 global $const_id_login;
-	 if($const_id_login!=1){//无权限时
+     global $Conn,$re_id,$All_XT_ZiDuan,$hy,$bh,$sys_q_tianj,$sys_q_xiug,$sys_q_shanc,$sys_q_cak,$sys_q_dayin,$sys_q_huis,$sys_q_seid,$sys_q_dian,$sys_q_shenghe;//引用权限 //得到全局变量
+	 global $sys_id_login;
+	 if($sys_id_login!=1){//无权限时
     echo"<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     echo"<br><br><font style='color:red;padding-left:30px;font-size:12px;'>您无此栏目管理权限!</font>";
     exit();
@@ -71,7 +71,7 @@ include_once '../inc/Sub_All.php' ;
 	           if ($nowusethis=='1'){
 	               echo  (' checked ');//选中时执行
 	           };
-			   //if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			   //if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			   //}else{
 				  // echo " disabled ";
 			   //};
@@ -80,7 +80,7 @@ include_once '../inc/Sub_All.php' ;
   };
 // 【ok】======================================================================= : 回收站数据
   function huisget(){
-     global $re_id,$All_XT_ZiDuan,$hy,$bh,$const_q_tianj,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin,$const_q_huis,$const_q_seid,$const_q_dian,$const_q_shenghe;//引用权限 //得到全局变量
+     global $re_id,$All_XT_ZiDuan,$hy,$bh,$sys_q_tianj,$sys_q_xiug,$sys_q_shanc,$sys_q_cak,$sys_q_dayin,$sys_q_huis,$sys_q_seid,$sys_q_dian,$sys_q_shenghe;//引用权限 //得到全局变量
 	 
 	 $MY_tablename=$_REQUEST['tablename'];
 	 $nowTszd=$_REQUEST['tszd'];
@@ -121,10 +121,10 @@ include_once '../inc/Sub_All.php' ;
 	           echo ("<li class='headbh leftli' title='id:".$now_id."'>".$nowidss."</li><li  class='noneline textleft'>");
 	       };
 		   echo($nowdatatszd."</li>");
-		   if ( $const_q_shanc > -1 or $bh=='9001') {//删除权限
+		   if ( $sys_q_shanc > -1 or $bh=='9001') {//删除权限
 	       echo("<li class='rightli verticalalign' onclick='' title='彻底删除' style='vertical-align:middle;padding-top:4px;'><i class='fa fa-del'></i></li>");
 		   };
-		   if ( $const_q_huis > -1 or $bh=='9001') {//回收权限
+		   if ( $sys_q_huis > -1 or $bh=='9001') {//回收权限
 		       echo "<li class='rightli verticalalign' onclick='huispost(this)' title='找回' style='vertical-align:middle;padding-top:4px;'><i class='fa fa-huis'></i></li>";
 		   };
 		   echo "</ul>";
@@ -137,8 +137,8 @@ include_once '../inc/Sub_All.php' ;
   // 【】======================================================================= : 职能分配
   function ZhiLeng_Edit(){
 	global $Conn,$Connadmin,$hy;//得到全局变量
-	  global $const_id_login;
-	if($const_id_login!=1){//无权限时
+	  global $sys_id_login;
+	if($sys_id_login!=1){//无权限时
     echo"<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     echo"<br><br><font style='color:red;padding-left:30px;font-size:12px;'>您无此栏目管理权限!</font>";
     exit();
@@ -197,8 +197,8 @@ include_once '../inc/Sub_All.php' ;
   
   // 【ok】======================================================================= : 职能分配二级菜单
   function ZhiLeng_Edit_date(){
-    global $Conn,$Connadmin,$hy,$nowgsbh,$const_jlbhzt;//得到全局变量
-	global $re_id,$bh,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin;//引用权限 //得到全局变量
+    global $Conn,$Connadmin,$hy,$nowgsbh,$sys_jlbhzt;//得到全局变量
+	global $re_id,$bh,$sys_q_xiug,$sys_q_shanc,$sys_q_cak,$sys_q_dayin;//引用权限 //得到全局变量
 	
 	$id=$_REQUEST['id'];
 	  //echo $nsquanxian;
@@ -218,7 +218,7 @@ include_once '../inc/Sub_All.php' ;
 	       $nowcard=$row['sys_card'];
 	       $nowbanben=$row['banben'];
 	       $nowxiugaicishu=$row['xiugaicishu'];
-	       $nowcardall=$nowgsbh.'.'.$const_jlbhzt.'-'.$re_id2.'-'.$nowbanben.'/'.$nowxiugaicishu;
+	       $nowcardall=$nowgsbh.'.'.$sys_jlbhzt.'-'.$re_id2.'-'.$nowbanben.'/'.$nowxiugaicishu;
 	       echo ("<ul class='twomenu hoverthis'>");
 		   echo  ("<li class='headbh leftli' style='padding-top:2px'><i class='fa fa-25-1'></i></li><li class='textleft w140'>".$nowcardall."</li><li class='textleft'>".$nowcard."</li>");
    	       //======================================================部门清单
@@ -236,7 +236,7 @@ include_once '../inc/Sub_All.php' ;
 	           if (getN($This_quanxianlist,$re_id2)>-1){
 	               echo  (' checked=\'checked\' ');//选中时执行
 	           };
-			   if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			   if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			   }else{
 				   echo " disabled ";
 			   };
@@ -260,8 +260,8 @@ include_once '../inc/Sub_All.php' ;
 
   // 【ok】======================================================================= : 职责权限菜单
   function ZhiZheQuanXian(){
-	global $const_id_login;
-	if($const_id_login!=1){//无权限时
+	global $sys_id_login;
+	if($sys_id_login!=1){//无权限时
         echo"<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
         echo"<br><br><font style='color:red;padding-left:30px;font-size:12px;'>您无此栏目管理权限!</font>";
         exit();
@@ -337,7 +337,7 @@ include_once '../inc/Sub_All.php' ;
   };//function end
   // 【】======================================================================= : 职能分配
   function ZhiZheQuanXian_GET(){
-	global $Conn,$Connadmin,$hy,$const_q_xiug;//得到全局变量
+	global $Conn,$Connadmin,$hy,$sys_q_xiug;//得到全局变量
 	  
 	  $zwid=$_REQUEST['zwid'];
 	  //echo $zwid;
@@ -397,7 +397,7 @@ include_once '../inc/Sub_All.php' ;
 			
 		   echo ("<li class='rightli rightli30' style='padding:0;width:30px;'><img src='images/Fugue_1177.png'></li>");
 		   
-		   if ( $const_q_xiug > -1 or $bh=='9001') {//设定
+		   if ( $sys_q_xiug > -1 or $bh=='9001') {//设定
 				echo ("<li class='rightli rightli30' style='padding:0'  onclick=\"thistripnt_QuanXuan(this)\">全选</li>");
 		   }else{
 				echo ("<li class='rightli rightli30' style='padding:0'>全选</li>");
@@ -435,8 +435,8 @@ include_once '../inc/Sub_All.php' ;
   
   // 【ok】======================================================================= : 职能分配二级菜单
   function ZhiZheQuanXian_GET_date(){
-    global $Conn,$Connadmin,$hy,$nowgsbh,$const_jlbhzt;//得到全局变量
-	global $re_id,$bh,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin;//引用权限 //得到全局变量
+    global $Conn,$Connadmin,$hy,$nowgsbh,$sys_jlbhzt;//得到全局变量
+	global $re_id,$bh,$sys_q_xiug,$sys_q_shanc,$sys_q_cak,$sys_q_dayin;//引用权限 //得到全局变量
 	
 	$id=$_REQUEST['id'];
 	  //echo $id;
@@ -481,14 +481,14 @@ include_once '../inc/Sub_All.php' ;
 	       $nowcard=$row['sys_card'];
 	       $nowbanben=$row['banben'];
 	       $nowxiugaicishu=$row['xiugaicishu'];
-	       $nowcardall=$nowgsbh.'.'.$const_jlbhzt.'-'.$re_id2.'-'.$nowbanben.'/'.$nowxiugaicishu;
+	       $nowcardall=$nowgsbh.'.'.$sys_jlbhzt.'-'.$re_id2.'-'.$nowbanben.'/'.$nowxiugaicishu;
 	       echo ("<ul class='twomenu hoverthis'>");
 		   
 		   echo  ("<li class='headbh leftli' style='padding-top:2px'><i class='fa fa-25-1'></i></li><li class='textleft w140'>".$nowcardall."</li><li class='textleft'>".$nowcard."</li>");
 		   
 		    echo ("<li class='rightli rightli30' style='padding:0;width:30px;'>&nbsp;</li>");
 		    //---------------------------------------------------------------------------------------------------- 横选
-		    if ( $const_q_xiug > -1 or $bh=='9001') {
+		    if ( $sys_q_xiug > -1 or $bh=='9001') {
 				echo ("<li class='rightli rightli30' style='padding:0;'  bumenID='$zwid' re_id='$re_id2' onclick=\"thistripnt_hengxiang(this)\">横选</li>");
 			}else{
 				echo ("<li class='rightli rightli30' style='padding:0;color:#CCC'  bumenID='$zwid' re_id='$re_id2'>横选</li>");
@@ -497,7 +497,7 @@ include_once '../inc/Sub_All.php' ;
 		    //---------------------------------------------------------------------------------------------------- 设定
 		    echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_seid' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_seid,$re_id2)>=0) echo (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//设定
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//设定
 			}else{
 				   echo " disabled ";
 			};
@@ -505,7 +505,7 @@ include_once '../inc/Sub_All.php' ;
 		    //---------------------------------------------------------------------------------------------------- 销毁
 			echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_xiaohui' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_xiaohui,$re_id2)>-1) echo (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//
 			}else{
 				   echo " disabled ";
 			};
@@ -513,7 +513,7 @@ include_once '../inc/Sub_All.php' ;
 		    //---------------------------------------------------------------------------------------------------- 打印
 			echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_dayin' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_dayin,$re_id2)>-1) echo (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {
+			if ( $sys_q_xiug > -1 or $bh=='9001') {
 			}else{
 				   echo " disabled ";
 			};
@@ -521,7 +521,7 @@ include_once '../inc/Sub_All.php' ;
 			//---------------------------------------------------------------------------------------------------- 回收
 	        echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_huis' type='checkbox' bumenID='$zwid'  value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_huis,$re_id2)>-1) echo (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -529,7 +529,7 @@ include_once '../inc/Sub_All.php' ;
 			//---------------------------------------------------------------------------------------------------- 删除
 	        echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_shanc' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_shanc,$re_id2)>-1 ) echo  (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -538,7 +538,7 @@ include_once '../inc/Sub_All.php' ;
 	        echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_xiug' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_xiug,$re_id2)>-1 ) echo  (' checked ');
 			
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -547,7 +547,7 @@ include_once '../inc/Sub_All.php' ;
 		    echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_cak' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_cak,$re_id2)>-1) echo  (' checked ');
 			
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -556,7 +556,7 @@ include_once '../inc/Sub_All.php' ;
 		    //---------------------------------------------------------------------------------------------------- 批准
 		    echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_pizhun' type='checkbox' bumenID='$zwid'  value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_pizhun,$re_id2)>-1) echo (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -564,7 +564,7 @@ include_once '../inc/Sub_All.php' ;
 			//---------------------------------------------------------------------------------------------------- 审核
 	        echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_shenghe' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_shenghe,$re_id2)>-1 ) echo  (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -572,7 +572,7 @@ include_once '../inc/Sub_All.php' ;
 			//---------------------------------------------------------------------------------------------------- 经办
 		    echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_zhixing' type='checkbox' bumenID='$zwid'  value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_zhixing,$re_id2)>-1) echo (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -580,7 +580,7 @@ include_once '../inc/Sub_All.php' ;
 		    //---------------------------------------------------------------------------------------------------- 分配
 		    echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_zhixing' type='checkbox' bumenID='$zwid'  value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");
 	        if (getN($now_q_zhixing,$re_id2)>-1) echo (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -588,7 +588,7 @@ include_once '../inc/Sub_All.php' ;
 			//---------------------------------------------------------------------------------------------------- 添加
 	        echo  ("<li class='rightli rightli30' style='padding:0'><label><input name='sys_q_tianj' type='checkbox' bumenID='$zwid' value='$zwid' at='$re_id2' onchange=\"thistripnt_zhiwei('Edit_ZWquanxian_Update',this,'$hy')\" ");//添加
 	        if (getN($now_q_tianj,$re_id2)>-1 ) echo  (' checked ');
-			if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+			if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 			}else{
 				   echo " disabled ";
 			};
@@ -622,19 +622,19 @@ include_once '../inc/Sub_All.php' ;
 };//function end
 //【ok】=========================================================================职责范围
 function GUANXIA_FANWEI( $tabalename, $inputname, $inputid, $zu_id, $jlmbid, $ZhiWei_id ) { //
-	global $const_id_login;
-	if($const_id_login!=1){//无权限时
+	global $sys_id_login;
+	if($sys_id_login!=1){//无权限时
     echo"<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     echo"<br><br><font style='color:red;padding-left:30px;font-size:12px;'>您无此栏目管理权限!</font>";
     exit();
 }
 
-	global $const_q_xiug, $re_id, $Conn, $bh, $hy; //全局变量
+	global $sys_q_xiug, $re_id, $Conn, $bh, $hy; //全局变量
 	$To_SQL_input = '';
 
 	$nowchange = " onchange=\"thistripnt('Edit_ZWquanxian_Update',this,'$hy')\" ";
 	$To_SQL_input = "<select name='$inputname' at='$jlmbid' bumenID='$ZhiWei_id' id='$inputid' $nowchange class='addboxinput inputfocus' type='select' style='width:100%;height:100%;border:0;margin:0;padding:0;' ";
-	if ( $const_q_xiug > -1 or $bh == '9001' ) { //修改权限
+	if ( $sys_q_xiug > -1 or $bh == '9001' ) { //修改权限
 	} else {
 		$To_SQL_input .= " disabled ";
 	};
@@ -684,8 +684,8 @@ function mima() {
 
     // 【ok】============================================================================================云会员
 function YunHuiYuan_Edit(){
-	global $const_id_login;
-	if($const_id_login!=1){//无权限时
+	global $sys_id_login;
+	if($sys_id_login!=1){//无权限时
     echo"<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     echo"<br><br><font style='color:red;padding-left:30px;font-size:12px;'>您无此栏目管理权限!</font>";
     exit();

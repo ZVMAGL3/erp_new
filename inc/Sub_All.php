@@ -32,6 +32,7 @@ function Sys_XuanYongMoban( $re_id, $id ) {
     global $Conn; //得到全局变量
     //-------------------------------------------------------------查询到表的版式start
     $sql = 'select sys_banshi From Sys_jlmb where id=' . $re_id;
+    echo $sql;
     $rs = mysqli_query( $Conn, $sql );
     $row = mysqli_fetch_array( $rs );
     $sys_banshi = $row[ 'sys_banshi' ]; //1数据表，2文件自动化
@@ -445,12 +446,12 @@ function UpdataJilu( $Table_Name, $id, $ziduan, $newvale ) { //updatajilu($Connn
 
 //[ok]================================================================================================== [Table] 添加表模块
 function table_add_Modular( $Table_Name = '', $tablebeizhu = '', $nowbigid = 0, $jlmb_id = 0 ) { //$Table_Name表名en,表名cn，上级id(当等于0时代表修改时添加)$nowbigid大类id，及0强制添加表，而不添加sys_jlmb
-    global $const_id_login;
+    global $sys_id_login;
     $connect = Changedb( $Table_Name ); //依据表自动选择数据库
     //echo "Table_Name:$Table_Name ,tablebeizhu:$tablebeizhu, nowbigid:$nowbigid , jlmb_id:$jlmb_id";
     //exit();
     IsNullExit( $Table_Name ); //为空时停止往下执行。
-    if ( $const_id_login == '1' ) { //当为开发者时
+    if ( $sys_id_login == '1' ) { //当为开发者时
         $nowsys = 0;
     } else {
         $nowsys = SYS_str( $Table_Name );
@@ -506,7 +507,7 @@ function table_add_Modular( $Table_Name = '', $tablebeizhu = '', $nowbigid = 0, 
 
 //[ok]================================================================================================== [Table] 修改表名
 function table_edit_Modular( $Table_Name = '', $newtablename = '', $tablebeizhu = '', $jlmb_id = 0 ) { //$Table_Name原表名$newtablename新表名  $tablebeizhu为中文名称
-    global $const_id_login;
+    global $sys_id_login;
     //echo $Table_Name . ';' . $newtablename . ';' . $tablebeizhu . ';' . $jlmb_id;
     $Table_Name = strtolower( $Table_Name );
     $connect = Changedb( $Table_Name ); //依据表自动选择数据库
@@ -620,10 +621,10 @@ function Table_SYS_Ziduan_CuShi( $Table_Name = '' ) { //$Table_Name表名
         //ziduan_edit_Modular( $Table_Name, 'sys_huis', 'sys_huis', '回收,80,0,0,1,0,0,0,0,0,0,0,0,0,0', 'int(1)','0', 'changbeizhu');
     };
     //----------------------------------------------------------------部门ID
-    if ( getN( $col_list, 'sys_id_bumen' ) < 0 ) {
-        $sql .= "`sys_id_bumen` int(8) DEFAULT NULL COMMENT '部门,80,0,0,1,0,0,0,0,0,0,0,0,0,0',";
+    if ( getN( $col_list, 'bumen_id' ) < 0 ) {
+        $sql .= "`bumen_id` int(8) DEFAULT NULL COMMENT '部门,80,0,0,1,0,0,0,0,0,0,0,0,0,0',";
     } else {
-        //ziduan_edit_Modular( $Table_Name, 'sys_id_bumen', 'sys_id_bumen', '部门,80,0,0,1,0,0,0,0,0,0,0,0,0,0', 'int(8)','0', 'changbeizhu');
+        //ziduan_edit_Modular( $Table_Name, 'bumen_id', 'bumen_id', '部门,80,0,0,1,0,0,0,0,0,0,0,0,0,0', 'int(8)','0', 'changbeizhu');
     };
     //----------------------------------------------------------------网络显示
     if ( getN( $col_list, 'sys_web_shenpi' ) < 0 ) {
@@ -1026,17 +1027,17 @@ function ziduan_del_Modular_all( $Table_Name , $colname ) { //$Table_Name表名,
 
 //[ok]======================================================================================================添加单条记录
 function Jilu_add_Modular( $Table_Name , $sys_postzd_list, $sys_postvalue_list ) { //$Table_Name表名,更新字段$sys_postzd_list
-    global $hy, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen;
+    global $hy, $bh, $SYS_UserName, $sys_id_fz, $bumen_id;
     // echo $Table_Name;
+    // echo 123;
     // echo '###1#####';
     $connect = Changedb( $Table_Name ); //依据表自动选择数据库
+    $connect -> beginTransaction();
     // echo '###2#####';
-
     IsNullExit( $Table_Name ); //为空时停止往下执行。
     // echo $sys_postzd_list.'_---_';
     $sys_postzd_list = trim( $sys_postzd_list, "," );
     // echo $sys_postzd_list.'_---_';
-
 
     $sys_postvalue_list = trim( $sys_postvalue_list, "," );
     //Table_SYS_Ziduan_CuShi( $Table_Name ); //这里初始化系统字段
@@ -1059,7 +1060,7 @@ function Jilu_add_Modular( $Table_Name , $sys_postzd_list, $sys_postvalue_list )
     $sql = "select MAX(sys_bh) AS sys_bh From `$Table_Name` where sys_yfzuid='$hy' and sys_zt='$r_zt' and sys_zt_bianhao='$r_zt_bianhao' ";
     // echo $sql;
     $rs = $connect -> query($sql);
-    $nowrscount = $connect -> numRows( $rs['result'] ); //统计数量
+    $nowrscount = $connect -> numRows($rs['result']); //统计数量
     $row = mysqli_fetch_array( $rs['result'] );
     if ( $nowrscount == 0 ) {
         $bh_y = $r_zt_bianhao;
@@ -1073,23 +1074,22 @@ function Jilu_add_Modular( $Table_Name , $sys_postzd_list, $sys_postvalue_list )
     // echo $sys_postvalue_list.'___';
     $nowdata = date( 'Y-m-d H:i:s' );
     // echo $sys_postzd_list;
-    $sys_postzd_list = "$sys_postzd_list,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate"; //加上系统默认值
-    $sys_postvalue_list = "$sys_postvalue_list,'$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata'";
+    $sys_postzd_list = "$sys_postzd_list,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,bumen_id,sys_adddate"; //加上系统默认值
+    $sys_postvalue_list = "$sys_postvalue_list,'$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$sys_id_fz','$bumen_id','$nowdata'";
     // echo $sys_postvalue_list;
     //--------------------------------------以下为执行添加
     $sqlADD = "insert into `$Table_Name` ($sys_postzd_list) values ($sys_postvalue_list)";
 
     // echo 123;
     // echo $sqlADD;
-    $connect -> query($sqlADD);
+    echo json_encode($connect -> query($sqlADD),JSON_UNESCAPED_UNICODE);
     // echo 123;
     //这里执行检查是否有同步的列
     $now_add_id = ADD_Col_id( $Table_Name, $sys_postzd_list, $sys_postvalue_list ); //查询添加的id
     //==========================================================查询到添加的id值
     // echo( $now_add_id );
     // echo 123;
-
-
+    $connect -> commit();
 } //function end
 
 

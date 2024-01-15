@@ -12,7 +12,7 @@ if ( isset( $_SESSION[ 'reg_name' ] ) ) { //公司名称
 	}
 }
 
-$nowloginxinxi="&nbsp;&nbsp;&nbsp;&nbsp;用户：{$reg_name}> {$const_bumenname}({$const_id_bumen}) >{$const_q_zu}({$SYS_QuanXian})>{$SYS_UserName}({$bh})";
+$nowloginxinxi="&nbsp;&nbsp;&nbsp;&nbsp;用户：{$reg_name}> {$bumen_name}({$bumen_id}) >{$sys_q_zu}({$SYS_QuanXian})>{$SYS_UserName}({$bh})";
 //$SYS_QuanXian="";
 
 if ($SYS_QuanXian.'1'=='1'){
@@ -132,7 +132,7 @@ function DeskHtml(PartHtmlID,ToHtmlID,ShaiXuanSql,huis){
     	nowHtml+="<div class='head' id='"+ToHtmlID+"_head'>"
 	           +"<li>"
 			       +'<input type="hidden" id="sys_const_company_id" value="'+<?php echo $SYS_Company_id ?>+'"/>'     //公司id   51
-	               +'<input type="hidden" id="sys_const_id_bumen" value="0"/>'                                       //公司部门 id
+	               +'<input type="hidden" id="sys_bumen_id" value="0"/>'                                       //公司部门 id
 		           +'<input type="hidden" id="sys_const_hy" value="'+<?php echo $hy ?>+'"/>'                         //公司     9007
 		           +'<input type="hidden" id="sys_const_bh" value=""/>'                                              //编制人     id
 	               +'<input type="hidden" id="sys_const_shenpi" value=""/>'                                          //审核人     id

@@ -9,7 +9,7 @@
 	    if ( isset( $_REQUEST[ 'huis' ] ) ){$huis = intval( $_REQUEST[ 'huis' ] );}else{$huis = 0;};                                                                //1回收站0为不回收
 	    //if ( $huis == 1){$ToHtmlID='HUIS_'.$ToHtmlID;};                                                                                                               //是否为回收站0为不回收
 	   
-	    global $strmk_id,$Conn,$const_q_xiug;
+	    global $strmk_id,$Conn,$sys_q_xiug;
 	    $zu_all_list="";
 	    $sql = 'select * From `SQP_ZongGuoChengQingDan` where `id`='.$strmk_id;
 	    $rs = mysqli_query(  $Conn , $sql );
@@ -91,7 +91,7 @@ echo"<ul><li class='cols01'>排序:</li>
 			   </ul>";
 echo"<ul style='height:15px'><li style='width:98%'></li></ul>";
 echo"<ul><li class='cols01'><i class='fa fa-sitting-ziduan' title='设定显示与锁定。' onClick=Table_Set_XianShi('DeskMenuDiv190',this) title='设定修改字段。'></i>&nbsp;</li><li  class='cols02'><input type='hidden' id='sys_postzd_list' name='sys_postzd_list' value='username,DianHua3,startdate,enddate,beizhu,qq,sys_id_zu,card,bianhao,sys_shenpi,sys_shenpi_all,sys_login,sys_chaosong,sys_paixu'/>";
-if ( $const_q_xiug >= 0 ) { //有修改权限时
+if ( $sys_q_xiug >= 0 ) { //有修改权限时
     echo"<input value='复制添加' tabindex=-1 title='&nbsp;复制该条修改后快速添加&nbsp;' type='button' class='button button_reset' style='width:15%;border-right:0px solid #333' onclick=loodfoot(1,'DeskMenuDiv190','.sett',$strmk_id); />";
     echo"<input id='SYS_submit' value='确定修改' title='&nbsp;Ctrl+Enter提交&nbsp;' type='button' class='button button_ADD'  SYS_Company_id='$SYS_Company_id'  firstinputname='id' bitian_Arry=''  Wuchongfu_Arry=''  onclick=data_edit_arrys(this,'#post_form','DeskMenuDiv190')  style='width:85%'  />";
 }else{

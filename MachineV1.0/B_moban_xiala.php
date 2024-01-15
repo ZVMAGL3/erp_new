@@ -190,7 +190,7 @@ function BiaoQian_change() { //标签加载
 }
 
 function content_right_menu() { //分类下拉
-	global  $connect,$hy,$ToHtmlID,$databiao,$zu,$sys_id_bumen,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other;
+	global  $connect,$hy,$ToHtmlID,$databiao,$zu,$bumen_id,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other;
 	$rs = $sql = $rsArray = $now_id = $now_lname1 =$zu_menuimg_id_bumen=$zu_menuimg_id_login=$zu_menuimg_adddate= '';
 	//------------------------识别是否为页中页
 	if ( isset( $_REQUEST[ 'sys_guanxibiao_id' ] ) ){$sys_guanxibiao_id = intval( $_REQUEST[ 'sys_guanxibiao_id' ] );}else{$sys_guanxibiao_id = '';};         //关系表re_id
@@ -198,7 +198,7 @@ function content_right_menu() { //分类下拉
     if ( isset( $_REQUEST[ 'ToHtmlID' ] ) ){$ToHtmlID = $_REQUEST[ 'ToHtmlID' ];};                                                                            //j显示页面
 	
 	if ( isset( $_REQUEST[ 'zu' ] ) ){$nowzu = $_REQUEST[ 'zu' ];}else{$nowzu = 0;};                                                                          //zu
-	if ( isset( $_REQUEST[ 'sys_id_bumen' ] ) ){$sys_id_bumen = $_REQUEST[ 'sys_id_bumen' ];}else{$sys_id_bumen = 0;};                                        //sys_id_bumen
+	if ( isset( $_REQUEST[ 'bumen_id' ] ) ){$bumen_id = $_REQUEST[ 'bumen_id' ];}else{$bumen_id = 0;};                                        //bumen_id
 	
 	if ( isset( $_REQUEST[ 'bh' ] ) ){$bh = $_REQUEST[ 'bh' ];}else{$bh = 0;};                                                                                //编制人
 	if ( isset( $_REQUEST[ 'sys_shenpi' ] ) ){$sys_shenpi = $_REQUEST[ 'sys_shenpi' ];}else{$sys_shenpi = 0;};                                                //审核人
@@ -222,7 +222,7 @@ function content_right_menu() { //分类下拉
 		$sys_shenpi_all = $row[ 'sys_const_shenpi_all' ];                          //批准人
 		$sys_chaosong = $row[ 'sys_const_chaosong' ];                              //经办人
 
-	    $sys_id_bumen = $row[ 'sys_const_id_bumen' ];                              //sys_id_bumen
+	    $bumen_id = $row[ 'sys_const_id_bumen' ];                              //bumen_id
 	    $nowzu = $row[ 'sys_const_zu' ];                                           //nowzu
 	    $sys_adddate = $row[ 'sys_const_adddate' ];                                //sys_adddate
 		$sys_const_ShaiXuanSql_other = $row[ 'sys_const_ShaiXuanSql_other' ];      //ShaiXuanSql_other
@@ -239,9 +239,9 @@ function content_right_menu() { //分类下拉
 	echo content_right_menu_data('sys_id_zu',$re_id , $ed_id); 
 	echo"<img src='../images/xiala.gif' /></li>";
 	//-------------------------------------------------------------------------------- 部门
-	if($sys_id_bumen!='0' && $sys_id_bumen!=''){$nowimg='<i class="fa fa-25-02"></i>';	}else{$nowimg='<i class="fa fa-21-1"></i>';	};
-	echo( "<li name='sys_id_bumen' class='shadowdiv overli clearboth headmenu' ><font class='cols01'>$nowimg</font>" );
-	echo content_right_menu_data('sys_id_bumen',$re_id, $ed_id);
+	if($bumen_id!='0' && $bumen_id!=''){$nowimg='<i class="fa fa-25-02"></i>';	}else{$nowimg='<i class="fa fa-21-1"></i>';	};
+	echo( "<li name='bumen_id' class='shadowdiv overli clearboth headmenu' ><font class='cols01'>$nowimg</font>" );
+	echo content_right_menu_data('bumen_id',$re_id, $ed_id);
 	echo"<img src='../images/xiala.gif' /></li>";
 	//-------------------------------------------------------------------------------- 编制人
 	if($bh != 0 && $bh != ''){$nowimg='<i class="fa fa-25-02"></i>';}else{$nowimg='<i class="fa fa-21-1"></i>';	};
@@ -292,14 +292,14 @@ function content_right_menu() { //分类下拉
 };
 
 function content_right_menu_data($menu,$re_id,$id=0) { //分类下拉数据
-	global $connect,$db,$hy,$ToHtmlID,$databiao,$zu,$sys_id_bumen,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_const_ShaiXuanSql_other,$bh;
+	global $connect,$db,$hy,$ToHtmlID,$databiao,$zu,$bumen_id,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_const_ShaiXuanSql_other,$bh;
 	//------------------------识别是否为页中页
 	if ( isset( $_REQUEST[ 'sys_guanxibiao_id' ] ) ){$sys_guanxibiao_id = intval( $_REQUEST[ 'sys_guanxibiao_id' ] );}else{$sys_guanxibiao_id = '';};         //关系表re_id
     if ( isset( $_REQUEST[ 'GuanXi_id' ] ) ){$GuanXi_id = intval( $_REQUEST[ 'GuanXi_id' ] );}else{$GuanXi_id = "";	};//关系列id
     if ( isset( $_REQUEST[ 'ToHtmlID' ] ) ){$ToHtmlID = $_REQUEST[ 'ToHtmlID' ];};                                                                            //j显示页面
 	
 	if ( isset( $_REQUEST[ 'zu' ] ) ){$nowzu = $_REQUEST[ 'zu' ];}else{$nowzu = 0;};                                                                          //zu
-	if ( isset( $_REQUEST[ 'sys_id_bumen' ] ) ){$sys_id_bumen = $_REQUEST[ 'sys_id_bumen' ];}else{$sys_id_bumen = 0;};                                        //sys_id_bumen
+	if ( isset( $_REQUEST[ 'bumen_id' ] ) ){$bumen_id = $_REQUEST[ 'bumen_id' ];}else{$bumen_id = 0;};                                        //bumen_id
 	
 	if ( isset( $_REQUEST[ 'bh' ] ) ){$bh = $_REQUEST[ 'bh' ];}else{$bh = 0;};                                                                                //编制人
 	if ( isset( $_REQUEST[ 'sys_shenpi' ] ) ){$sys_shenpi = $_REQUEST[ 'sys_shenpi' ];}else{$sys_shenpi = 0;};                                                //审核人
@@ -322,7 +322,7 @@ function content_right_menu_data($menu,$re_id,$id=0) { //分类下拉数据
 		$sys_shenpi_all = $row[ 'sys_const_shenpi_all' ];                          //批准人
 		$sys_chaosong = $row[ 'sys_const_chaosong' ];                              //经办人
 		
-	    $sys_id_bumen = $row[ 'sys_const_id_bumen' ];                              //sys_id_bumen
+	    $bumen_id = $row[ 'sys_const_id_bumen' ];                              //bumen_id
 	    $nowzu = $row[ 'sys_const_zu' ];                                           //nowzu
 	    $sys_adddate = $row[ 'sys_const_adddate' ];                                //sys_adddate
 		$sys_const_ShaiXuanSql_other = $row[ 'sys_const_ShaiXuanSql_other' ];      //sys_const_ShaiXuanSql_other
@@ -350,7 +350,7 @@ function content_right_menu_data($menu,$re_id,$id=0) { //分类下拉数据
 		  echo "<option value=\"-1\"> + 添加</option>";
 		echo "</select>";
 	//-------------------------------------------------------------------------- 部门
-	}else if($menu=='sys_id_bumen'){
+	}else if($menu=='bumen_id'){
 		echo "<strong>部&nbsp;&nbsp;&nbsp;门：</strong><select name='{$menu}'  id='{$menu}' onchange=\"zuchange(this,'$ToHtmlID')\" class=\"addboxinput inputfocus\">";
 		  echo "<option value=\"0\">所有部门</option>";
 		  $sql = "select * From `msc_bumenlist` where sys_yfzuid='$hy' and sys_huis <> 1 order by id Asc";
@@ -359,7 +359,7 @@ function content_right_menu_data($menu,$re_id,$id=0) { //分类下拉数据
 	      while ( $row = mysqli_fetch_array( $rs['result'] ) ) {
 		      $id = $row[ 'id' ];
 		      $bumenname = $row[ 'bumenname' ];
-			  if($sys_id_bumen==$id){
+			  if($bumen_id==$id){
 				  $menucheckded='selected';
 			  }else{
 				  $menucheckded='';
@@ -549,7 +549,7 @@ function content_right_menu_data($menu,$re_id,$id=0) { //分类下拉数据
 		$sql = "SHOW FULL COLUMNS FROM `$databiao` ";
 		$rs = $connect -> query($sql);
 		//$recordcount=mysqli_num_rows($rs);//得到总数 无用
-    	$showziduan='sys_id_zu,sys_id_bumen,sys_id_login,sys_adddate,sys_adddate_g';    //显示字段
+    	$showziduan='sys_id_zu,bumen_id,sys_id_login,sys_adddate,sys_adddate_g';    //显示字段
 	    
 		while ( $row = mysqli_fetch_array( $rs['result'] ) ) {
 			$zd_en_name = $row[ 'Field' ]; //字段
@@ -625,7 +625,7 @@ function content_right_menu_data($menu,$re_id,$id=0) { //分类下拉数据
 }
 
 function shuqianmenu() { //书签
-	global $db_vip,$hy,$ToHtmlID,$databiao,$zu,$sys_id_bumen,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
+	global $db_vip,$hy,$ToHtmlID,$databiao,$zu,$bumen_id,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
 	if ( isset( $_REQUEST[ 'sys_const_biaoqian_id' ] ) ){$sys_const_biaoqian_id = $_REQUEST[ 'sys_const_biaoqian_id' ];};                                     //标签id
 	if ( isset( $_REQUEST[ 'ToHtmlID' ] ) ){$ToHtmlID = $_REQUEST[ 'ToHtmlID' ];};                                     //标签id
 	$nowclosedclick='$(this).parents("#'.$ToHtmlID.'_content_right_menu").hide(500)';
@@ -675,8 +675,8 @@ function shuqianmenu() { //书签
 }
 
 function shuqianmenu_update() { //书签更新
-	global $connect,$Connadmin,$bh,$hy,$ToHtmlID,$databiao,$const_id_fz,$SYS_UserName,$SYS_Company_id,$zu,$sys_id_bumen,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
-	$sys_id_bumen_const=$sys_id_bumen;
+	global $connect,$Connadmin,$bh,$hy,$ToHtmlID,$databiao,$sys_id_fz,$SYS_UserName,$SYS_Company_id,$zu,$bumen_id,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
+	$bumen_id_const=$bumen_id;
 	$hy_const=$hy;
 	$bh_const=$bh;
 	
@@ -684,8 +684,8 @@ function shuqianmenu_update() { //书签更新
 	$sys_const_keyword=$_POST['keyword'];               //关键词
 	$SYS_Company_id=$_POST['SYS_Company_id'];           //
 	   if($SYS_Company_id=='')$SYS_Company_id=0;
-	$sys_id_bumen=$_POST['sys_id_bumen'];               //
-	   if($sys_id_bumen=='')$sys_id_bumen=0;
+	$bumen_id=$_POST['bumen_id'];               //
+	   if($bumen_id=='')$bumen_id=0;
 	$hy=$_POST['hy'];                                   //
 	   if($hy=='')$hy=0;
 	$bh=$_POST['bh'];                                   //编制人
@@ -733,7 +733,7 @@ function shuqianmenu_update() { //书签更新
 	$sql = "UPDATE  `sys_biaoqian`  set 
 	`sys_const_keyword` ='$sys_const_keyword',
 	`sys_const_company_id` ='$SYS_Company_id',
-	`sys_const_id_bumen` ='$sys_id_bumen',
+	`sys_const_id_bumen` ='$bumen_id',
 	`sys_const_hy` ='$hy',
 	`sys_const_bh` ='$bh',
 	`sys_const_shenpi` ='$sys_shenpi',
@@ -769,8 +769,8 @@ function shuqianmenu_update() { //书签更新
 	`sys_id_login` ='$bh_const',
 	`sys_login`='$SYS_UserName',
 	`sys_yfzuid`='$hy_const',
-	`sys_id_fz`='$const_id_fz',
-	`sys_id_bumen`='$sys_id_bumen_const',
+	`sys_id_fz`='$sys_id_fz',
+	`bumen_id`='$bumen_id_const',
 	`sys_adddate`='$nowdata'
 	WHERE id='$id' ";
 	
@@ -779,8 +779,8 @@ function shuqianmenu_update() { //书签更新
 		$connect -> query($sql);
 }
 function shuqianmenu_user_update() { //用户记忆功能
-	global $connect,$db_vip,$bh,$hy,$const_id_fz,$SYS_UserName,$SYS_Company_id,$zu,$sys_id_bumen,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
-	$sys_id_bumen_const=$sys_id_bumen;
+	global $connect,$db_vip,$bh,$hy,$sys_id_fz,$SYS_UserName,$SYS_Company_id,$zu,$bumen_id,$sys_adddate,$re_id,$big_id,$strmk_id,$nowzu,$px_ziduan,$zd,$pxv,$pok,$huis,$nowkeyword,$page,$ShaiXuanSql,$ShaiXuanSql_other,$sys_id_login;
+	$bumen_id_const=$bumen_id;
 	$hy_const=$hy;
 	$bh_const=$bh;
 	//===================================================================================================接收参数
@@ -790,8 +790,8 @@ function shuqianmenu_user_update() { //用户记忆功能
 	$sys_const_keyword=$_POST['keyword'];                        //关键词
 	if(isset($_POST['SYS_Company_id']))$SYS_Company_id=$_POST['SYS_Company_id'];                    //
 	if($SYS_Company_id=='')$SYS_Company_id=0;
-	$sys_id_bumen=$_POST['sys_id_bumen'];                        //
-	if($sys_id_bumen=='')$sys_id_bumen=0;
+	$bumen_id=$_POST['bumen_id'];                        //
+	if($bumen_id=='')$bumen_id=0;
 	$hy=$_POST['hy'];                                            //
 	if($hy=='')$hy=0;
 	$bh=$_POST['bh'];                                            //编制人
@@ -829,20 +829,42 @@ function shuqianmenu_user_update() { //用户记忆功能
 	$sys_const_ChangePrev_zd=$_POST['sys_const_ChangePrev_zd'];  //
 	$sys_const_ChangeNext_zd=$_POST['sys_const_ChangeNext_zd'];  //
 	$sys_const_this_zd=$_POST['sys_const_this_zd'];              //
-	if(isset($_POST['sys_const_shenpi']))$sys_const_shenpi=$_POST['sys_const_shenpi'];
-	if(isset($_POST['sys_const_shenpi_all']))$sys_const_shenpi_all=$_POST['sys_const_shenpi_all'];
-	if(isset($_POST['sys_const_chaosong']))$sys_const_chaosong=$_POST['sys_const_chaosong'];
-	
+	if(isset($_POST['sys_const_shenpi']))
+	{
+		$sys_const_shenpi=$_POST['sys_const_shenpi'];
+	}
+	else
+	{
+		$sys_const_shenpi='';
+	}
+	if(isset($_POST['sys_const_shenpi_all']))
+	{
+		$sys_const_shenpi_all=$_POST['sys_const_shenpi_all'];
+	}
+	else
+	{
+		$sys_const_shenpi_all='';
+	}
+	if(isset($_POST['sys_const_chaosong']))
+	{
+		$sys_const_chaosong=$_POST['sys_const_chaosong'];
+	}
+	else
+	{
+		$sys_const_chaosong='';
+	}
 	$nowdata = date( 'Y-m-d H:i:s' );
+	$db_vip -> beginTransaction();
 
 	//===================================================================================================判断
 	$sqlaa = "select id From `sys_biaoqian_user` where sys_const_re_id='$re_id' and sys_yfzuid='$hy_const' and sys_id_login='$bh_const'";
-	echo $sqlaa;
+	// echo $sqlaa;
 	$rsaa = $db_vip -> query($sqlaa);
 	$countcords=$db_vip -> numRows($rsaa['result']);
+	// echo $countcords;
 	if($countcords==0){//没有时添加
-		$sql = "INSERT INTO `sys_biaoqian_user` (sys_const_biaoqian_id,sys_const_keyword,sys_const_company_id,sys_const_id_bumen,sys_const_hy,sys_const_bh,sys_const_shenpi,sys_const_shenpi_all,sys_const_chaosong,sys_const_adddate,sys_const_qx,sys_const_pagetype,sys_const_page,sys_const_big_id,sys_const_huis,sys_const_px_name,sys_const_pxv,sys_const_pok,sys_const_tuodongok,sys_const_s_h,sys_const_q_h,sys_const_c_ok,sys_const_b_ok,sys_const_C_xu_now,sys_const_Start_Suoding,sys_const_End_Suoding,sys_const_prev_zd,sys_const_ChangePrev_zd,sys_const_ChangeNext_zd,sys_const_this_zd,sys_const_zu,sys_const_zd,sys_const_ShaiXuanSql,sys_const_ShaiXuanSql_other,sys_login,sys_id_fz,sys_id_bumen,sys_adddate,sys_const_re_id,sys_yfzuid,sys_id_login) VALUES ('$sys_const_biaoqian_id', '$sys_const_keyword', '$SYS_Company_id','$sys_id_bumen','$hy','$bh','$sys_const_shenpi','$sys_const_shenpi_all','$sys_const_chaosong','$sys_adddate','$sys_const_qx','$sys_const_pagetype','$page','$big_id','$huis','$px_name','$pxv','$pok','$sys_const_tuodongok','$sys_const_s_h','$sys_const_q_h','$sys_const_c_ok','$sys_const_b_ok','$sys_const_C_xu_now','$sys_const_Start_Suoding','$sys_const_End_Suoding','$sys_const_prev_zd','$sys_const_ChangePrev_zd','$sys_const_ChangeNext_zd','$sys_const_this_zd','$zu','$zd','$ShaiXuanSql','$ShaiXuanSql_other','$SYS_UserName','$const_id_fz','$sys_id_bumen_const','$nowdata','$re_id','$hy_const','$bh_const')";
-		
+		$sql = "INSERT INTO `sys_biaoqian_user` (sys_c
+		onst_biaoqian_id,sys_const_keyword,sys_const_company_id,sys_const_id_bumen,sys_const_hy,sys_const_bh,sys_const_shenpi,sys_const_shenpi_all,sys_const_chaosong,sys_const_adddate,sys_const_qx,sys_const_pagetype,sys_const_page,sys_const_big_id,sys_const_huis,sys_const_px_name,sys_const_pxv,sys_const_pok,sys_const_tuodongok,sys_const_s_h,sys_const_q_h,sys_const_c_ok,sys_const_b_ok,sys_const_C_xu_now,sys_const_Start_Suoding,sys_const_End_Suoding,sys_const_prev_zd,sys_const_ChangePrev_zd,sys_const_ChangeNext_zd,sys_const_this_zd,sys_const_zu,sys_const_zd,sys_const_ShaiXuanSql,sys_const_ShaiXuanSql_other,sys_login,sys_id_fz,bumen_id,sys_adddate,sys_const_re_id,sys_yfzuid,sys_id_login) VALUES ('$sys_const_biaoqian_id', '$sys_const_keyword', '$SYS_Company_id','$bumen_id','$hy','$bh','$sys_const_shenpi','$sys_const_shenpi_all','$sys_const_chaosong','$sys_adddate','$sys_const_qx','$sys_const_pagetype','$page','$big_id','$huis','$px_name','$pxv','$pok','$sys_const_tuodongok','$sys_const_s_h','$sys_const_q_h','$sys_const_c_ok','$sys_const_b_ok','$sys_const_C_xu_now','$sys_const_Start_Suoding','$sys_const_End_Suoding','$sys_const_prev_zd','$sys_const_ChangePrev_zd','$sys_const_ChangeNext_zd','$sys_const_this_zd','$zu','$zd','$ShaiXuanSql','$ShaiXuanSql_other','$SYS_UserName','$sys_id_fz','$bumen_id_const','$nowdata','$re_id','$hy_const','$bh_const')";
 		$db_vip -> query($sql);
 	}else{//修改
 		//`sys_const_huis` ='$huis',`sys_const_ShaiXuanSql` ='$ShaiXuanSql',
@@ -850,7 +872,7 @@ function shuqianmenu_user_update() { //用户记忆功能
 	    `sys_const_biaoqian_id` ='$sys_const_biaoqian_id',
 	    `sys_const_keyword` ='$sys_const_keyword',
 	    `sys_const_company_id` ='$SYS_Company_id',
-	    `sys_const_id_bumen` ='$sys_id_bumen',
+	    `sys_const_id_bumen` ='$bumen_id',
 	    `sys_const_hy` ='$hy',
 	    `sys_const_bh` ='$bh',
 		`sys_const_shenpi` ='$sys_shenpi',
@@ -882,8 +904,8 @@ function shuqianmenu_user_update() { //用户记忆功能
 	    
 	    `sys_const_ShaiXuanSql_other` ='$ShaiXuanSql_other',
 	    `sys_login`='$SYS_UserName',
-	    `sys_id_fz`='$const_id_fz',
-	    `sys_id_bumen`='$sys_id_bumen_const',
+	    `sys_id_fz`='$sys_id_fz',
+	    `bumen_id`='$bumen_id_const',
 	    `sys_adddate_g`='$nowdata'
 	    WHERE sys_const_re_id='$re_id' and sys_yfzuid='$hy_const' and sys_id_login='$bh_const'";
 	
@@ -891,6 +913,7 @@ function shuqianmenu_user_update() { //用户记忆功能
 	    //if ( SYS_str( $Xcoid_txt ) == 0 ) { //当为0时不为系统字段 1代表为系统字段//检查不为系统字段时执行
 		$db_vip -> query($sql);
 	}
+	$connect -> commit();
 }
 
 ?>

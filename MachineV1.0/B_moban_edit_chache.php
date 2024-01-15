@@ -23,7 +23,7 @@ if ( $act == 'list' ) {
 
 function lists() {
     $Htmlcache = $Htmlcache_data = '';
-    global $Conn, $Connadmin, $hy, $databiao, $strmk_id, $bitian_Arry, $const_q_xiug, $re_id, $const_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name, $ToHtmlID; //得到全局变量
+    global $Conn, $Connadmin, $hy, $databiao, $strmk_id, $bitian_Arry, $sys_q_xiug, $re_id, $sys_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name, $ToHtmlID; //得到全局变量
     $IsConn = IsConn( $databiao ); //查出所属表的数据库
     $zu_all_list = zu_all_list( $re_id ); //查询到分组清单
     //==================================================查询到表的版式start
@@ -50,7 +50,7 @@ function lists() {
 	    include_once \'B_quanxian.php\';
 	    include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/B_' . $IsConn . '.php";
 	
-	    global $strmk_id,$' . $IsConn . ',$const_q_xiug,$const_q_shenghe,$const_q_pizhun,$ToHtmlID;
+	    global $strmk_id,$' . $IsConn . ',$sys_q_xiug,$sys_q_shenghe,$sys_q_pizhun,$ToHtmlID;
 		if ( isset( $_REQUEST[ \'sys_guanxibiao_id\' ] ) ){$sys_guanxibiao_id = intval( $_REQUEST[ \'sys_guanxibiao_id\' ] );}else{$sys_guanxibiao_id = \'\';};         //关系表id
 	    if ( isset( $_REQUEST[ \'GuanXi_id\' ] ) ){$GuanXi_id = intval( $_REQUEST[ \'GuanXi_id\' ] );}else{$GuanXi_id = "";};   //关系列id
 	    if ( isset( $_REQUEST[ \'ToHtmlID\' ] ) ){$ToHtmlID = $_REQUEST[ \'ToHtmlID\' ];};                                                                              //显示页面
@@ -287,9 +287,9 @@ function lists() {
                             $Htmlcache_ul = '';
                             //===============================================================数据输出
                             if ( $zd_en_name == 'sys_shenpi' ) { //当属于审核执行
-                                $Htmlcache_ul .= 'if ( strpos($const_q_shenghe, "' . $re_id . '") !== false ) { //有审核权限时' . "\n";
+                                $Htmlcache_ul .= 'if ( strpos($sys_q_shenghe, "' . $re_id . '") !== false ) { //有审核权限时' . "\n";
                             } elseif ( $zd_en_name == 'sys_shenpi_all' ) { //当属于批准执行
-                                    $Htmlcache_ul .= 'if ( strpos($const_q_pizhun, "' . $re_id . '") !== false ) { //有批准权限时' . "\n";
+                                    $Htmlcache_ul .= 'if ( strpos($sys_q_pizhun, "' . $re_id . '") !== false ) { //有批准权限时' . "\n";
                                 }
                             //===============================================================版式选择时
                             if ( $sys_banshi == 2 ) { //1数据表，2文件自动化 3其它
@@ -377,12 +377,12 @@ function lists() {
     $Htmlcache .= "<ul style='height:15px'><li style='width:98%'></li></ul>" . '";' . "\n"; //间隔空白处
     $Htmlcache .= 'echo"';
     $Htmlcache .= "<ul>$sys_banshi_html2<li style='width:220px;text-align:right;'>";
-    if ( $const_q_xiug >= 0 ) { //没有修改权限时
+    if ( $sys_q_xiug >= 0 ) { //没有修改权限时
         $Htmlcache .= "<i class='fa fa-sitting-ziduan' title='设定显示与锁定。' onClick=Table_Set_XianShi('" . '$ToHtmlID' . "',this" . ") title='设定修改字段。'></i>";
     };
     $Htmlcache .= "&nbsp;</li><li style='width:40%;text-align:left;padding-left:2px;'><input type='hidden' id='sys_postzd_list' name='sys_postzd_list' value='" . $TianJia_POST_Arry . "'/>\";\n";
     //$Htmlcache.= "<input type='reset' value='重置' tabindex=-1 class='button button_reset'  style='width:10%' onclick=inputfocusfirst('#addbox .htmlleirong','$firstinputname')>" ; //重置按钮
-    $Htmlcache .= 'if ( strpos($const_q_xiug, "' . $re_id . '") !== false ) { //有修改权限时' . "\n";
+    $Htmlcache .= 'if ( strpos($sys_q_xiug, "' . $re_id . '") !== false ) { //有修改权限时' . "\n";
     $Htmlcache .= "    echo\"<input value='复制添加' tabindex=-1 title='&nbsp;复制快速添加&nbsp;' type='button' class='button button_reset' style='width:15%;border-right:0px solid #333' onclick=add_data(this," . '$strmk_id' . ",'" . '$ToHtmlID' . "') />\";\n"; //复制按钮
     $Htmlcache .= "    echo\"<input id='SYS_submit' value='确定修改' title='&nbsp;Ctrl+Enter提交&nbsp;' type='button' class='button button_ADD'  SYS_Company_id='" . '$SYS_Company_id' . "'  firstinputname='$firstinputname' bitian_Arry='$bitian_Arry'  Wuchongfu_Arry='$Wuchongfu_Arry'  onclick=data_edit_arrys(this,'#post_form','" . '$ToHtmlID' . "')  style='width:85%'  />\";\n"; //确定按钮
 

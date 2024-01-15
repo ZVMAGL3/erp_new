@@ -55,7 +55,7 @@ if ( $act == 'list' ) {
 function lists(){
 	$Htmlcache=$Htmlcache_data='' ;
 	//exit;
-	global $hy, $re_id, $Conn, $const_q_tianj, $maxrecord, $ToHtmlID, $strmk_id, $databiao, $xt_m_ziduan, $xt_m_ziduan_Name,$file_name,$SYS_Company_id;
+	global $hy, $re_id, $Conn, $maxrecord, $ToHtmlID, $strmk_id, $databiao, $xt_m_ziduan, $xt_m_ziduan_Name,$file_name,$SYS_Company_id;
 	$rs = $sql = $row = $firstinputname = $nowUboundarry = $qx_wuchongfu = $TianJia_POST_Arry = $Wuchongfu_Arry = $zd_Default = $wuchongfu_html = $bitian_Arry =$zhiduanarryNull=$zhiduanarrydata= '';
 	$IsConn=IsConn($databiao);            //查出所属表的数据库
 	//$Htmlcache="";
@@ -311,7 +311,7 @@ function lists(){
 	    if ( isset( $_REQUEST[ \'huis\' ] ) ){$huis = intval( $_REQUEST[ \'huis\' ] );}else{$huis = 0;};                                                                //1回收站0为不回收
 	    //if ( $huis == 1){$ToHtmlID=\'HUIS_\'.$ToHtmlID;};                                                                                                               //是否为回收站0为不回收
 	   
-	    global $strmk_id,$'.$IsConn.',$const_q_tianj;
+	    global $strmk_id,$'.$IsConn.',$sys_q_tianj;
 	'."\n";
 		if($IsConn=='Connadmin'){
 			$Htmlcache.='		$Conn=$Connadmin;'."\n";
@@ -351,7 +351,7 @@ function lists(){
 
 		$Htmlcache.= "<ul style='height:15px;width:100%;'><li style='width:98%'></li></ul>\n";//间隔空白处
 		
-		$Htmlcache.='<?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>'. "\n";
+		$Htmlcache.='<?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>'. "\n";
 		
 		$Htmlcache.= "<ul>
   <li class='cols01'><i class='fa fa-sitting-ziduan'  onClick='Table_Set_XianShi('$ToHtmlID',this)' title='设定添加字段。'/>&nbsp;</li>

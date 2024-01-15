@@ -9,9 +9,9 @@ if ($act == 'subsidiaries') {
     echo "<script> parent = '$hy' </script>";
     $textsname = '分支';
 }
-
+$name = $yyzzhao = $faren = $address = $tel = $webhttp = $email = '';
 if ($act == 'check_mobile' ) { //当接收到处理指令时
-    $sql = "select * From `$tablename` where id='$id'";
+    $sql = "select * From `$tablename` where id='$user_id'";
     $rs = mysqli_query( $Connadmin, $sql );
     $row = mysqli_fetch_array( $rs );
     $name = $row[ $colsname ]; //公司名称
@@ -343,7 +343,7 @@ mysqli_close( $Connadmin ); //关闭数据库
             var formData = new FormData();
             formData.append("act", act == "check_mobile"?'check_mobile':'add_mobile');
             formData.append("avatar", selectedFile);
-            formData.append('user_hy','<?php echo $id ?>');
+            formData.append('user_hy','<?php echo $user_id ?>');
             formData.append('xiugai', xiugai);
             formData.append('parent', parent);
             // 遍历所有具有 inputfocus 类的输入框
@@ -365,11 +365,11 @@ mysqli_close( $Connadmin ); //关闭数据库
                                     alert('公司创建完毕')
                                     //选择标准，购买
                                     window.location.href =  "/MachineV1.0/purchasing.php" ; //这里打开后台界面
-                                    // if ( '<?php echo $P_M ?>' ) { //当为电脑端时
-                                    //     window.location.href =  "/MachineV1.0/B_main.php" ; //这里打开后台界面
-                                    // }else{
-                                    //     window.location.href = "/m/Machine_MobileV1.0/M_desk.php" ; //这里打开后台界面
-                                    // }
+                                    if ( '<?php echo $P_M ?>' ) { //当为电脑端时
+                                        window.location.href =  "/MachineV1.0/B_main.php" ; //这里打开后台界面
+                                    }else{
+                                        window.location.href = "/m/Machine_MobileV1.0/M_desk.php" ; //这里打开后台界面
+                                    }
                                 }else{
                                     history.go(-1)
                                 }

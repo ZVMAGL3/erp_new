@@ -95,7 +95,7 @@
 						 </li>
 		                 </ul>
 <ul style='height:15px;width:100%;'><li style='width:98%'></li></ul>
-<?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+<?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
 <ul>
   <li class='cols01'><i class='fa fa-sitting-ziduan'  onClick='Table_Set_XianShi('DeskMenuDiv213',this)' title='设定添加字段。'/>&nbsp;</li>
   <li class='cols02'>

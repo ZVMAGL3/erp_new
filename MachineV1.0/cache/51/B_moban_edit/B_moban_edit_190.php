@@ -4,7 +4,7 @@
 	    include_once 'B_quanxian.php';
 	    include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_Conn.php";
 	
-	    global $strmk_id,$Conn,$const_q_xiug,$const_q_shenghe,$const_q_pizhun,$ToHtmlID;
+	    global $strmk_id,$Conn,$sys_q_xiug,$sys_q_shenghe,$sys_q_pizhun,$ToHtmlID;
 		if ( isset( $_REQUEST[ 'sys_guanxibiao_id' ] ) ){$sys_guanxibiao_id = intval( $_REQUEST[ 'sys_guanxibiao_id' ] );}else{$sys_guanxibiao_id = '';};         //关系表id
 	    if ( isset( $_REQUEST[ 'GuanXi_id' ] ) ){$GuanXi_id = intval( $_REQUEST[ 'GuanXi_id' ] );}else{$GuanXi_id = "";};   //关系列id
 	    if ( isset( $_REQUEST[ 'ToHtmlID' ] ) ){$ToHtmlID = $_REQUEST[ 'ToHtmlID' ];};                                                                              //显示页面
@@ -58,7 +58,7 @@ echo"
 		                     </ul>
 	                         
 ";
-if ( strpos($const_q_shenghe, "190") !== false ) { //有审核权限时
+if ( strpos($sys_q_shenghe, "190") !== false ) { //有审核权限时
 echo"
 	                         <ul zd='sys_shenpi'>
 		                        <li style='text-align:right;width:220px'>审核:</li>
@@ -71,7 +71,7 @@ echo"
 	                         
 ";
 }
-if ( strpos($const_q_pizhun, "190") !== false ) { //有批准权限时
+if ( strpos($sys_q_pizhun, "190") !== false ) { //有批准权限时
 echo"
 	                         <ul zd='sys_shenpi_all'>
 		                        <li style='text-align:right;width:220px'>批准:</li>
@@ -189,7 +189,7 @@ echo"
 echo"</span>";
 echo"<ul style='height:15px'><li style='width:98%'></li></ul>";
 echo"<ul><li style='width:220px;text-align:right;'><i class='fa fa-sitting-ziduan' title='设定显示与锁定。' onClick=Table_Set_XianShi('$ToHtmlID',this) title='设定修改字段。'></i>&nbsp;</li><li style='width:40%;text-align:left;padding-left:2px;'><input type='hidden' id='sys_postzd_list' name='sys_postzd_list' value='username,DianHua3,startdate,enddate,beizhu,qq,sys_id_zu,card,bianhao,sys_shenpi,sys_shenpi_all,sys_login,sys_chaosong,sys_paixu'/>";
-if ( strpos($const_q_xiug, "190") !== false ) { //有修改权限时
+if ( strpos($sys_q_xiug, "190") !== false ) { //有修改权限时
     echo"<input value='复制添加' tabindex=-1 title='&nbsp;复制快速添加&nbsp;' type='button' class='button button_reset' style='width:15%;border-right:0px solid #333' onclick=add_data(this,$strmk_id,'$ToHtmlID') />";
     echo"<input id='SYS_submit' value='确定修改' title='&nbsp;Ctrl+Enter提交&nbsp;' type='button' class='button button_ADD'  SYS_Company_id='$SYS_Company_id'  firstinputname='id' bitian_Arry=''  Wuchongfu_Arry=''  onclick=data_edit_arrys(this,'#post_form','$ToHtmlID')  style='width:85%'  />";
 }else{

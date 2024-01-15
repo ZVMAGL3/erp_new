@@ -18,7 +18,7 @@ if ( $act == 'list' ) {
 
 function lists() {
 	    $Htmlcache=$Htmlcache_sql= '' ;
-	    global $Conn,  $databiao, $strmk_id, $bitian_Arry, $const_q_xiug, $re_id, $const_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name, $ToHtmlID; //得到全局变量
+	    global $Conn,  $databiao, $strmk_id, $bitian_Arry, $sys_q_xiug, $re_id, $sys_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name, $ToHtmlID; //得到全局变量
 	    $IsConn=IsConn($databiao);            //查出所属表的数据库
 	    $Htmlcache.='<?php
 		header( "Content-type: text/html; charset=utf-8" ); //设定本页编码
@@ -31,7 +31,7 @@ function lists() {
 		}
 	
 		include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/B_'.$IsConn.'.php";
-		global $strmk_id,$'.$IsConn.',$const_q_xiug;
+		global $strmk_id,$'.$IsConn.',$sys_q_xiug;
 		
 		';
 
@@ -47,7 +47,7 @@ function lists() {
 		//echo $countcords;
 	    //exit();
 	    $Htmlcache.="\n";
-	    $Htmlcache.='if ( $const_q_xiug >= 0 ) { //有修改权限时'. "\n";
+	    $Htmlcache.='if ( $sys_q_xiug >= 0 ) { //有修改权限时'. "\n";
 	    $Htmlcache_sql.='    $sql = "UPDATE  `'.$databiao.'`  set '."\n"; //更新SQL';
 
 	    if ( '1' . $databiao == '1') {

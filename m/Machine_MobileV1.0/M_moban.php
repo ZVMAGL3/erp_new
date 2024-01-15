@@ -10,8 +10,8 @@ include_once '../../inc/B_conn.php'; //注册数据库
 //------------------------------------------------------------------------//文件编号获取
 $wjbh = '';
 //echo $re_id;
-global $hy, $re_id, $nowgsbh, $const_jlbhzt, $Conn;
-$nowjlbhzt = $const_jlbhzt; //公司编号字头
+global $hy, $re_id, $nowgsbh, $sys_jlbhzt, $Conn;
+$nowjlbhzt = $sys_jlbhzt; //公司编号字头
 if ( $nowjlbhzt <> '' )$nowjlbhzt = $nowjlbhzt . '-';
 if ( $nowgsbh <> '' )$nowgsbh2 = $nowgsbh . '.';
 $sql = "select id,sys_card,startdate,beizhu,banben,xiugaicishu From `sys_jlmb` where `id`='$re_id'";
@@ -51,22 +51,22 @@ mysqli_close( $Conn ); //关闭数据库
 <div id="wrapper" >
     <div id="header"> <a href="javascript:history.go(-1)" class="home"></a> <em class="eleft"><?php echo $wjbh ?></em> <a href="M_right_menu.php" class="siteMap"></a> </div>
     <div id="index" class='indexlist'>
-        <input type="hidden" id="sys_const_company_id" value="<?php echo $SYS_Company_id ?>"/>
-        <input type="hidden" id="sys_const_hy" value="<?php echo $hy ?>"/>
-        <input type="hidden" id="sys_const_bh" value="<?php echo $bh ?>"/>
-        <input type="hidden" id="const_now_login" value="<?php echo $SYS_UserName ?>"/>
-        <input type="hidden" id="sys_const_pagetype" value="listpage"/>
-        <input type="hidden" id="sys_const_qx" value="1"/>
-        <input type="hidden" id="sys_const_re_id" value="<?php echo $re_id ?>"/>
-        <input type="hidden" id="sys_const_big_id" value="0"/>
-        <input type="hidden" id="sys_const_px_name" value="id"/>
-        <input type="hidden" id="sys_const_pxv" value="Desc"/>
-        <input type="hidden" id="sys_const_pok" value="0"/>
-        <input type="hidden" id="sys_const_s_h" value="0"/>
-        <input type="hidden" id="sys_const_q_h" value="0"/>
-        <input type="hidden" id="sys_const_c_ok" value="0"/>
-        <input type="hidden" id="sys_const_b_ok" value="0"/>
-        <input type="hidden" id="sys_const_C_xu_now" value="0"/>
+        <input type="hidden" id="sys_sys_company_id" value="<?php echo $SYS_Company_id ?>"/>
+        <input type="hidden" id="sys_sys_hy" value="<?php echo $hy ?>"/>
+        <input type="hidden" id="sys_sys_bh" value="<?php echo $bh ?>"/>
+        <input type="hidden" id="sys_now_login" value="<?php echo $SYS_UserName ?>"/>
+        <input type="hidden" id="sys_sys_pagetype" value="listpage"/>
+        <input type="hidden" id="sys_sys_qx" value="1"/>
+        <input type="hidden" id="sys_sys_re_id" value="<?php echo $re_id ?>"/>
+        <input type="hidden" id="sys_sys_big_id" value="0"/>
+        <input type="hidden" id="sys_sys_px_name" value="id"/>
+        <input type="hidden" id="sys_sys_pxv" value="Desc"/>
+        <input type="hidden" id="sys_sys_pok" value="0"/>
+        <input type="hidden" id="sys_sys_s_h" value="0"/>
+        <input type="hidden" id="sys_sys_q_h" value="0"/>
+        <input type="hidden" id="sys_sys_c_ok" value="0"/>
+        <input type="hidden" id="sys_sys_b_ok" value="0"/>
+        <input type="hidden" id="sys_sys_C_xu_now" value="0"/>
         <input type="hidden" id="zu" value="0"/>
         <input type="hidden" id="zd" value="0"/>
         <div id="catalog">

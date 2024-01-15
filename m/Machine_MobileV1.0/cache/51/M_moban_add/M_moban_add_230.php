@@ -9,7 +9,7 @@
 	    if ( isset( $_REQUEST[ 'huis' ] ) ){$huis = intval( $_REQUEST[ 'huis' ] );}else{$huis = 0;};                                                                //1回收站0为不回收
 	    //if ( $huis == 1){$ToHtmlID='HUIS_'.$ToHtmlID;};                                                                                                               //是否为回收站0为不回收
 	   
-	    global $strmk_id,$Conn,$const_q_tianj;
+	    global $strmk_id,$Conn,$sys_q_tianj;
 	
 
 		if ( $strmk_id > 0 ) { //复制添加时执行
@@ -104,7 +104,7 @@
 						 </li>
 		                 </ul>
 <ul style='height:15px;width:100%;'><li style='width:98%'></li></ul>
-<?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+<?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
 <ul>
   <li class='cols01'><i class='fa fa-sitting-ziduan'  onClick='Table_Set_XianShi('DeskMenuDiv230',this)' title='设定添加字段。'/>&nbsp;</li>
   <li class='cols02'>

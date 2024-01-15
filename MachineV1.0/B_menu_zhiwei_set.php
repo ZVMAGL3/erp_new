@@ -37,7 +37,7 @@ include_once '../inc/Sub_All.php' ;
    };
   function bigmenu(){
 
-	global $Connadmin,$re_id,$All_XT_ZiDuan,$hy,$bh,$const_q_tianj,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin,$const_q_huis,$const_q_seid,$const_q_dian,$const_q_shenghe,$ChongfuId;//引用权限 //得到全局变量
+	global $Connadmin,$re_id,$All_XT_ZiDuan,$hy,$bh,$sys_q_tianj,$sys_q_xiug,$sys_q_shanc,$sys_q_cak,$sys_q_dayin,$sys_q_huis,$sys_q_seid,$sys_q_dian,$sys_q_shenghe,$ChongfuId;//引用权限 //得到全局变量
   
 	echo ('<div class="DFtables " style="border:0">');
 	$sql="select * From msc_BuMenList where  sys_yfzuid='$hy' and sys_huis=0 order by sys_bh Asc";
@@ -125,7 +125,7 @@ include_once '../inc/Sub_All.php' ;
   // 【ok】======================================================================= : 大类管理菜单通用(数据)
   function bigmenu_Data($MenuArry,$datarry,$iiiii,$Uboundi,$bigid){//(数据数组，级数)
       //echo "'".$MenuArry."','".$datarry."','".$iiiii."','".$Uboundi."','".$bigid."'";
-      global $Conn,$Connadmin,$re_id,$All_XT_ZiDuan,$hy,$bh,$const_q_tianj,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin,$const_q_huis,$const_q_seid,$const_q_dian,$const_q_shenghe,$ChongfuId;//引用权限 //得到全局变量
+      global $Conn,$Connadmin,$re_id,$All_XT_ZiDuan,$hy,$bh,$sys_q_tianj,$sys_q_xiug,$sys_q_shanc,$sys_q_cak,$sys_q_dayin,$sys_q_huis,$sys_q_seid,$sys_q_dian,$sys_q_shenghe,$ChongfuId;//引用权限 //得到全局变量
 	  if($bigid > 0){
 		  $Conn=$Connadmin;
 	  };
@@ -191,7 +191,7 @@ include_once '../inc/Sub_All.php' ;
       };//while end
       
 	  //================================================================= 添加行及备用行
-	  if ( $const_q_tianj > -1 or $bh=='9001') {//允许添加时
+	  if ( $sys_q_tianj > -1 or $bh=='9001') {//允许添加时
 	     if ($MY_Edit=='EditYes'){//允许添加大类菜单<li class='rightli hoverthis'>Σ:".$nowrecordcount."</li>
 	       if ($iiiii>0){
 		       echo ("<ul class='noneline ADDmenus' bigid='".$bigid."'><li class='leftli'></li><li class='rightli hoverthis li_kuan middle' onclick='addulDHCD(this);'><i class='fa fa-add-mini'></i>&nbsp;新增</li></ul>");
@@ -245,7 +245,7 @@ include_once '../inc/Sub_All.php' ;
   
   // 【ok】======================================================================= : 大类管理菜单通用(行数据)
   function bigmenu_Data2($iiiii,$iig,$i,$Uboundi,$bigid,$now_id,$ParntZDname,$ParntIDname,$Parnttablename,$MY_Edit,$MY_tablename,$NOW_menubigclass,$MY_gx_col_id,$nowziduan){                                       //(数据数组，级数3)
-     global $ToHtmlID,$Connadmin,$re_id,$All_XT_ZiDuan,$hy,$bh,$const_q_tianj,$const_q_xiug,$const_q_shanc,$const_q_cak,$const_q_dayin,$const_q_huis,$const_q_seid,$const_q_dian,$const_q_shenghe,$ChongfuId,$nowusethis;//引用权限 //得到全局变量
+     global $ToHtmlID,$Connadmin,$re_id,$All_XT_ZiDuan,$hy,$bh,$sys_q_tianj,$sys_q_xiug,$sys_q_shanc,$sys_q_cak,$sys_q_dayin,$sys_q_huis,$sys_q_seid,$sys_q_dian,$sys_q_shenghe,$ChongfuId,$nowusethis;//引用权限 //得到全局变量
 
 	 $SYS_str=$mdb_name_SYS_jlmb=$mdb_name_SYS_conn='';
 	 if ($MY_tablename=="Sys_Jlmb" ){                                      //当为记录模版时
@@ -297,7 +297,7 @@ include_once '../inc/Sub_All.php' ;
 	 }else{                                                                     //允许编辑大类菜单
 	     if($MY_tablename=="Sys_Jlmb" ){                                       //当为记录模版时
 		 
-			 if ( ($const_q_xiug > -1 or $bh=='9001') and $SYS_str=="0") {//回收权限
+			 if ( ($sys_q_xiug > -1 or $bh=='9001') and $SYS_str=="0") {//回收权限
 			     echo ("<input name='tablebeizhu' type='text' style='width:100%;' TABINDEX='".$i."' value='".$NOW_menubigclass."' tit='".$NOW_menubigclass."' onchange=".'"'."Edit_daohangmenu('daohangmenu',this,'moban_set_data.php','$MY_tablename','$nowziduan','$ToHtmlID','$ChongfuId')".'"'." >");
 			 }else{
 				 echo "$NOW_menubigclass";
@@ -305,7 +305,7 @@ include_once '../inc/Sub_All.php' ;
 		 
 			 
 		 }else{
-			 if ( $const_q_xiug > -1 or $bh=='9001') {//回收权限
+			 if ( $sys_q_xiug > -1 or $bh=='9001') {//回收权限
 			 echo ("<input name='tablebeizhu' type='text' style='width:100%;' TABINDEX='".$i."' value='".$NOW_menubigclass."' tit='".$NOW_menubigclass."' onchange=".'"'."Edit_daohangmenu('daohangmenu',this,'moban_set_data.php','$MY_tablename','$nowziduan','$ToHtmlID','$ChongfuId')".'"'." >");
 			 }else{
 				 echo "$NOW_menubigclass";
@@ -320,13 +320,13 @@ include_once '../inc/Sub_All.php' ;
 	 }else{
 		 echo ("</li><div><li class='rightlikj noneline'>&nbsp;</li>");
 		 
-		 if ( ($const_q_shanc > -1 or $bh=='9001') and $SYS_str=="0") {//删除权限
+		 if ( ($sys_q_shanc > -1 or $bh=='9001') and $SYS_str=="0") {//删除权限
 	       echo ("<li class='rightli25px hoverthis2 noneline menus mdel' style='width:30px' ><i class='fa fa-del'></i></li>");                //右边删除菜单
 	     };
-		 if ( $const_q_huis > -1 or $bh=='9001') {//回收权限
+		 if ( $sys_q_huis > -1 or $bh=='9001') {//回收权限
 	       echo ("<li class='rightli25px hoverthis2 noneline menus huis' style='width:30px'><i class='fa fa-huis'></i></li>");                                                             //右边回收菜单
 		 };
-		 if ( $const_q_xiug > -1 or $bh=='9001') {//修改权限
+		 if ( $sys_q_xiug > -1 or $bh=='9001') {//修改权限
 	       if ($iiiii >=1 and '1'.$ParntZDname != '1'){                         //当为最父目录时（没有上级时禁止出现转移菜单）
 	         echo ("<li class='rightli25px hoverthis2 noneline menus mzuanyi' style='width:30px'><i class='fa fa-del'></i></li>");                      //右边转移菜单
 	       };

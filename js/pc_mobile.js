@@ -313,7 +313,7 @@ function Del_huisou(ths, ToHtmlID) {
                 ToHtmlID: ToHtmlID,
                 re_id: re_id
             }, function (data) {
-                //alert(data);
+                // console.log(data);
                 NowToHtmlID.find('#chkall:first-child').prop('checked', false);
                 //-------------------------------------回收站刷新
                 LoodingDiv(ToHtmlID);
@@ -1378,7 +1378,7 @@ function form_weikong(formid, ToHtmlID) { //(formid)
 
     //------------------------------------------------//分页出现提示
 
-
+    console.log(123)
     var NowToHtmlID = DIVHtmlID(ToHtmlID, 'content_foot'); //fanall、mask_lood、head、banner、banner_left、banner_right、content_ALL、content_foot、content_foot_02
     if (pageName() == 'M_') { //手机版
         formid = '#addbox';

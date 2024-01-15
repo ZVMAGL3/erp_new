@@ -8,10 +8,10 @@ include_once '../../inc/B_Config.php';
 include_once '../../inc/B_Conn.php';
 $startime = microtime( true ); //这里计算时间开始
 
-global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_ziduan,$pxv,$Conn;
+global $sys_q_cak,$ToHtmlID,$sys_q_shanc,$sys_q_xiug,$nowkeyword,$px_ziduan,$pxv,$Conn;
 $r_cow_height="28";
 $databiao="SQP_ZongGuoChengQingDan";
-$const_shaixuan="";
+$sys_shaixuan="";
 $SYS_ALL_ziduan_list="id,sys_id_login,sys_shenpi_all";
 $xianshi_ZD_num="1";
 $xianshi_KD_num="1845";
@@ -30,7 +30,7 @@ $shuoding_num_list="";
 	   $page_first = ( $page - 1 ) * $maxrecord + 1;
 	   $page_end = $page_first + $maxrecord - 1;
 	   $nowjilucont = $page_end - $page_first;
-	   if ( isset( $_REQUEST[ 'sys_const_pagetype' ] ) ){$sys_const_pagetype = $_REQUEST[ 'sys_const_pagetype' ];}else{$sys_const_pagetype = 'listpage';};
+	   if ( isset( $_REQUEST[ 'sys_sys_pagetype' ] ) ){$sys_sys_pagetype = $_REQUEST[ 'sys_sys_pagetype' ];}else{$sys_sys_pagetype = 'listpage';};
 	
 
 if ( "1" . $databiao == "1" ) {
@@ -54,7 +54,7 @@ if ( "1" . $databiao == "1" ) {
       $i = 0;
       while ( $row = mysqli_fetch_array( $rs ) ) {
         $now_id_login = $row[ "sys_id_login" ]; //得到员工工号 
-        if ( $const_q_cak >= 0 or $now_id_login == $bh ) {
+        if ( $sys_q_cak >= 0 or $now_id_login == $bh ) {
             $i++;
             $now_id = $row[ "id" ];
             $now_shenpi_all = $row[ "sys_shenpi_all" ]; //审批
@@ -71,7 +71,7 @@ if ( "1" . $databiao == "1" ) {
    $endtime = microtime( true ); //这里获取程序执行结束时间 //计算数据加载时间
    $ymdate = $endtime - $startime;
    $ymdate = round( $ymdate, 3 );
-   echo '<script>$("#loadingtimes").html("'.$ymdate.'ms");list_data_end_mobile("'.$sys_const_pagetype.'","DeskMenuDiv190");</script>';
+   echo '<script>$("#loadingtimes").html("'.$ymdate.'ms");list_data_end_mobile("'.$sys_sys_pagetype.'","DeskMenuDiv190");</script>';
 };
 mysqli_close( $Conn ); //关闭数据库
 ?>

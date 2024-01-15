@@ -20,8 +20,8 @@ function wjbh() {
 	//------------------------------------------------------------------------//文件编号获取
     $wjbh= '' ;
     //echo $re_id;
-	global $hy, $re_id, $nowgsbh,$const_jlbhzt,$Conn;
-	$nowjlbhzt =$const_jlbhzt;//公司编号字头
+	global $hy, $re_id, $nowgsbh,$sys_jlbhzt,$Conn;
+	$nowjlbhzt =$sys_jlbhzt;//公司编号字头
 	if ( $nowjlbhzt <> '' )$nowjlbhzt = $nowjlbhzt . '-';
 	if ( $nowgsbh <> '' )$nowgsbh2 = $nowgsbh . '.';
 	$sql = "select id,sys_card,startdate,beizhu,banben,xiugaicishu From `sys_jlmb` where `id`='$re_id'";

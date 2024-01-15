@@ -53,22 +53,13 @@ include_once( '../../session.php' ); //接收session信息
                 'min-width':'calc(100% - 70px)'
             })
         })
-        // $('#keyword').on('blur',function(){
-        //     if(!$('#keyword').val()){
-        //         $(this).css({
-        //             'min-width':'calc(100% - 20px)'
-        //         })
-        //     }
-        // })
-        //搜索点击事件
         $('#join_search .join_button').on('click',function(){
             let text = $('#keyword').val()
             SearchGet('list3','0','M_Org',<?php echo $user_id ?>)
             $('.hint').remove()
         })
-
     })
-    
+
     function join_company(id,name){
         window.location.href = `join_confirmation.php?id=${id}&name=${name}`
     }

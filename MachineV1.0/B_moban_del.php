@@ -50,16 +50,18 @@ if ($act=='Del_To_Huis' and $id >''){
 };
 //[ok]============================================================================批量 删除到回收站
 function dels(){
-    global $db_vip,$id,$const_q_shanc,$re_id,$DELtablename;//得到全局变量
+    global $id,$sys_q_shanc,$re_id,$DELtablename;//得到全局变量
     $str2=$rs=$sql=$i='';
-    if ($const_q_shanc>-1){//有删除权限
+    $connect = Changedb( $DELtablename );
+    if ($sys_q_shanc>-1){//有删除权限
        $str2=explode(',',$id);//字符串转为数组
        $countArry=count($str2);
+       $connect -> beginTransaction();
        for ($i=0 ;$i< $countArry;$i++){
             $strmk_id=intval($str2[$i]);
             $sql="update `$DELtablename` set sys_huis = '1' where id='$strmk_id' ";
-            // echo $sql;
-            $db_vip -> query( $sql );//执行与更新
+            echo $sql;
+            echo json_encode($connect -> query( $sql ),JSON_UNESCAPED_UNICODE);//执行与更新
             sys_count_fromdel_updata($DELtablename,$strmk_id);           //父关系统计
             //-----------------------------------------------添加修改记录
             $sys_editcontent='批量删除到回收站;';
@@ -69,39 +71,43 @@ function dels(){
             //-----------------------------------------------利益
             LiYi_Add($re_id,$strmk_id,539,'+');       //利益函数 这里奖励货币
        };
+       $connect -> commit();
     };
 };
 //[ok]============================================================================批量 回收数据
 function dels_huis(){
-   global $Conn,$id,$const_q_huis,$re_id,$DELtablename;//得到全局变量
+   global $id,$sys_q_huis,$re_id,$DELtablename;//得到全局变量
    //echo("$re_id'_'$DELtablename'_'$id");
+   $connect = Changedb( $DELtablename ); //依据表自动选择数据库
    $str2=$rs=$sql=$i='';
-   if ($const_q_huis>-1){//有回收权限
+   if ($sys_q_huis>-1){//有回收权限
        $str2=explode(',',$id);//字符串转为数组
        $countArry=count($str2);
+       $connect -> beginTransaction();
        for ($i=0 ;$i< $countArry;$i++){
 		   //echo intval($str2[$i]);
 		  $strmk_id=intval($str2[$i]);
           $sql="update `$DELtablename` set sys_huis = '0' where `id`='$strmk_id' ";
-          mysqli_query( $Conn , $sql );//执行添加与更新
+          $connect -> query($sql);//执行添加与更新
 		  sys_count_fromdel_updata($DELtablename,$strmk_id);           //父关系统计
 		  //-----------------------------------------------添加修改记录
-		  $sys_editcontent='删除到回收站;';
+		  $sys_editcontent='从回收站找回;';
 		  $sys_postzd_list = "sys_re_id,sys_edit_id,sys_editcontent";
 	      $sys_postvalue_list = "'$re_id','$strmk_id','$sys_editcontent'";		
 	      Jilu_add_Modular( 'sys_xiuguaijilu', $sys_postzd_list, $sys_postvalue_list); //添加数据 并生成添加的id
 		  //-----------------------------------------------利益
 		  LiYi_Add($re_id,$strmk_id,540,'+');       //利益函数 这里奖励货币
        };
+       $connect -> commit();
    };
 };
 
 //[ok]============================================================================分类修改
 function changeidzu(){
-    global $Conn,$id,$const_q_xiug,$re_id,$DELtablename;//得到全局变量
+    global $Conn,$id,$sys_q_xiug,$re_id,$DELtablename;//得到全局变量
 	$changeid_zu=$str2=$rs=$sql=$i='';
     if (isset($_POST['changeid_zu'])) $changeid_zu=trim($_POST['changeid_zu'],',');//批量改变的sys_id_zu
-    if ($const_q_xiug > -1){//有删除权限
+    if ($sys_q_xiug > -1){//有删除权限
        $str2=explode(',',$id);
        $countArry=count($str2);
        for ($i=0 ;$i<$countArry;$i++){
@@ -127,13 +133,13 @@ function changeidzu(){
    
 //[ok]============================================================================所有人修改
 function changeidlogin(){
-   global $Conn,$id,$const_q_xiug,$re_id,$DELtablename;//得到全局变量
+   global $Conn,$id,$sys_q_xiug,$re_id,$DELtablename;//得到全局变量
    //$str2=$changeid_login=$changeid_loginame=$i='';
    
    if (isset($_POST['changeid_login'])) $changeid_login=$_POST['changeid_login'];//批量改变的id_login
    if (isset($_POST['changeid_loginame'])) $changeid_loginame=$_POST['changeid_loginame'];//批量改变的login
 	//echo $id;
-   if ($const_q_xiug >-1){//有删除权限
+   if ($sys_q_xiug >-1){//有删除权限
       $str2=explode(',',$id);
       $countArry=count($str2);
       for ($i=0;$i< $countArry;$i++){
@@ -162,12 +168,12 @@ function changeidlogin(){
 
 //[ok]============================================================================彻底删除数据
 function dels_true(){
-   global $Conn,$id,$const_q_xiaohui,$re_id,$DELtablename; //得到全局变量
+   global $Conn,$id,$sys_q_xiaohui,$re_id,$DELtablename; //得到全局变量
    $str2=$rs=$sql=$i='';
    $str2=explode(',',$id);
    $countArry=count($str2);
 	//echo "a";
-   if ($const_q_xiaohui > -1){//有删除权限
+   if ($sys_q_xiaohui > -1){//有删除权限
       for ($i=0 ;$i< $countArry;$i++){
 		 $strmk_id=$str2[$i];
          $sql='delete  From '.$DELtablename.' where id='.trim($str2[$i]);

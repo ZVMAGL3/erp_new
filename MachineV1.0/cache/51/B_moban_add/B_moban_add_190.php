@@ -3,7 +3,7 @@
 	    include_once "{$_SERVER['PATH_TRANSLATED']}/session.php";
 	    include_once 'B_quanxian.php';
 	    include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_Conn.php";
-	    global $strmk_id,$Conn,$const_q_tianj,$ToHtmlID;
+	    global $strmk_id,$Conn,$sys_q_tianj,$ToHtmlID;
 		$Table_name="SQP_ZongGuoChengQingDan";
 		$sys_re_id_02="190";
 		$getdate=getdate();
@@ -80,7 +80,7 @@ echo"</span>";
 echo"<span class='ContentTwo ContentTwo2' style='display:none'>";
 echo"</span>";
 echo"<ul style='height:15px;'><li style='width:98%'></li></ul>";
-if ( strpos($const_q_tianj, "190") !== false  ) { //有添加权限时
+if ( strpos($sys_q_tianj, "190") !== false  ) { //有添加权限时
        echo"<ul>
           <li style='text-align:right;width:220px'><i class='fa fa-sitting-ziduan'  title='设定添加字段。'/>&nbsp;</li>
           <li style='width:40%;text-align:left;padding-left:2px;'>
@@ -98,7 +98,7 @@ if ( strpos($const_q_tianj, "190") !== false  ) { //有添加权限时
 		
 		</div>
 		</form>
-		<div id='clonecopy2'>&nbsp;</div><script>YanZhen_ChongFu_ZuLoad(0,'','SQP_ZongGuoChengQingDan','$ToHtmlID');form_add_copy('$ToHtmlID');inputfocusfirst('#".$ToHtmlID."_content_foot .htmlleirong','id');form_weikong('#post_form','DeskMenuDiv190');</script>";
+		<div id='clonecopy2'>&nbsp;</div><script>YanZhen_ChongFu_ZuLoad(0,'','SQP_ZongGuoChengQingDan','$ToHtmlID');form_add_copy('$ToHtmlID');inputfocusfirst('#".$ToHtmlID."_content_foot .htmlleirong','id');</script>";
 
 ?>
 

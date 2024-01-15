@@ -12,11 +12,12 @@
 		    echo "<script>UpdatePhp_Zw($SYS_QuanXian);</script>";
 		}
 	
-		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_Conn.php";
-		global $strmk_id,$Conn,$const_q_xiug,$const_id_login,$bh,$hy,$SYS_UserName,$const_id_fz,$const_id_bumen;
+		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_conn.php";
+		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_connadmin.php";
+		global $strmk_id,$sys_q_xiug,$sys_id_login,$bh,$hy,$SYS_UserName,$sys_id_fz,$bumen_id;
 		
 		
-if ( $const_q_xiug >= 0 ) { //有修改权限时
+if ( $sys_q_xiug >= 0 ) { //有修改权限时
     if( isset($_POST["username"]) ){$username=$_POST["username"];}else{$username='';};       //username
     if( isset($_POST["DianHua3"]) ){$DianHua3=$_POST["DianHua3"];}else{$DianHua3='';};       //DianHua3
     if( isset($_POST["startdate"]) ){$startdate=$_POST["startdate"];}else{$startdate='';};       //startdate

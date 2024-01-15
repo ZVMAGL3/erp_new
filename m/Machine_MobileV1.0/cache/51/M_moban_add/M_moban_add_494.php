@@ -25,8 +25,6 @@
 		$sys_id_zu=$row["sys_id_zu"];
 		$ShiYou=$row["ShiYou"];
 		$ZD_BeiZhu=$row["ZD_BeiZhu"];
-		$sys_shenpi=$row["sys_shenpi"];
-		$sys_shenpi_all=$row["sys_shenpi_all"];
 
 
 		
@@ -34,14 +32,12 @@
 	
 	
 }else{
-		$ZhiWu="$const_q_zu-($const_id_bumen)";
+		$ZhiWu="$const_q_zu-($bumen_id)";
 		$ZD_ShenQingRen="$SYS_UserName-($bh)";
 		$ZD_ShenQingShiJian="$nowdate";
 		$sys_id_zu="";
 		$ShiYou="";
 		$ZD_BeiZhu="";
-		$sys_shenpi="";
-		$sys_shenpi_all="";
 
 };
 ?>
@@ -50,21 +46,21 @@
 
 	                     <ul>
 		                 <li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;职务:</li>
-		                 <li class='cols02 reset_list'><input type='text' typeid='24' name='ZhiWu' id='ZhiWu' class='addboxinput inputfocus'   value='<?php echo $ZhiWu ?>'  style='width:100%'    readonly='readonly' />
+		                 <li class='cols02 reset_list'><input type='text' typeid='24' name='ZhiWu' id='ZhiWu' class='addboxinput inputfocus'   value='<?php echo $ZhiWu ?>'    readonly='readonly' />
 		                 <div class='cols03 font_red yanzheng' id='ZhiWu_bitian'></div>
 						 </li>
 		                 </ul>
 
 	                     <ul>
 		                 <li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;申请人:</li>
-		                 <li class='cols02 reset_list'><input type='text' typeid='23' name='ZD_ShenQingRen' id='ZD_ShenQingRen' class='addboxinput inputfocus'   value='<?php echo $ZD_ShenQingRen ?>'  style='width:100%'    readonly='readonly' />
+		                 <li class='cols02 reset_list'><input type='text' typeid='23' name='ZD_ShenQingRen' id='ZD_ShenQingRen' class='addboxinput inputfocus'   value='<?php echo $ZD_ShenQingRen ?>'    readonly='readonly' />
 		                 <div class='cols03 font_red yanzheng' id='ZD_ShenQingRen_bitian'></div>
 						 </li>
 		                 </ul>
 
 	                     <ul>
 		                 <li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;申请时间:</li>
-		                 <li class='cols02 reset_list'><input type='text' typeid='25' name='ZD_ShenQingShiJian' id='ZD_ShenQingShiJian' class='addboxinput inputfocus'   value='<?php echo $ZD_ShenQingShiJian ?>'  style='width:100%'    readonly='readonly' />
+		                 <li class='cols02 reset_list'><input type='text' typeid='25' name='ZD_ShenQingShiJian' id='ZD_ShenQingShiJian' class='addboxinput inputfocus'   value='<?php echo $ZD_ShenQingShiJian ?>'    readonly='readonly' />
 		                 <div class='cols03 font_red yanzheng' id='ZD_ShenQingShiJian_bitian'></div>
 						 </li>
 		                 </ul>
@@ -89,29 +85,15 @@
 
 	                     <ul>
 		                 <li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;事由:</li>
-		                 <li class='cols02 reset_list'><textarea type='textarea' typeid='2' name='ShiYou' id='ShiYou' class='addboxinput inputfocus' style='width:100%;height:25px;'   ><?php echo $ShiYou ?></textarea>
+		                 <li class='cols02 reset_list'><textarea type='textarea' typeid='2' name='ShiYou' id='ShiYou' class='addboxinput inputfocus' 25px;'   ><?php echo $ShiYou ?></textarea>
 		                 <div class='cols03 font_red yanzheng' id='ShiYou_bitian'></div>
 						 </li>
 		                 </ul>
 
 	                     <ul>
 		                 <li class='cols01'>备注:</li>
-		                 <li class='cols02 reset_list'><input type='text' typeid='1' name='ZD_BeiZhu' id='ZD_BeiZhu' class='addboxinput inputfocus'  value='<?php echo $ZD_BeiZhu ?>'  style='width:100%'   />
+		                 <li class='cols02 reset_list'><input type='text' typeid='1' name='ZD_BeiZhu' id='ZD_BeiZhu' class='addboxinput inputfocus' value='<?php echo $ZD_BeiZhu ?>'   />
 		                 <div class='cols03 font_red yanzheng' id='ZD_BeiZhu_bitian'></div>
-						 </li>
-		                 </ul>
-
-	                     <ul>
-		                 <li class='cols01'>审核:</li>
-		                 <li class='cols02 reset_list'><input type='text' typeid='20' name='sys_shenpi' id='sys_shenpi' class='addboxinput inputfocus'  placeholder='请审核'  y-value='<?php echo $sys_shenpi ?>'  value='<?php echo $sys_shenpi ?>'  onclick='SignSH(this)' style='width:100%'    readonly='readonly' /><a class='jia jiaok'  onclick='SignSH(this)'><i class='fa fa-20-3'></i></a>
-		                 <div class='cols03 font_red yanzheng' id='sys_shenpi_bitian'></div>
-						 </li>
-		                 </ul>
-
-	                     <ul>
-		                 <li class='cols01'>批准:</li>
-		                 <li class='cols02 reset_list'><input type='text' typeid='22' name='sys_shenpi_all' id='sys_shenpi_all' class='addboxinput inputfocus' placeholder='请批准'  y-value='<?php echo $sys_shenpi_all ?>'  value='<?php echo $sys_shenpi_all ?>'  onclick='SignPZ(this)' style='width:100%'    readonly='readonly' /><a class='jia jiaok'  onclick='SignPZ(this)'><i class='fa fa-20-4'></i></a>
-		                 <div class='cols03 font_red yanzheng' id='sys_shenpi_all_bitian'></div>
 						 </li>
 		                 </ul>
 <ul style='height:15px;width:100%;'><li style='width:98%'></li></ul>
@@ -122,7 +104,7 @@
   
   <input id='reset_add' type='reset' value='重填' tabindex=-1 style='width:10%' class='button button_reset' onclick=inputfocusfirst('#addbox .htmlleirong','sys_nowbh')><input type='hidden' id='formaddcount' value='0'/>
   
-  <input type='hidden' id='sys_postzd_list' name='sys_postzd_list' value='ZhiWu,ZD_ShenQingRen,ZD_ShenQingShiJian,sys_id_zu,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all'/>
+  <input type='hidden' id='sys_postzd_list' name='sys_postzd_list' value='ZhiWu,ZD_ShenQingRen,ZD_ShenQingShiJian,sys_id_zu,ShiYou,ZD_BeiZhu'/>
   
   <input id='SYS_submit' value='提交' type='button' title='Ctrl+Enter提交' class='button button_ADD' style='width:88%'  SYS_Company_id='51' strmk_id='' firstinputname='sys_nowbh' bitian_Arry='ZhiWu,ZD_ShenQingRen,ZD_ShenQingShiJian,ShiYou' databiao='SQP_QingJiaDiaoXiuJiaBanWaiChuDan' Wuchongfu_Arry='' onclick=data_add_arrys(this,'#addbox','DeskMenuDiv494')   onkeydown="EnterPress(event,this,this.click)" />
   

@@ -133,7 +133,7 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
                     <div class='cols03 font_red yanzheng' id='name_bitian'></div>
                 </li>
             </ul>
-            <?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+            <?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
             <ul>
                 <li class='cols01'> &nbsp;</li>
                 <li class='cols02'>

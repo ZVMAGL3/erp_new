@@ -66,6 +66,8 @@ function listdata() {
             $_SESSION[ 'topZhiWeiIdxList' ] = $topidx;
             $bumenStr = implode(',',$bumenList);
             last_returnListData($bumenStr,$i,$listdata,0,$last_zhiwei_str);
+        }else{
+            $_SESSION[ 'topZhiWeiIdxList' ] = $topidx;
         }
         mysqli_close( $Connadmin ); //关闭数据库 
 
@@ -133,6 +135,7 @@ function last_returnListData($id,&$i,&$listdata,$j,$last_zhiwei_str) {
         $i++;
         $id = $row[ 'id' ]; //id
         $name = $row[ 'bumenname' ]; //字段名称
+        $text = '';
         if($j){
             $text = '↳';
         }
@@ -191,5 +194,4 @@ function listdata2( $bumen ) {
 
 
 
-mysqli_close( $Connadmin ); //关闭数据库 
 ?>

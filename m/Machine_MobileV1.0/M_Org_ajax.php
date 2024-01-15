@@ -98,48 +98,43 @@ function listdata3() {
     $sql = "select id,$colsname From $tablename where sys_huis='0' and $colsname like '%$keyword%'";
     // echo $sql.'_'; 
     $rs = mysqli_query( $Connadmin, $sql );
-    $record_count = mysqli_num_rows( $rs ); //统计总记录数
     // echo $record_count.'_'; 
 
     $i = 0;
-    if ( $record_count == 0 ) {
-        $listdata .= '<li><a href="#"><font color="red"> Sorry, No Data！</font></a></li>';
-    } else {
-        while ( $row = mysqli_fetch_array( $rs ) ) {
-            $hy = $row[ 'id' ]; //字段名称
-            $company_name = $row[ $colsname ]; //字段名称
-            $sql = "select state From msc_user_hy where user_id = $user_id and sys_yfzuid = $hy";
-            // echo $sql;
-            $rsl = mysqli_query( $Connadmin, $sql );
-            $record_count = mysqli_num_rows( $rsl ); //统计总记录数
-            $row = mysqli_fetch_array( $rsl );
+    while ( $row = mysqli_fetch_array( $rs ) ) {
+        $hy = $row[ 'id' ]; //字段名称
+        $company_name = $row[ $colsname ]; //字段名称
+        $sql = "select state From msc_user_hy where user_id = $user_id and sys_yfzuid = $hy";
+        // echo $sql;
+        $rsl = mysqli_query( $Connadmin, $sql );
+        $record_count = mysqli_num_rows( $rsl ); //统计总记录数
+        $row = mysqli_fetch_array( $rsl );
 
-            if ( $record_count == 0 || $row['state'] == 3 ) {
-                $i++;
-                $listdata .= '
-                    <li class="companyInfo_bacc">
-                        <div class="companyInfo_box">
-                            <label  class="company_info">
-                                <i class=\'fa fa-24-04\'></i>
-                                &nbsp;&nbsp;&nbsp;&nbsp;' . $company_name . '
-                            </label>
-                            <div class="join_button" onclick="join_company( ' .$hy .',\''. $company_name . '\')">
-                                加入
-                            </div>
-                            
+        if ( $record_count == 0 || $row['state'] == 3 ) {
+            $i++;
+            $listdata .= '
+                <li class="companyInfo_bacc">
+                    <div class="companyInfo_box">
+                        <label  class="company_info">
+                            <i class=\'fa fa-24-04\'></i>
+                            &nbsp;&nbsp;&nbsp;&nbsp;' . $company_name . '
+                        </label>
+                        <div class="join_button" onclick="join_company( ' .$hy .',\''. $company_name . '\')">
+                            加入
                         </div>
-                        <div class="Wire"><div>
-                    </li>
-                ';
-            }
-            if($i == 0){
-                $listdata .= '
-                    <div style="margin-top: 40px;text-align: center;">
-                        <span>没有可加入的公司！</span>
+                        
                     </div>
-                ';
-            }
+                    <div class="Wire"><div>
+                </li>
+            ';
         }
+    }
+    if($i == 0){
+        $listdata .= '
+            <div style="margin-top: 40px;text-align: center;">
+                <span>没有可加入的公司！</span>
+            </div>
+        ';
     }
     mysqli_free_result( $rs ); //释放内存
     mysqli_close( $Connadmin ); //关闭数据库 

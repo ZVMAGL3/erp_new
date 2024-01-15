@@ -3,6 +3,7 @@ function DIVHtmlID(ToHtmlID, nowbody) { //fanall、mask_lood、head、banner、b
     // console.log(ToHtmlID, nowbody)
     var ToHtmlID = ToHtmlID.replace(/^Top_*/g, ""); //去除以Top_字符串开头
     //alert(ToHtmlID);
+    var NowToHtmlID = ''
     if (!nowbody || nowbody == '') {
         NowToHtmlID = $('#' + ToHtmlID);
     } else {
@@ -104,7 +105,7 @@ function AjaxLoad(datapage, act, datahtml, callback, types, ToHtmlID, donghua, e
     if (zu == '') {
         zu = 0;
     };
-    var sys_id_bumen = NowToHtmlID.find("#sys_const_id_bumen").val(); //部门id
+    var bumen_id = NowToHtmlID.find("#sys_const_id_bumen").val(); //部门id
     var sys_const_adddate = NowToHtmlID.find('#sys_const_adddate').val(); //添加时间
     var sys_const_qx = NowToHtmlID.find('#sys_const_qx').val(); //
     if (NowToHtmlID.find('#zd').length > 0 && keyword != "") { //字段
@@ -146,7 +147,7 @@ function AjaxLoad(datapage, act, datahtml, callback, types, ToHtmlID, donghua, e
             act: act,
             page: page,
             zu: zu,
-            sys_id_bumen: sys_id_bumen,
+            bumen_id: bumen_id,
             sys_adddate: sys_const_adddate,
             sys_const_qx: sys_const_qx,
             keyword: keyword,
@@ -211,6 +212,7 @@ function AjaxLoad(datapage, act, datahtml, callback, types, ToHtmlID, donghua, e
         }
     });
 }
+
 //---------------------------------------------------------------------------------------------------------------------删除数据到回收站
 function DelToHuishou(ToHtmlID) { //删除数据到回收站
 
@@ -235,7 +237,7 @@ function DelToHuishou(ToHtmlID) { //删除数据到回收站
             ToHtmlID: ToHtmlID,
             re_id: re_id
         }, function (data) {
-            //alert(data);
+            // console.log(data);
             NowToHtmlID.find("#chkall").attr("checked", false);
             ListGet(ToHtmlID); //中间数据
             List_Page_Get(ToHtmlID); //分页数据
@@ -1321,7 +1323,7 @@ function Fpage(page, xt, ToHtmlID) //分页函数蓝1368(|< < > >|)  灰2457(有
         ListGet(ToHtmlID); //加载数据
     };
 
-    shuqianmenu_user_update(this, ToHtmlID); //更新记忆功能
+    // shuqianmenu_user_update(this, ToHtmlID); //更新记忆功能
 }
 //===============================================================================输入跳转页限制
 function duibi(thstitle, a, ths) {
@@ -1460,8 +1462,8 @@ function shuqianmenu(ths, ToHtmlID) {
 //===============================================================================书签数据加载
 function shuqianmenu_TOTO(ths, ToHtmlID,re_id = '') {
     var parentdiv = $(ths).parents("#" + ToHtmlID + "_content_right_menu"); //父框架
-    console.log(!$(parentdiv).attr('biaoqian_xiugai'))
-    console.log($(parentdiv).attr('biaoqian_xiugai'))
+    // console.log(!$(parentdiv).attr('biaoqian_xiugai'))
+    // console.log($(parentdiv).attr('biaoqian_xiugai'))
     if($(parentdiv).attr('biaoqian_xiugai') != 'true'){
         // console.log($(ths),ToHtmlID,re_id)   
         var $id = $(ths).attr('id'); //id
@@ -1520,7 +1522,6 @@ function BiaoQian_change(ths, ToHtmlID, $id , re_id = '') {
                 //alert(nowzd+nowzdvalue);
             });
             //if(ns==size){
-
             LoodingDiv(ToHtmlID);
             ListGet(ToHtmlID); //加载数据
             List_Page_Get(ToHtmlID); //分页
@@ -1664,7 +1665,7 @@ function zuchange(ths, ToHtmlID) {
     NowToHtmlID.find('#sys_const_shenpi_all').val(parentdiv.find('#sys_shenpi_all').val()); //批准人
     NowToHtmlID.find('#sys_const_chaosong').val(parentdiv.find('#sys_chaosong').val()); //经办人
 
-    NowToHtmlID.find('#sys_const_id_bumen').val(parentdiv.find('#sys_id_bumen').val()); //部门
+    NowToHtmlID.find('#sys_const_id_bumen').val(parentdiv.find('#bumen_id').val()); //部门
     NowToHtmlID.find('#sys_const_adddate').val(parentdiv.find('#sys_adddate').val()); //时间
     if (thisvalue != 0) {
         $(ths).parent().find('.cols01').html('<i class="fa fa-25-02"></i>'); //
@@ -3106,7 +3107,6 @@ function add_data(ths, id, ToHtmlID) {
     var NowToHtmlID_content_foot = DIVHtmlID(ToHtmlID, 'content_foot');
     //var id=495;
     var re_id = NowToHtmlID.find("#sys_const_re_id").val();
-    var hy = NowToHtmlID.find("#sys_const_hy").val();
     if (id == '') {
         var sys_guanxibiao_id = $("#" + ToHtmlID).attr('sys_guanxibiao_id'); //得到关系表里的id
         var GuanXi_id = $("#" + ToHtmlID).attr('GuanXi_id'); //得到对应关系re_id
@@ -3127,7 +3127,7 @@ function add_data(ths, id, ToHtmlID) {
         ToHtmlID: ToHtmlID,
         re_id: re_id
     }, function (data) {
-        //alert(data);
+        console.log(data);
         NowToHtmlID_content_foot.find('.htmlleirong').html("<ul id='tagContent' class='tagContent' >" + data + "</ul>");
     }); //这里打开模版
     if (id > 0) { //为复制时
@@ -3136,10 +3136,6 @@ function add_data(ths, id, ToHtmlID) {
         NowToHtmlID_content_foot.find('.headleft').html("<a class='selectTag'>添加</a>");
     };
     addboxbg('#footseid13', ToHtmlID);
-
-    //if(ToHtmlID.indexOf("_MenuDiv_") >= 0){
-    //$("#"+ToHtmlID).find('#content_foot').hide();
-    //}
 
 }
 //=============================================================================//数据修改

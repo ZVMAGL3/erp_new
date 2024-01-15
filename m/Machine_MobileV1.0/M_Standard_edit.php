@@ -124,7 +124,7 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
                 <li class='cols01'>更新时间:</li>
                 <li class='cols02'>&nbsp;<?php echo $sys_adddate_g ?></li>
             </ul>
-            <?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+            <?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
             <ul>
                 <li class='cols01'> &nbsp;</li>
                 <li class='cols02'>

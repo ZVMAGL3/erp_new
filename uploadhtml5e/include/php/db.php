@@ -485,7 +485,7 @@ class db
 					$filednames = substr($filednames,0,strlen($filednames)-1); 
 					$filedvalues = substr($filedvalues,0,strlen($filedvalues)-1); 
 	                global $hy,$bh,$SYS_UserName,$SYS_QuanXian;//得到全局变量
-					$this->sql="insert into ".$tablename."(".$filednames.",sys_yfzuid,sys_id_login,sys_login,sys_id_bumen) values(".$filedvalues.",'$hy','$bh','$SYS_UserName','$SYS_QuanXian')";
+					$this->sql="insert into ".$tablename."(".$filednames.",sys_yfzuid,sys_id_login,sys_login,bumen_id) values(".$filedvalues.",'$hy','$bh','$SYS_UserName','$SYS_QuanXian')";
 
 					$this->query($this->sql);
 					if(PHP_VERSION>"7"){

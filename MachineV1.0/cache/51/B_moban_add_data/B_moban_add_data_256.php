@@ -72,7 +72,7 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		$sql = "insert into  `msc_user_reg`  (SYS_GongHao,SYS_reg_num,SYS_UserName,SYS_ShouJi,SYS_yuangongdanganbiao_id,SYS_PassWord,SYS_ShenFenZheng,SYS_Company_id,SYS_ZD_QQ,SYS_Email,SYS_ZD_ZaiZhiZhuangTai,SYS_QuanXian,SYS_XingBie,SYS_DianHua,SYS_YinXingKaHao,SYS_DiZhi,SYS_GongZi,SYS_StartDate,SYS_EndDate,SYS_jib,SYS_photo,SYS_chaoguan,SYS_qianmin,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values ('$SYS_GongHao','$SYS_reg_num','$SYS_UserName','$SYS_ShouJi','$SYS_yuangongdanganbiao_id','$SYS_PassWord','$SYS_ShenFenZheng','$SYS_Company_id','$SYS_ZD_QQ','$SYS_Email','$SYS_ZD_ZaiZhiZhuangTai','$SYS_QuanXian','$SYS_XingBie','$SYS_DianHua','$SYS_YinXingKaHao','$SYS_DiZhi','$SYS_GongZi','$SYS_StartDate','$SYS_EndDate','$SYS_jib','$SYS_photo','$SYS_chaoguan','$SYS_qianmin','$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
 		mysqli_query( $Connadmin,$sql );
 		echo "<script></script>";
-        $nowid = mysqli_insert_id($Connadmin)
+        $nowid = mysqli_insert_id($Connadmin);
         //--------------------------------------以下为操作记录提交
         $sys_editcontent='首次建档;';
         if($sys_editcontent!=''){

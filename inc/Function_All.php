@@ -971,7 +971,7 @@ function table_col_type_moren( $colname = '', $typeid = '0' ) {
         case 'sys_huis': // 样式默认：回收
             return 14;
             break;
-        case 'sys_id_bumen': // 样式默认：部门
+        case 'bumen_id': // 样式默认：部门
             return 1;
             break;
         case 'sys_id_login': // 样式默认：编制人工号
@@ -1389,8 +1389,10 @@ function selectQuanXian($hy,$user_id,$db) {
     
     $query =  "SELECT * FROM msc_user_hy WHERE sys_yfzuid = ? AND user_id = ?";
     $params = array($hy,$user_id);
+    // echo $hy.$user_id;
     $hyAll = $db->query($query, $params);
     $result = mysqli_fetch_assoc($hyAll['result']);
+    // echo json_encode($result,JSON_UNESCAPED_UNICODE);
 
     $_SESSION['bh'] = $result['SYS_GongHao'];
     $SYS_QuanXian = $_SESSION['SYS_QuanXian'] = $result['zhiwei_id']; 
@@ -1494,9 +1496,9 @@ function setfun($val,&$list) {
         $list []= $val;
     }
 }
-function allPosition($id,&$bumenlistStorage,$j,$str) {
+function allPosition($id,&$bumenlistStorage,$j,$str,$SYS_QuanXian) {
     // echo 123;
-    global $hy,$Connadmin,$SYS_QuanXian;
+    global $hy,$Connadmin;
     // echo $id;
     $sql3 = "select * from `msc_bumenlist` where sys_yfzuid = '$hy' and $str in($id) and sys_huis = 0 ORDER BY id ASC";
     // echo $sql3;
@@ -1524,7 +1526,7 @@ function allPosition($id,&$bumenlistStorage,$j,$str) {
             }
 
             mysqli_free_result( $rs2 ); //释放内存
-            allPosition($rowdid3,$bumenlistStorage,$j+1,'parent');
+            allPosition($rowdid3,$bumenlistStorage,$j+1,'parent',$SYS_QuanXian);
             //------------------------------职位数据end if
             echo( "</optgroup>" );
         }

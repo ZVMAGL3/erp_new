@@ -23,7 +23,7 @@ include_once '../inc/B_connadmin.php';
   };
 
 function foots(){//分页
-  global $Conn,$nowkeyword,$const_q_cak,$re_id,$page_count,$page,$ToHtmlID,$record_count,$hy,$const_q_fanwei,$huis;//全局变量
+  global $Conn,$nowkeyword,$sys_q_cak,$re_id,$page_count,$page,$ToHtmlID,$record_count,$hy,$sys_q_fanwei,$huis;//全局变量
 	
   //------------------------识别是否为页中页
   if ( isset( $_REQUEST[ 'sys_guanxibiao_id' ] ) ){$sys_guanxibiao_id = intval( $_REQUEST[ 'sys_guanxibiao_id' ] );}else{$sys_guanxibiao_id = '';};         //关系表re_id
@@ -35,9 +35,9 @@ function foots(){//分页
 	
   //以下为获得页数参数list_0_id_0_Desc_1__1_1_50
   //echo ($act."_".$nowzu."_".$px_ziduan."_".$zd."_".$pxv."_".$pok."_".$nowkeyword."_".$page."_".$page_first."_".$page_end)
-  //echo ($const_q_cak);
-  // echo 'Q:'.$const_q_fanwei;
- if ($const_q_cak>-1){//有权限时
+  //echo ($sys_q_cak);
+  // echo 'Q:'.$sys_q_fanwei;
+ if ($sys_q_cak>-1){//有权限时
   //=========================================================================得到记录模版设定信息
    $rs=$sql=$sql2=$databiao1=$databiao_SYS1=$mdb_use_type=$databiao='';
    

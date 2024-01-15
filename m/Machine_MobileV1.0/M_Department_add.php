@@ -8,7 +8,6 @@ include_once '../../inc/Function_All.php'; //连上参数设定
 //================================================================以下为处理数据
 if ( isset( $_POST[ 'act' ] ) )$act = $_POST[ 'act' ]; //act
 //echo($_POST[ 'data' ]);
-
 if ( $act == 'add_mobile' ) { //当接收到处理指令时
     //----------------------------------查询是否有重复值
     //echo $hy;
@@ -94,13 +93,13 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
 
 <body>
 <div id="wrapper">
-    <div id="header"> <a href="<?php echo $phpstart ?>.php?id=<?php echo $id ?>" class="home"></a> <em class="eleft"><?php echo $textsname ?> 添加</em> <a href="#" class="siteMap"></a> </div>
+    <div id="header"> <a href="<?php echo $phpstart ?>.php" class="home"></a> <em class="eleft"><?php echo $textsname ?> 添加</em> <a href="#" class="siteMap"></a> </div>
     <form autocomplete='off' onsubmit='return false' onkeydown="if(event.keyCode==13){return false;}">
         <div id='mobanaddbox' class='NowULTable nocopytext'>
             <ul>
                 <li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;<font color='red'>[重]</font>&nbsp;<?php echo $textsname ?>名称:</li>
                 <li class='cols02'>
-                    <input type='text' typeid='1' name='name' id='name' class='addboxinput inputfocus'  value='<?php echo $name ?>' onkeydown="if(event.keyCode == 13){return false;}" />
+                    <input type='text' typeid='1' name='name' id='name' class='addboxinput inputfocus'  value='' onkeydown="if(event.keyCode == 13){return false;}" />
                     <div class='cols03 font_red yanzheng' id='name_bitian'></div>
                 </li>
             </ul>
@@ -138,7 +137,7 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
 <script>
     $(document).ready(function() {
         let SonBumenList = <?php echo json_encode($_SESSION['SonBumenList']) ?>;   
-        console.log(<?php echo json_encode($_SESSION['SonBumenList']) ?>) 
+        // console.log(<?php echo json_encode($_SESSION['SonBumenList']) ?>) 
         SonBumenList.forEach((item) => {
             var div = $("<option>")
             div.val(item.id).text('-- '.repeat(item.prefix)+item.bumenname)

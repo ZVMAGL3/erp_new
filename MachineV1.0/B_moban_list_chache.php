@@ -23,7 +23,7 @@ if ( $re_id != 0 ) {
 
 	if($databiao = $row[ 'mdb_name_SYS' ]){
 		$ConnXXX=ChangeConn($databiao);//选择数据库
-		$const_shaixuan = $row[ 'shaixuan' ]; //筛选代码
+		$sys_shaixuan = $row[ 'shaixuan' ]; //筛选代码
 		//$wheretext = "mdb_name='$databiao' and qx_xianshi=1";         //查询显示的字段条件
 		//0【字段中文名称】,1【显示宽度】,2【必填】,3【无重复】,4【显示类型】,5【显示】,6【锁定】,7【添加】,8【修改】,9【百度搜索】,10【显示高度】,11【m显示】,12【m锁定】,13【】,14【】
 		$SYS_ALL_ziduan = Tablecol_list_beizhu_cols( $databiao, 5 );     //显示列清单
@@ -58,7 +58,7 @@ if ( $act = 'list' ) {
 //==========================================================================================中间表格数据
 function lists() {
 	$Htmlcache07= '';
-	global $Connadmin, $reg_banben, $regid, $hy, $bh, $re_id, $big_id, $const_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $const_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $const_id_fz, $SYS_QuanXian, $const_id_bumen, $const_q_tianj, $const_q_xiug, $const_q_shanc, $const_q_cak, $const_q_dayin, $const_q_huis, $const_q_seid, $const_q_dian, $const_q_shenghe, $const_q_pizhun, $const_q_zu, $databiao, $ToHtmlID, $SYS_ALL_ziduan_list, $nowkeyword, $ConnXXX, $xianshi_ZD_Arry, $xianshi_KD_num, $r_cow_height, $shuoding_num, $nowjilucont, $page_first, $page_end, $startime, $xt_m_ziduan, $xt_m_ziduan_Name, $xianshi_ZD_num, $const_shaixuan, $page, $act, $nowzu, $px_ziduan, $zd, $pxv, $pok; //全局变量
+	global $Connadmin, $reg_banben, $regid, $hy, $bh, $re_id, $big_id, $sys_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $sys_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $sys_id_fz, $SYS_QuanXian, $bumen_id, $sys_q_tianj, $sys_q_xiug, $sys_q_shanc, $sys_q_cak, $sys_q_dayin, $sys_q_huis, $sys_q_seid, $sys_q_dian, $sys_q_shenghe, $sys_q_pizhun, $sys_q_zu, $databiao, $ToHtmlID, $SYS_ALL_ziduan_list, $nowkeyword, $ConnXXX, $xianshi_ZD_Arry, $xianshi_KD_num, $r_cow_height, $shuoding_num, $nowjilucont, $page_first, $page_end, $startime, $xt_m_ziduan, $xt_m_ziduan_Name, $xianshi_ZD_num, $sys_shaixuan, $page, $act, $nowzu, $px_ziduan, $zd, $pxv, $pok; //全局变量
 	//echo $startime;
 	$IsConn=IsConn($databiao);            //查出所属表的数据库
     $zu_all_list=zu_all_list($re_id);     //查询到分组清单
@@ -74,10 +74,10 @@ function lists() {
 	$Htmlcache.='include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/B_Config.php";'."\n";
 	$Htmlcache.='include_once "{$_SERVER[\'PATH_TRANSLATED\']}/inc/B_'.$IsConn.'.php";'."\n";
 	$Htmlcache.='$startime = microtime( true ); //这里计算时间开始'."\n\n";
-	$Htmlcache .= 'global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_ziduan,$pxv,$'.$IsConn.',$hy;
+	$Htmlcache .= 'global $sys_q_cak,$ToHtmlID,$sys_q_shanc,$sys_q_xiug,$nowkeyword,$px_ziduan,$pxv,$'.$IsConn.',$hy;
 	$r_cow_height="' . $r_cow_height . '";
 	$databiao="' . $databiao . '";
-	$const_shaixuan="' . $const_shaixuan . '";
+	$sys_shaixuan="' . $sys_shaixuan . '";
 	$SYS_ALL_ziduan_list="' . $SYS_ALL_ziduan_list . '";
 	$xianshi_ZD_num="' . $xianshi_ZD_num . '";
 	$xianshi_KD_num="' . $xianshi_KD_num . '";
@@ -133,12 +133,12 @@ function lists() {
 	$Htmlcache .= '
 	      $i = 0;
 	      while ( $row = mysqli_fetch_array( $rs ) ) {
-	      if ( $const_q_cak >= 0 ) {
+	      if ( $sys_q_cak >= 0 ) {
 	        $i++;
 	        $now_id = $row[ "id" ];
 	        $tdqaqclass = "tdsclass" . $i;
 	        echo( "<ul class=\'ul_over_" . $i . "\' overid=\'ul_over_" . $i . "\' " );
-	        //if ($const_q_xiug > -1){//有权限时
+	        //if ($sys_q_xiug > -1){//有权限时
 			    $part_ToHtmlID = str_replace(\'E_\',\'\', substr($ToHtmlID,0,strlen($ToHtmlID)-strlen(\'_MenuDiv_\'.$re_id)) );
 	            if(substr($ToHtmlID,0,13)==\'E_DeskMenuDiv\'){
 				    echo( "  onDblclick=GetPage(this,\'$now_id\',\'$ToHtmlID\',\'$part_ToHtmlID\')" );
@@ -157,7 +157,7 @@ function lists() {
 	//echo  ("<li  onselectstart='return false' style='text-align: center; width:600px;'>&nbsp;</li>");
 	//echo  ("<li align='center' class='tdpp tdppright'   onselectstart='return false' width='auto'>&nbsp;</li>");
 	$nowstyle = "height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px; width:22px;";
-	$Htmlcache .= '              if ($const_q_shanc < 0) { //没有权限时 ' . "\n";
+	$Htmlcache .= '              if ($sys_q_shanc < 0) { //没有权限时 ' . "\n";
 	$Htmlcache .= '                $nowdisabled = " disabled=\'true\' ";' . "\n";
 	$Htmlcache .= '              };' . "\n";
 	//$Htmlcache .= '              if ($now_shenpi_all == \'1\') {' . "\n";
@@ -168,7 +168,7 @@ function lists() {
 
 	$Htmlcache .= '                $imgedit = "<i class=\'fa fa-edit-mini\'></i>";' . "\n";
 
-	$Htmlcache .= '              if ($const_q_xiug < 0) { //没有权限时' . "\n";
+	$Htmlcache .= '              if ($sys_q_xiug < 0) { //没有权限时' . "\n";
 	$Htmlcache .= '                echo("<li  class=\'tdpp rightli center\'  style=\'' . $nowstyle . '\'  title=\'没修改权限！\'></li> ");' . "\n";
 	$Htmlcache .= '              } else {' . "\n";
 	$Htmlcache .= '                echo("<li  class=\'tdpp rightli center\'   style=\'' . $nowstyle . '\' onclick=edit_data(this,\'$now_id\',\'$ToHtmlID\',\'$hy\') >$imgedit</li> ");' . "\n";

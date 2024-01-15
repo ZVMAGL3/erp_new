@@ -5,7 +5,7 @@ include_once( 'M_quanxian.php' ); //接收职位权限信息
 
 //------------------------------------------------------------------以下为查询到相关信息
 $sql = $rs = $row = '';
-$sql = "select * From `msc_fukuanfangshi` where sys_id_zu='$const_id_login' "; //用户登录表
+$sql = "select * From `msc_fukuanfangshi` where sys_id_zu='$sys_id_login' "; //用户登录表
 // echo $sql; 
 $rs = mysqli_query( $Connadmin, $sql );
 ?>
@@ -369,7 +369,7 @@ $rs = mysqli_query( $Connadmin, $sql );
                         '${$(dom).find('.alipayAccount').val()}',
                         '${$(dom).find('.kaihuhang').val()}',
                         '${$(dom).find('.bankAccount').val()}',
-                        '<?php echo $const_id_login; ?>'
+                        '<?php echo $sys_id_login; ?>'
                     );
                 `
                 // console.log(sql)

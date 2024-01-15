@@ -5,7 +5,7 @@ include_once( 'M_quanxian.php' ); //接收职位权限信息
 
 //------------------------------------------------------------------以下为查询到相关信息
 $sql = $rs = $row = '';
-$sql = "select * From `msc_user_reg` where id='$const_id_login' "; //用户登录表
+$sql = "select * From `msc_user_reg` where id='$sys_id_login' "; //用户登录表
 // echo $sql;
 $rs = mysqli_query( $Connadmin, $sql );
 $row = mysqli_fetch_array( $rs );

@@ -124,7 +124,7 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
                     ?>
                 </li>
             </ul>
-            <?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+            <?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
             <ul>
                 <li class='cols01'> &nbsp;</li>
                 <li class='cols02'>

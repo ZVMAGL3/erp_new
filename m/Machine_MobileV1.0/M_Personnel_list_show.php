@@ -47,12 +47,6 @@ if ( isset( $_REQUEST[ 'id' ] ) )$id = intval( $_REQUEST[ 'id' ] ); //得到修�
                 //$nowzzzt = intval( $row[ 'zzzt' ] );                        //在职状态0为在职，1为离职
                 //$userjib = $row[ 'jib' ];                                   //级别工种
                 $SYS_UserName = $row[ 'SYS_UserName' ]; //姓名
-                //$nowreg_num=$row[ "reg_num" ];                              //公司注册号
-                //$const_id_fz = intval( $row[ 'sys_id_fz' ] );                   //分支
-
-                //if ( '1' . $const_id_fz == '1' ){$const_id_fz = 0;};
-                //$SYS_QuanXian = $row[ 'SYS_QuanXian' ];                     //权限         
-                //$const_id_bumen = $row[ 'sys_id_bumen' ];                       //部门
                 $photo = $row[ 'photo' ]; //头像
                 $XingBie = $row[ 'XingBie' ]; //性别
                 $DiZhi = $row[ 'DiZhi' ]; //地址

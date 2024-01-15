@@ -59,10 +59,9 @@ function sql_all_id_list($sql,$Conn) {
 //=========================================================================根据权限来重构SQL
 function sql_search($TableName, $sql, $nowkeyword, $huis=0) { //在$dTableName(表),ziduan_list（显示的字段清单）,$fy（0分页，1不分页不排序）".ziduan_list."
 	//return $sql;
-	global $hy,$bh, $const_q_fanwei,$sys_id_bumen,$const_id_bumen, $const_id_fz, $pok, $px_ziduan, $pxv, $nowzu, $zd, $sys_id_login,$re_id,$sys_adddate,$ShaiXuanSql,$ShaiXuanSql_other,$sys_shenpi,$sys_shenpi_all,$sys_chaosong;
+	global $hy,$bh, $sys_q_fanwei,$bumen_id,$bumen_id, $sys_id_fz, $pok, $px_ziduan, $pxv, $nowzu, $zd, $sys_id_login,$re_id,$sys_adddate,$ShaiXuanSql,$ShaiXuanSql_other,$sys_shenpi,$sys_shenpi_all,$sys_chaosong;
 
 	$pok = intval( $pok );
-	//echo $const_q_fanwei;
 	
 	if ( '1' . $TableName <> '1' ) {
 		//------------------------------------------[分类]
@@ -82,8 +81,6 @@ function sql_search($TableName, $sql, $nowkeyword, $huis=0) { //在$dTableName(�
         if ($ShaiXuanSql.'1' != '1'){ $sql .= " and $ShaiXuanSql "; };
 		//------------------------------------------[更多字段]
         if ($ShaiXuanSql_other.'1' != '1'){	$sql .= " $ShaiXuanSql_other"; };
-		//------------------------------------------[部门]
-		//if ( $sys_id_bumen>0 ) { $sql .= " and sys_id_bumen='$sys_id_bumen'"; };
 		//------------------------------------------[编制人]
 		//if ( $sys_id_login > 0) { $sql .= " and sys_id_login='$sys_id_login' "; };
 		//------------------------------------------[审核人]
@@ -103,13 +100,13 @@ function sql_search($TableName, $sql, $nowkeyword, $huis=0) { //在$dTableName(�
 		if ( $sys_adddate != '' and $sys_adddate != '0') {	$sql .= " and  $sys_adddate"; };
 		
 		//------------------------------------------[权限]
-		if ( $const_q_fanwei == 0) { //权限为个人时
+		if ( $sys_q_fanwei == 0) { //权限为个人时
 			$sql .= " and (sys_id_login='$bh' ) ";
-		}else if ( $const_q_fanwei == 1) { //部门
-			$sql .= " and sys_id_bumen='$const_id_bumen'  ";//
-		}else if ( $const_q_fanwei == 2) { //分公司
-			$sql .= " and sys_id_fz='$const_id_fz'  ";//sys_shenpi_all='1' or 
-		}else if ( $const_q_fanwei == 3) { //总公司
+		}else if ( $sys_q_fanwei == 1) { //部门
+			$sql .= " and bumen_id='$bumen_id'  ";//
+		}else if ( $sys_q_fanwei == 2) { //分公司
+			$sql .= " and sys_id_fz='$sys_id_fz'  ";//sys_shenpi_all='1' or 
+		}else if ( $sys_q_fanwei == 3) { //总公司
 			$sql = $sql;
 		}
 	}

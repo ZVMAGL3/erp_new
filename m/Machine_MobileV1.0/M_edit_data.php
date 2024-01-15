@@ -5,14 +5,15 @@ include_once '../../inc/B_conn.php';
 include_once '../../inc/B_connadmin.php';
 //接收参数开始
 
-$act =$id=$Tablename=$zdname==$InputType=$thisvale='' ;
+$act =$id=$Tablename=$zdname=$InputType=$thisvale='' ;
 //echo $databiao;
 //========================================================================================================================接收数据
-if ( isset( $_POST[ 'act' ] ) )          $act = htmlspecialchars( $_POST[ 'act' ] );                                   //act
-if ( isset( $_POST[ 'id' ] ) )           $id = htmlspecialchars( trim( $_POST[ 'id' ] ) );                         //修改id
-if ( isset( $_POST[ 'Tablename' ] ) )    $Tablename = htmlspecialchars( trim( $_POST[ 'Tablename' ] ) );             //表名
-if ( isset( $_POST[ 'zdname' ] ) )       $zdname = htmlspecialchars( trim( $_POST[ 'zdname' ] ) );                //字段名
-if ( isset( $_POST[ 'sql' ] ) )     			$sql = $_POST[ 'sql' ] ;                             					//字段值
+if ( isset( $_POST[ 'act' ] ) )          	$act = htmlspecialchars( $_POST[ 'act' ] );                                   //act
+if ( isset( $_POST[ 'id' ] ) )           	$id = htmlspecialchars( trim( $_POST[ 'id' ] ) );                         //修改id
+if ( isset( $_POST[ 'Tablename' ] ) )    	$Tablename = htmlspecialchars( trim( $_POST[ 'Tablename' ] ) );             //表名
+if ( isset( $_POST[ 'zdname' ] ) )       	$zdname = htmlspecialchars( trim( $_POST[ 'zdname' ] ) );                //字段名
+if ( isset( $_POST[ 'sql' ] ) )     		$sql = $_POST[ 'sql' ] ;                             					//字段值
+if ( isset( $_POST[ 'thisvale' ] ) )     	$thisvale = $_POST[ 'thisvale' ] ;                             					//字段值
 
 switch ( $act ) {
 	case 'edit_Connadmin': //-------------------------------- B_moban_edit.php编辑记录
@@ -33,10 +34,10 @@ switch ( $act ) {
 
 //[ok]=========================================================================================修改记录
 function edit_Connadmin() {
-	global $Connadmin,$const_id_login,$thisvale,$Tablename,$zdname;
-	if ( $const_id_login > 0 ) { //有id时执行修改
-		$sql = "UPDATE `$Tablename`  set $zdname='$thisvale'  where const_id_login='$const_id_login'"; //更新SQL
-		echo $sql;
+	global $Connadmin,$id,$thisvale,$Tablename,$zdname;
+	if ( $id > 0 ) { //有id时执行修改
+		$sql = "UPDATE `$Tablename`  set $zdname='$thisvale'  where id='$id'"; //更新SQL
+		// echo $sql;
 		mysqli_query( $Connadmin , $sql ); //执行更新
         mysqli_close( $Connadmin ); //关闭数据库
 		//---------------------------更新云端注册信息

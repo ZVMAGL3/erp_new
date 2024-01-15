@@ -53,7 +53,7 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		$nowdata = date( 'Y-m-d H:i:s' );       //当前时间
 		
 		//--------------------------------------以下为得交数据
-		$sql = "insert into  `msc_RenZhengMoBan`  (sys_title,sys_hangye,sys_name,sys_file,sys_beizhu,sys_Id_MenuBigClass,sys_id_zu,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values ('$sys_title','$sys_hangye','$sys_name','$sys_file','$sys_beizhu','$sys_Id_MenuBigClass','$sys_id_zu','$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
+		$sql = "insert into  `msc_RenZhengMoBan`  (sys_title,sys_hangye,sys_name,sys_file,sys_beizhu,sys_Id_MenuBigClass,sys_id_zu,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values ('$sys_title','$sys_hangye','$sys_name','$sys_file','$sys_beizhu','$sys_Id_MenuBigClass','$sys_id_zu','$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$bumen_id','$nowdata')";
 		mysqli_query( $Connadmin,$sql );
 		echo "<script></script>";
 		//--------------------------------------以下为查询数据

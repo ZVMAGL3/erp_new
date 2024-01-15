@@ -38,8 +38,8 @@
 		$state="";
 		$SYS_GongHao="";
 		$zhiwei_id="";
-		$add_time="";
-		$new_time="";
+		$add_time="CURRENT_TIMESTAMP";
+		$new_time="CURRENT_TIMESTAMP";
 		$Remark="";
 
 };

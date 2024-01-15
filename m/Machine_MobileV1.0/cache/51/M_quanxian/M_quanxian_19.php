@@ -2,7 +2,7 @@
 include_once "{$_SERVER['PATH_TRANSLATED']}/session.php";
 $const_q_zu='技术部主管';
 $const_id_fz='96';
-$const_id_bumen='49';
+$bumen_id='49';
 $const_bumenname='技术部';
 $const_q_fanwei='216_2,272_2,280_1,494_1,497_1,388_1,223_3,501_3,502_3,204_3,506_1,504_1,505_1,507_1,508_1,509_3,495_3,321_3';
 $const_q_tianj='494,497,280,388,223,501,495,502,204,321,506,504,505,507,508,509';

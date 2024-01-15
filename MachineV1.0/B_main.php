@@ -1,28 +1,13 @@
 <?php
 //header( 'Content-type: text/html; charset=utf-8' ); //设定本页编码
 include_once '../session.php';
-include_once './B_quanxian.php';
+include_once './cache/B_quanxian/B_quanxian.php';
 include_once '../inc/Function_All.php';
 include_once '../inc/B_Config.php'; //执行接收参数及配置
 include_once '../inc/B_conn.php';
 include_once '../inc/B_connadmin.php';
 if($_SESSION['logged_in']){
 echo "<script>var arrProxy = [];</script>";
-// $query = "
-// SELECT table_name
-// FROM information_schema.columns
-// WHERE column_name = 'sys_yfzuid' AND table_schema = 'botelerp';
-// ";
-// $queryResult = $db_vip->query($query);
-// while ($table_name = mysqli_fetch_assoc($queryResult['result'])['table_name'])
-// {
-// 	$query = "
-// 		UPDATE $table_name
-// 		SET sys_yfzuid = '51'
-// 		WHERE sys_yfzuid = 9007;
-// 	";
-// 	$res = $db_vip->query($query);
-// }
 
 if ( isset( $_SESSION[ 'reg_name' ] ) ) { //公司名称
     $reg_name = $_SESSION[ 'reg_name' ];
@@ -30,7 +15,7 @@ if ( isset( $_SESSION[ 'reg_name' ] ) ) { //公司名称
         if ( $_REQUEST[ 'reg_name' ] . '1' != '1' )$reg_name = $_REQUEST[ 'reg_name' ];
     }
 }
-$nowloginxinxi = "&nbsp;&nbsp;&nbsp;&nbsp;用户：{$reg_name}> {$const_bumenname}({$const_id_bumen}) >{$const_q_zu}({$SYS_QuanXian})>{$SYS_UserName}({$bh})";
+$nowloginxinxi = "&nbsp;&nbsp;&nbsp;&nbsp;用户：{$reg_name}> {$bumen_name}({$bumen_id}) >{$sys_q_zu}({$SYS_QuanXian})>{$SYS_UserName}({$bh})";
 //$SYS_QuanXian="";
 echo $nowloginxinxi;
 if ( $SYS_QuanXian . '1' == '1' ) {
@@ -43,7 +28,7 @@ $query =  "select Menu_Id_List,Menu_checd_Id From sys_top_menu where sys_yfzuid=
 // echo $query.$hy.$bh;
 $params = array($hy,$bh);
 $queryResult = $db_vip->query($query, $params);
-if ($queryResult['error'] == null) {
+if ($queryResult['error'] == null && $db_vip -> numRows($queryResult['result']) != 0) {
 	$result = mysqli_fetch_assoc($queryResult['result']);
     $Menu_Id_List = $result[ 'Menu_Id_List' ]; //查询到需显示的菜单清单
     $Menu_checd_Id = $result[ 'Menu_checd_Id' ]; //当前活动的菜单
@@ -118,8 +103,7 @@ $Use_SyS_Div = 'DeskMenuDiv' . $Menu_checd_Id; //使用哪层DIV
 	//find_cache('3',$Htmlcacheall);
 	?>
 </div>
-    
-    
+
 <div id='main_left_div'>
     <h1><img src='images/logo.png' alt=''/></h1>
     <h2>S.Q.P</h2>
@@ -263,7 +247,7 @@ $Use_SyS_Div = 'DeskMenuDiv' . $Menu_checd_Id; //使用哪层DIV
 		nowHtml+="<div class='head' id='"+ToHtmlID+"_head'>"
 				+"<li>"
 					+'<input type="hidden" id="sys_const_company_id" value="'+<?php echo $hy ?>+'"/>'     //公司id   51
-					+'<input type="hidden" id="sys_const_id_bumen" value="0"/>'                                       //公司部门 id
+					+'<input type="hidden" id="sys_bumen_id" value="0"/>'                                       //公司部门 id
 					+'<input type="hidden" id="sys_const_hy" value="'+<?php echo $hy ?>+'"/>'                         //公司     9007
 					+'<input type="hidden" id="sys_const_bh" value=""/>'                                              //编制人     id
 					+'<input type="hidden" id="sys_const_shenpi" value=""/>'                                          //审核人     id

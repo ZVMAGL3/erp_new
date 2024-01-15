@@ -29,8 +29,8 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
             //echo"可以添加";
             $sql = $rs = '';
             $nowdata = date( 'Y-m-d H:i:s' );
-            $sys_postzd_list = "$colsname,bumen,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate"; //加上系统默认值
-            $sys_postvalue_list = "'$name','$bumen','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata'";
+            $sys_postzd_list = "$colsname,bumen,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,bumen_id,sys_adddate"; //加上系统默认值
+            $sys_postvalue_list = "'$name','$bumen','0','$bh','$SYS_UserName','$hy','$sys_id_fz','$bumen_id','$nowdata'";
             //echo $sys_postvalue_list;
             //--------------------------------------以下为执行添加
             $sql = "insert into `$tablename` ($sys_postzd_list) values ($sys_postvalue_list)";
@@ -90,7 +90,7 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
             <ul style='height:15px;width:100%;'>
                 <li style='width:98%'></li>
             </ul>
-            <?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+            <?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
             <ul>
                 <li class='cols01'> &nbsp;</li>
                 <li class='cols02'>

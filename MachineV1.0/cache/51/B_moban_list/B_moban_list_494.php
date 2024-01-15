@@ -14,7 +14,7 @@ global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_zidua
 	$const_shaixuan="";
 	$SYS_ALL_ziduan_list="id,sys_nowbh,ZhiWu,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all,sys_adddate";
 	$xianshi_ZD_num="10";
-	$xianshi_KD_num="2080";
+	$xianshi_KD_num="1895";
 	$shuoding_num="4";
 	$maxrecord="50";
 	$FormattingXianShi_idlist="1,24,23,15,25,2,20,22";
@@ -33,7 +33,7 @@ global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_zidua
 if ( "1" . $databiao == "1" ) {
    echo nonelist();
 } else {
-   $Tablecol_list="sys_nowbh,ZhiWu,id,sys_id_login,sys_login,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_bumen,sys_web_shenpi,sys_adddate_g,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all,sys_adddate,sys_chaosong,sys_paixu,sys_gx_id_529";
+   $Tablecol_list="sys_nowbh,ZhiWu,id,sys_id_login,sys_login,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_bumen,sys_web_shenpi,sys_adddate_g,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all,sys_adddate,sys_chaosong,sys_paixu";
 
    $sql2 = "select (@rownum:=@rownum+1) as rownum,SQP_QingJiaDiaoXiuJiaBanWaiChuDan.id  from `SQP_QingJiaDiaoXiuJiaBanWaiChuDan`,(select @rownum:=0) as SQP_QingJiaDiaoXiuJiaBanWaiChuDan where  sys_yfzuid='$hy' and sys_huis='$huis' "; //这里得到查询id清单的sql
    if($sys_guanxibiao_id != '' && $GuanXi_id != ""){$sql2 .=" and  sys_gx_id_{$sys_guanxibiao_id}='{$GuanXi_id}'";}
@@ -48,7 +48,7 @@ if ( "1" . $databiao == "1" ) {
       $sql = "select  id,sys_nowbh,ZhiWu,ZD_ShenQingRen,sys_id_zu,ZD_ShenQingShiJian,ShiYou,ZD_BeiZhu,sys_shenpi,sys_shenpi_all,sys_adddate  from `SQP_QingJiaDiaoXiuJiaBanWaiChuDan` where id in($sql_all_id_list) and sys_yfzuid='$hy' and sys_huis='$huis'";
       $sql .= " order by $px_ziduan $pxv";
       $rs = mysqli_query( $Conn, $sql );
-      echo( "<div id='para'  tabindex='-1' class='tables'  style='border:0;border-bottom:1px solid #CCC;min-width:100%;width: 2080px'>" );
+      echo( "<div id='para'  tabindex='-1' class='tables'  style='border:0;border-bottom:1px solid #CCC;min-width:100%;width:1895'>" );
 
 	      $i = 0;
 	      while ( $row = mysqli_fetch_array( $rs ) ) {
@@ -65,7 +65,7 @@ if ( "1" . $databiao == "1" ) {
 	                echo( "  onDblclick=edit_data(this,'$now_id','$ToHtmlID','$hy')");
 				}
 			//}
-			echo( "  style='height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px;min-width:100%;width:2080px'> " );
+			echo( "  style='height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px;min-width:100%;'> " );
 			echo( "<li class='cols1 shuodingli'  title='$now_id'  style='height:" . $r_cow_height . "px;line-height:" . $r_cow_height . "px;text-align:center;'></li>" );
 	
 	

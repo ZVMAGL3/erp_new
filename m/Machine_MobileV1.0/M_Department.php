@@ -34,27 +34,14 @@ include_once 'M_Department_Set.php';           //连上参数设定
         <input type='text'  name='keyword' id='keyword'  placeholder="<?php echo $textsname ?>" class='addboxinput inputfocus'  value='<?php echo $nowkeyword ?>'    onkeydown="if(event.keyCode == 13){return false;}" />
         <tm class='right' onclick='SearchGet("list","0","<?php echo $phpstart ?>")'><i class='fa fa-search2'></i></tm>
     </div>
-    <!--  编辑菜单头部  
-    <div class="topedit_menu">
-        <ul>
-            <li><a href="#">
-                <tm class='left'  onClick="#">全选</tm>
-                <tm class='right' onclick="#">退出编辑</tm>
-                </a></li>
-        </ul>
-    </div>
-    ！--> 
-    <!--  右边设定菜单 头部  ！-->
     <div class="rightmenu">
         <ul>
-            <li><a href="#"  onClick="editmore()">
-                <tm>01</tm>
-                批量编辑<font class="hui"> . Batch Edit</font></a></li>
-            <!-- 
-            <li><a href="#">
-                <tm>02</tm>
-                表单设计<font class="hui"> . Table Design</font></a></li>
-            !-->
+            <li>
+                <a href="#"  onClick="editmore()">
+                    <tm>01</tm>
+                    批量编辑<font class="hui"> . Batch Edit</font>
+                </a>
+            </li>
             <li><a href="<?php echo $phpstart ?>_huis.php">
                 <tm>03</tm>
                 回收站<font class="hui"> . Recycle Bin</font> </a></li>

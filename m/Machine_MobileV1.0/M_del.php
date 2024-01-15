@@ -28,9 +28,9 @@ if ($act=='Del_To_Huis' and $id >''){
 };
 //[ok]============================================================================批量 删除到回收站
 function dels(){
-    global $Conn,$id,$const_q_shanc,$re_id,$DELtablename,$tablename,$colsname,$textsname,$phpstart;//得到全局变量
+    global $Conn,$id,$sys_q_shanc,$re_id,$DELtablename,$tablename,$colsname,$textsname,$phpstart;//得到全局变量
     $str2=$rs=$sql=$i='';
-    if ($const_q_shanc>-1){//有删除权限
+    if ($sys_q_shanc>-1){//有删除权限
        $str2=explode(',',$id);//字符串转为数组
        $countArry=count($str2);
        for ($i=0 ;$i< $countArry;$i++){
@@ -43,10 +43,10 @@ function dels(){
 };
 //[ok]============================================================================批量 回收数据
 function dels_huis(){
-   global $Conn,$id,$const_q_huis,$re_id,$DELtablename,$tablename,$colsname,$textsname,$phpstart;//得到全局变量
+   global $Conn,$id,$sys_q_huis,$re_id,$DELtablename,$tablename,$colsname,$textsname,$phpstart;//得到全局变量
    //echo("$re_id'_'$DELtablename'_'$id");
    $str2=$rs=$sql=$i='';
-   if ($const_q_huis>-1){//有回收权限
+   if ($sys_q_huis>-1){//有回收权限
        $str2=explode(',',$id);//字符串转为数组
        $countArry=count($str2);
        for ($i=0 ;$i< $countArry;$i++){
@@ -60,12 +60,12 @@ function dels_huis(){
 
 //[ok]============================================================================彻底删除数据
 function dels_true(){
-   global $Conn,$id,$const_q_shanc,$re_id,$DELtablename,$tablename,$colsname,$textsname,$phpstart;//得到全局变量
+   global $Conn,$id,$sys_q_shanc,$re_id,$DELtablename,$tablename,$colsname,$textsname,$phpstart;//得到全局变量
    $str2=$rs=$sql=$i='';
    $str2=explode(',',$id);
    $countArry=count($str2);
     //echo $id;
-   if ($const_q_xiug > -1){//有删除权限
+   if ($sys_q_xiug > -1){//有删除权限
       for ($i=0 ;$i< $countArry;$i++){
          $sql='delete  From '.$DELtablename.' where id='.trim($str2[$i]);
           //echo $sql;

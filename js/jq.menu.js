@@ -99,7 +99,7 @@ function PostAddTopMenu(nowre_id,fieldsname){
   //if (fieldsname!=''||fieldsname!='undefined'){
 	// alert(nowre_id+"_"+fieldsname);
 	$.post("moban_set_data.php",{act:'TopsMenu',re_id:nowre_id,fieldsname:fieldsname},function(data){
-		// console.log(data);
+		console.log(data);
 		//$.post('B_moban_top.php', {act: "list",re_id: 0});//更新缓存
 	});
 	//};

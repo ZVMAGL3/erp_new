@@ -116,9 +116,9 @@ mysqli_close( $Conn ); //关闭数据库
 //mysqli_close( $Connadmin ); //关闭云数据库
 //[ok]======================================================================================================基本设定
 function jbsd() {
-    global $Conn, $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $const_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $const_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $const_id_fz, $SYS_QuanXian, $const_id_bumen, $const_q_tianj, $const_q_xiug, $const_q_shanc, $const_q_cak, $const_q_dayin, $const_q_huis, $const_q_seid, $const_q_dian, $const_q_shenghe, $const_q_pizhun, $const_q_zu, $All_XT_ZiDuan, $const_q_disabled, $const_id_login; //全局变量
+    global $Conn, $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $sys_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $sys_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $sys_id_fz, $SYS_QuanXian, $bumen_id, $sys_q_tianj, $sys_q_xiug, $sys_q_shanc, $sys_q_cak, $sys_q_dayin, $sys_q_huis, $sys_q_seid, $sys_q_dian, $sys_q_shenghe, $sys_q_pizhun, $sys_q_zu, $All_XT_ZiDuan, $sys_q_disabled, $sys_id_login; //全局变量
 
-    if ( $const_id_login != 1 ) { //无权限时
+    if ( $sys_id_login != 1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
     if ( $re_id <> 0 ) {
@@ -149,24 +149,24 @@ function jbsd() {
         $now_change = "Pinyin_Table(this,'$ToHtmlID')";
 
         echo( "<div id='bbsTabntq' class='NowULTable' style='text-align:right;width:600px;padding-top:16px;' tit='" . $All_XT_ZiDuan . "'>" );
-        echo( "<ul><li class='w20'>表名:</li><li class='w80'><input type='text' name='sys_card' id='sys_card' class='addboxinput inputfocus' value='" . $nowcard . "' tit='" . $nowcard . "' Y_ziduan='" . $databiao_SYS_nows . "' onchange=" . $now_change . " $const_q_disabled /> </li></ul>" );
+        echo( "<ul><li class='w20'>表名:</li><li class='w80'><input type='text' name='sys_card' id='sys_card' class='addboxinput inputfocus' value='" . $nowcard . "' tit='" . $nowcard . "' Y_ziduan='" . $databiao_SYS_nows . "' onchange=" . $now_change . " $sys_q_disabled /> </li></ul>" );
         $now_change = '"' . "edit_table_col_js(this,this.type,'Sys_jlmb','id','" . $re_id . "',this.name,'','addbox','$ToHtmlID','pc')" . '"';
-        echo( "<ul><li class='w20'>条款:</li><li class='w80'><input type='text' name='startdate' id='startdate' class='addboxinput inputfocus' value='$nowstartdate' tit='$nowstartdate' onkeyup=$now_change onchange=" . "List_Head_Get('$ToHtmlID')" . " $const_q_disabled/> </li></ul>" );
+        echo( "<ul><li class='w20'>条款:</li><li class='w80'><input type='text' name='startdate' id='startdate' class='addboxinput inputfocus' value='$nowstartdate' tit='$nowstartdate' onkeyup=$now_change onchange=" . "List_Head_Get('$ToHtmlID')" . " $sys_q_disabled/> </li></ul>" );
 
-        echo( "<ul><li class='w20'>字头:</li><li class='w80'><input type='text' name='sys_zt' id='sys_zt' class='addboxinput inputfocus' value='" . $nowzt . "' tit='" . $nowzt . "' onkeyup=" . $now_change . " onchange=" . "List_Head_Get('$ToHtmlID')" . " $const_q_disabled/> </li></ul>" );
+        echo( "<ul><li class='w20'>字头:</li><li class='w80'><input type='text' name='sys_zt' id='sys_zt' class='addboxinput inputfocus' value='" . $nowzt . "' tit='" . $nowzt . "' onkeyup=" . $now_change . " onchange=" . "List_Head_Get('$ToHtmlID')" . " $sys_q_disabled/> </li></ul>" );
 
-        echo( "<ul><li class='w20'>起始编号:</li><li class='w80'><input type='text' name='sys_zt_bianhao' id='sys_zt_bianhao' class='addboxinput inputfocus' value='" . $nowbh . "' tit='" . $nowbh . "' onkeyup=" . $now_change . " onchange=" . "List_Head_Get('$ToHtmlID')" . " $const_q_disabled/> </li></ul>" );
+        echo( "<ul><li class='w20'>起始编号:</li><li class='w80'><input type='text' name='sys_zt_bianhao' id='sys_zt_bianhao' class='addboxinput inputfocus' value='" . $nowbh . "' tit='" . $nowbh . "' onkeyup=" . $now_change . " onchange=" . "List_Head_Get('$ToHtmlID')" . " $sys_q_disabled/> </li></ul>" );
 
-        echo( "<ul><li class='w20'>行高:</li><li class='w80'><input type='text' name='ul_row_height' id='ul_row_height' class='addboxinput inputfocus' value='" . $nowrow_height . "' tit='" . $nowzt . "' onchange=" . $now_change . " $const_q_disabled/> </li></ul>" );
+        echo( "<ul><li class='w20'>行高:</li><li class='w80'><input type='text' name='ul_row_height' id='ul_row_height' class='addboxinput inputfocus' value='" . $nowrow_height . "' tit='" . $nowzt . "' onchange=" . $now_change . " $sys_q_disabled/> </li></ul>" );
 
-        echo( "<ul><li class='w20'>开启分类:</li><li><label><input name='fenlei_K_G' type='radio' id='fenlei_K_G_0' value='0' onclick=" . $now_change . " checked='checked' $const_q_disabled/>&nbsp;开启&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><label><input name='fenlei_K_G' type='radio' id='fenlei_K_G_1' onclick=" . $now_change . "  value='1' $const_q_disabled/>&nbsp;关闭</label><script>radiochecek('fenlei_K_G','$fenlei_K_G','$ToHtmlID')</script> </li></ul>" );
+        echo( "<ul><li class='w20'>开启分类:</li><li><label><input name='fenlei_K_G' type='radio' id='fenlei_K_G_0' value='0' onclick=" . $now_change . " checked='checked' $sys_q_disabled/>&nbsp;开启&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><label><input name='fenlei_K_G' type='radio' id='fenlei_K_G_1' onclick=" . $now_change . "  value='1' $sys_q_disabled/>&nbsp;关闭</label><script>radiochecek('fenlei_K_G','$fenlei_K_G','$ToHtmlID')</script> </li></ul>" );
         echo( "<ul><li class='w20'>使用数据表:</li>" );
         echo( "<li>" );
 
         if ( '1' . $databiao_SYS_nows != '1' ) { //当没有初始化时
-            //echo( " $const_q_disabled>&nbsp;原表未初始化，&nbsp;点此[ 初始化 ]" );
+            //echo( " $sys_q_disabled>&nbsp;原表未初始化，&nbsp;点此[ 初始化 ]" );
             //} else {
-            echo( "$const_q_disabled>&nbsp;表&nbsp;[ $databiao_SYS_nows ]" );
+            echo( "$sys_q_disabled>&nbsp;表&nbsp;[ $databiao_SYS_nows ]" );
         };
 
         echo( '</li></ul>' );
@@ -174,7 +174,7 @@ function jbsd() {
 
         //echo ("<ul><li class='w20'>页显示数:</li><li><input type='text' name='Mtiaoshu' id='Mtiaoshu' class='addboxinput inputfocus' value='".$Nowmaxrecord."' tit='".$Nowmaxrecord."' onkeyup=".$now_change." onchange=""List_Head_Get('$ToHtmlID')""/> </li></ul>");
 
-        echo( "<ul><li class='w20'>每页显示数:</li><li><select name='Mtiaoshu'  onchange=" . $now_change . " class='addboxinput inputfocus' style='width:120px;' $const_q_disabled>" ); //ListGet('".$ToHtmlID."');
+        echo( "<ul><li class='w20'>每页显示数:</li><li><select name='Mtiaoshu'  onchange=" . $now_change . " class='addboxinput inputfocus' style='width:120px;' $sys_q_disabled>" ); //ListGet('".$ToHtmlID."');
         echo( "<option  value='10' " );
         if ( $Nowmaxrecord == 10 )echo( 'selected' );
         echo( '>10条</option>' );
@@ -205,7 +205,7 @@ function jbsd() {
 
         echo( '</select></li></ul>' );
 
-        echo( "<ul><li class='w20'>版式选择:</li><li><select name='sys_banshi'  onchange=" . $now_change . " class='addboxinput inputfocus' style='width:120px;' $const_q_disabled>" ); //ListGet('".$ToHtmlID."');
+        echo( "<ul><li class='w20'>版式选择:</li><li><select name='sys_banshi'  onchange=" . $now_change . " class='addboxinput inputfocus' style='width:120px;' $sys_q_disabled>" ); //ListGet('".$ToHtmlID."');
         echo( "<option  value='1' " );
         if ( $sys_banshi == 1 )echo( 'selected' );
         echo( '>01 数据表格</option>' );
@@ -229,9 +229,9 @@ function jbsd() {
 //[ok]======================================================================================================流程
 
 // function moban_set_liucheng() {
-//     global $Conn, $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $const_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $const_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $const_id_fz, $SYS_QuanXian, $const_id_bumen, $const_q_tianj, $const_q_xiug, $const_q_shanc, $const_q_cak, $const_q_dayin, $const_q_huis, $const_q_seid, $const_q_dian, $const_q_shenghe, $const_q_pizhun, $const_q_zu, $All_XT_ZiDuan, $const_q_disabled, $const_id_login; //全局变量
+//     global $Conn, $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $sys_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $sys_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $sys_id_fz, $SYS_QuanXian, $bumen_id, $sys_q_tianj, $sys_q_xiug, $sys_q_shanc, $sys_q_cak, $sys_q_dayin, $sys_q_huis, $sys_q_seid, $sys_q_dian, $sys_q_shenghe, $sys_q_pizhun, $sys_q_zu, $All_XT_ZiDuan, $sys_q_disabled, $sys_id_login; //全局变量
 
-//     if ( $const_id_login != 1 ) { //无权限时
+//     if ( $sys_id_login != 1 ) { //无权限时
 //         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
 //     }
 //     if ( $re_id <> 0 ) {
@@ -709,9 +709,9 @@ function error_json($error,$db_vip = null)
 }
 //[ok]======================================================================================================权限管理
 function moban_set_quanxian() {
-    global $Conn, $Connadmin, $hy, $re_id, $ToHtmlID, $SYS_QuanXian, $const_q_seid, $All_XT_ZiDuan,$const_id_login; //全局变量
+    global $Conn, $Connadmin, $hy, $re_id, $ToHtmlID, $SYS_QuanXian, $sys_q_seid, $All_XT_ZiDuan,$sys_id_login; //全局变量
 
-    if ( $const_id_login != 1 or $const_q_seid == -1 ) { //无权限时
+    if ( $sys_id_login != 1 or $sys_q_seid == -1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
     if ( $re_id <> 0 ) {
@@ -869,7 +869,7 @@ function moban_set_quanxian() {
                 $checked = "";
             };
             echo "<li $listyle><label><input name=\"sys_q_seid\" onchange=\"$onchange\" type=\"checkbox\" $checked value=\"{$id}\" bumenid=\"{$id}\" at=\"{$re_id}\"></label></li>";
-            if ( $const_id_login == 1 ) {
+            if ( $sys_id_login == 1 ) {
                 echo "<li $listyle  bumenid=\"{$id}\" re_id=\"{$re_id}\" onclick='thistripnt_hengxiang(this)'>横选</li>";
             } else {
                 echo "<li $listyle  bumenid=\"{$id}\" re_id=\"{$re_id}\" ><font color='#CCC'>横选</font></li>";
@@ -883,9 +883,9 @@ function moban_set_quanxian() {
 };
 //[ok]======================================================================================================利益公司
 function moban_set_Liyi() {
-    global $Conn, $Connadmin, $re_id, $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $const_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $const_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $const_id_fz, $SYS_QuanXian, $const_id_bumen, $const_q_tianj, $const_q_xiug, $const_q_shanc, $const_q_cak, $const_q_dayin, $const_q_huis, $const_q_seid, $const_q_dian, $const_q_shenghe, $const_q_pizhun, $const_q_zu, $All_XT_ZiDuan, $const_q_disabled, $const_id_login; //全局变量
+    global $Conn, $Connadmin, $re_id, $reg_name, $reg_database, $reg_banben, $regid, $hy, $bh, $re_id, $ToHtmlID, $big_id, $sys_jlbhzt, $maxrecord, $nowlockd, $nowgsbh, $sys_zcxh, $nowzzzt, $userjib, $SYS_UserName, $nowbianhao, $sys_id_fz, $SYS_QuanXian, $bumen_id, $sys_q_tianj, $sys_q_xiug, $sys_q_shanc, $sys_q_cak, $sys_q_dayin, $sys_q_huis, $sys_q_seid, $sys_q_dian, $sys_q_shenghe, $sys_q_pizhun, $sys_q_zu, $All_XT_ZiDuan, $sys_q_disabled, $sys_id_login; //全局变量
     //echo $re_id;
-    if ( $const_id_login != 1 or $const_q_seid == -1 ) { //无权限时
+    if ( $sys_id_login != 1 or $sys_q_seid == -1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
     if ( $re_id > 0 ) {
@@ -1234,11 +1234,11 @@ function moban_set_Liyi() {
 }
 //【ok】======================================================================================================表单设计字段
 function ZiDuanList() {
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $databiao, $const_id_login, $All_XT_ZiDuan, $Axt_m_ziduan_hidden, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled, $const_q_seid; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $databiao, $sys_id_login, $All_XT_ZiDuan, $Axt_m_ziduan_hidden, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled, $sys_q_seid; //得到全局变量
     //echo "</br><br>".$databiao;
     //echo $re_id;
     $sheet = ChangeConn( $databiao ); //依据表自动选择数据库
-    if ( $const_id_login != 1 ) { //无权限时
+    if ( $sys_id_login != 1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
 
@@ -1305,9 +1305,9 @@ function ZiDuanList() {
 
                 if ( $getN_XTZD >= 0 ) { //为系统字段时
                     $zd_cn_name = textN( $xt_m_ziduan_Name, $getN_XTZD, ',' );
-                    $const_q_disabled = " disabled ";
+                    $sys_q_disabled = " disabled ";
                 } else {
-                    $const_q_disabled = "";
+                    $sys_q_disabled = "";
                 }
                 if ( $zd_xianshi_height_is == 1 ) { //允许修改高度时
                     $displayer = " style='display:block;' ";
@@ -1344,7 +1344,7 @@ function ZiDuanList() {
                     $moveul = "moveul";
                 }
                 if ( SYS_is( $zd_en_name, 'sys_gx_id_' ) == 1 || SYS_is( $zd_en_name, 'sys_count_' ) == 1 ) {
-                    $const_q_disabled = " disabled ";
+                    $sys_q_disabled = " disabled ";
                 }
                 if ( getN( $Axt_m_ziduan_hidden, strtolower( $zd_en_name ) ) < 0 ) { //隐藏系统字段
 
@@ -1353,7 +1353,7 @@ function ZiDuanList() {
                     echo( "<li class='cols1 nocopytext' style='width:25px;vertical-align: middle;' title='$zd_en_name'>$zhujian</li>" );
 
                     //-------------------------------------------------------------------【字段名称】
-                    echo( "<li style='width:220px;'><input name='zd_cn_name' type='text' style='width:97%'onchange=\"Pinyin_ziduan(this,'$ToHtmlID')\" nothis='nothis'  value='$zd_cn_name' tit='$zd_cn_name' Y_ziduan='$zd_en_name' class='pu' $const_q_disabled ></li>" );
+                    echo( "<li style='width:220px;'><input name='zd_cn_name' type='text' style='width:97%'onchange=\"Pinyin_ziduan(this,'$ToHtmlID')\" nothis='nothis'  value='$zd_cn_name' tit='$zd_cn_name' Y_ziduan='$zd_en_name' class='pu' $sys_q_disabled ></li>" );
                     //echo( "<li style='width:120px;'>{$zd_en_name}</li>" );
                     //-------------------------------------------------------------------【显示宽度】
                     $now_change = "\"ziduan_beizhu_edit(this,'$databiao','$zd_en_name','$ToHtmlID')\"";
@@ -1368,7 +1368,7 @@ function ZiDuanList() {
                     if ( SYS_is( $zd_en_name, 'sys_gx_id_' ) == 1 ) {
                         echo( "<li style='width:70px;'  class='center'><input name='qx_bitian' nothis='nothis' type='checkbox'  value='" . $XSbitian . "' Y_ziduan='$zd_en_name'  onclick=" . $now_change . " " . $nowchecked . " ></li>" );
                     } else {
-                        echo( "<li style='width:70px;'  class='center'><input name='qx_bitian' nothis='nothis' type='checkbox'  value='" . $XSbitian . "' Y_ziduan='$zd_en_name'  onclick=" . $now_change . " " . $nowchecked . " $const_q_disabled></li>" );
+                        echo( "<li style='width:70px;'  class='center'><input name='qx_bitian' nothis='nothis' type='checkbox'  value='" . $XSbitian . "' Y_ziduan='$zd_en_name'  onclick=" . $now_change . " " . $nowchecked . " $sys_q_disabled></li>" );
                     }
 
 
@@ -1378,12 +1378,12 @@ function ZiDuanList() {
                     } else {
                         $nowchecked = '';
                     }
-                    echo( "<li style='width:70px;'  class='center hui5'><input name='qx_wuchongfu' nothis='nothis' type='checkbox'  value='" . $WuChongFu . "' Y_ziduan='$zd_en_name'  onclick=" . $now_change . " " . $nowchecked . " $const_q_disabled></li>" );
+                    echo( "<li style='width:70px;'  class='center hui5'><input name='qx_wuchongfu' nothis='nothis' type='checkbox'  value='" . $WuChongFu . "' Y_ziduan='$zd_en_name'  onclick=" . $now_change . " " . $nowchecked . " $sys_q_disabled></li>" );
 
                     //-------------------------------------------------------------------【显示样式】
                     if ( $XStype == ''
                         or $XStype == '0' )$XStype = 1; //选中时执行
-                    echo( "<li style='width:130px;' ><select name='XStype' type='select' Y_ziduan='$zd_en_name'  onchange={$now_change} $const_q_disabled>" ); //ListGet('".$ToHtmlID."');
+                    echo( "<li style='width:130px;' ><select name='XStype' type='select' Y_ziduan='$zd_en_name'  onchange={$now_change} $sys_q_disabled>" ); //ListGet('".$ToHtmlID."');
                     //echo( ">" );
                     $sql2 = "select * From  `msc_inputtype` where shengpi='1' order by id asc"; //查询到对应记录
                     $rs2 = mysqli_query( $Connadmin, $sql2 );
@@ -1399,14 +1399,14 @@ function ZiDuanList() {
                     mysqli_free_result( $rs2 ); //释放内存
                     echo( "</select></li>" );
                     //-------------------------------------------------------------------【默认值】
-                    echo( "<li style='width:170px;'  class='center hui5'><input name='zd_Default' nothis='nothis' type='text' value='$zd_Default' Y_ziduan='$zd_en_name' onchange=" . $now_change . " $const_q_disabled></li>" );
+                    echo( "<li style='width:170px;'  class='center hui5'><input name='zd_Default' nothis='nothis' type='text' value='$zd_Default' Y_ziduan='$zd_en_name' onchange=" . $now_change . " $sys_q_disabled></li>" );
 
 
                     //-------------------------------------------------------------------【显示高度】
                     echo( "<li style='width:100px;' class='center'><input name='zd_xianshi_height' maxlength='4' oninput = \"value=value.replace(/[^\d]/g,'')\"  nothis='nothis' type='text' value='$zd_xianshi_height' Y_ziduan='$zd_en_name'  onchange=$now_change  $displayer></li>" );
                     //-------------------------------------------------------------------【删除按钮】
 
-                    if ( $const_q_seid >= 0 and $getN_XTZD >= 0 or $const_id_login != 1 or SYS_is( $zd_en_name, 'sys_gx_id_' ) == 1 or SYS_is( $zd_en_name, 'sys_count_' ) == 1 ) {
+                    if ( $sys_q_seid >= 0 and $getN_XTZD >= 0 or $sys_id_login != 1 or SYS_is( $zd_en_name, 'sys_gx_id_' ) == 1 or SYS_is( $zd_en_name, 'sys_count_' ) == 1 ) {
 
                         echo "<li class='center hui5 SeAttianjia SeAtxiugai del' style='width:50px;'  title='不能删除'><i class='fa fa-del-mini_h'></i></li>";
                     } else {
@@ -1423,7 +1423,7 @@ function ZiDuanList() {
             }
         };
         mysqli_free_result( $rs ); //释放内存
-        if ( $const_id_login == 1 ) {
+        if ( $sys_id_login == 1 ) {
             echo( "<ul class='ulbg hoverthis nocopytext'><li class='cols1' style='width:25px;vertical-align: middle;'>*</li><li style='width:220px;' onclick='addquxianul(this)'><i class='fa fa-add'></i>添加</li></ul>" ); //添加处
         };
 
@@ -1438,10 +1438,10 @@ function ZiDuanList() {
 }
 //===================================================================================【显示权限】
 function xianshiquanxian() { //表单权限
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $const_id_login, $databiao, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $sys_id_login, $databiao, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled; //得到全局变量
     //echo "</br><br>";
     $Conn = ChangeConn( $databiao ); //依据表自动选择数据库
-    if ( $const_id_login != 1 ) { //无权限时
+    if ( $sys_id_login != 1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
     $SeAot = '';
@@ -1504,9 +1504,9 @@ function xianshiquanxian() { //表单权限
 
                 if ( $getN_XTZD >= 0 ) { //为系统字段时
                     $zd_cn_name = textN( $xt_m_ziduan_Name, $getN_XTZD, ',' );
-                    $const_q_disabled = " disabled ";
+                    $sys_q_disabled = " disabled ";
                 } else {
-                    $const_q_disabled = "";
+                    $sys_q_disabled = "";
                 }
 
                 $zd_cn_name = SysChangeName( $zd_cn_name, $databiao ); //变更系统设定名
@@ -1544,7 +1544,7 @@ function xianshiquanxian() { //表单权限
 
                     //-------------------------------------------------------------------【字段名称】
                     if ( $getN_XTZD >= 0 ) {
-                        echo( "<li style='width:220px;'><input name='zd_cn_name' type='text'  nothis='nothis'  value='$zd_cn_name' tit='$zd_cn_name' Y_ziduan='$zd_en_name' class='pu'  readonly='readonly' $const_q_disabled style='width:97%:'></li>" );
+                        echo( "<li style='width:220px;'><input name='zd_cn_name' type='text'  nothis='nothis'  value='$zd_cn_name' tit='$zd_cn_name' Y_ziduan='$zd_en_name' class='pu'  readonly='readonly' $sys_q_disabled style='width:97%:'></li>" );
                     } else {
                         echo( "<li style='width:220px;color:#666;'>&nbsp;{$zd_cn_name}</li>" );
                     }
@@ -1585,7 +1585,7 @@ function xianshiquanxian() { //表单权限
                         echo( "<li style='width:90px;' class='center hui'><input name='qx_tianjia' nothis='nothis' type='checkbox'  value='$now_tianjia'  onclick=" . $now_change . " " . $nowchecked . " ></li>" );
                     } else {
 
-                        echo( "<li style='width:90px;' class='center hui'><input name='qx_tianjia' nothis='nothis' type='checkbox'  value='$now_tianjia'  onclick=" . $now_change . " " . $nowchecked . "$const_q_disabled></li>" );
+                        echo( "<li style='width:90px;' class='center hui'><input name='qx_tianjia' nothis='nothis' type='checkbox'  value='$now_tianjia'  onclick=" . $now_change . " " . $nowchecked . "$sys_q_disabled></li>" );
                     }
 
                     //-------------------------------------------------------------------【修改】
@@ -1599,7 +1599,7 @@ function xianshiquanxian() { //表单权限
                     } else if ( SYS_is( $zd_en_name, 'sys_gx_id_' ) == 1 or SYS_is( $zd_en_name, 'sys_count_' ) == 1 ) {
                         echo( "<li style='width:90px;' class='center'><input name='now_xiugai' nothis='nothis' type='checkbox'  value='$now_xiugai'  onclick=" . $now_change . " " . $nowchecked . " disabled></li>" );
                     } else {
-                        echo( "<li style='width:90px;' class='center'><input name='now_xiugai' nothis='nothis' type='checkbox'  value='$now_xiugai'  onclick=" . $now_change . " " . $nowchecked . "$const_q_disabled></li>" );
+                        echo( "<li style='width:90px;' class='center'><input name='now_xiugai' nothis='nothis' type='checkbox'  value='$now_xiugai'  onclick=" . $now_change . " " . $nowchecked . "$sys_q_disabled></li>" );
                     }
 
                     //-------------------------------------------------------------------【百度列】
@@ -1613,7 +1613,7 @@ function xianshiquanxian() { //表单权限
                     } else if ( SYS_is( $zd_en_name, 'sys_gx_id_' ) == 1 or SYS_is( $zd_en_name, 'sys_count_' ) == 1 ) {
                         echo( "<li style='width:90px;' class='center hui'><input name='now_baidu' nothis='nothis' type='checkbox'  value='$now_baidu'  onclick=" . $now_change . " " . $nowchecked . " disabled></li>" );
                     } else {
-                        echo( "<li style='width:90px;' class='center hui'><input name='now_baidu' nothis='nothis' type='checkbox'  value='$now_baidu'  onclick=" . $now_change . " " . $nowchecked . "$const_q_disabled></li>" );
+                        echo( "<li style='width:90px;' class='center hui'><input name='now_baidu' nothis='nothis' type='checkbox'  value='$now_baidu'  onclick=" . $now_change . " " . $nowchecked . "$sys_q_disabled></li>" );
                     }
                     //-------------------------------------------------------------------【空白列】
                     echo( "<li style='width:180px;' >" );
@@ -1652,11 +1652,11 @@ function xianshiquanxian() { //表单权限
 //===================================================================================【模版选择】
 function moban_check() { //模版选择
 
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $const_id_login, $databiao, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $sys_id_login, $databiao, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled; //得到全局变量
     //echo "</br><br>";
     $databiao = 'msc_renzhengmoban';
     $Conn = ChangeConn( $databiao ); //依据表自动选择数据库
-    if ( $const_id_login != 1 ) { //无权限时
+    if ( $sys_id_login != 1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
     $SeAot = '';
@@ -1743,7 +1743,7 @@ function moban_check() { //模版选择
 }; //function end
 //===================================================================================【显示分页】
 function xianshifenye() {
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $user_id, $databiao, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $user_id, $databiao, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled; //得到全局变量
     //echo "</br><br>";
     $sheet = ChangeConn( $databiao ); //依据表自动选择数据库
     if ( $user_id != 1 ) { //无权限时
@@ -1866,10 +1866,10 @@ function xianshifenye() {
 }; //function end
 //===================================================================================【关系添加】
 function GuanXiadd() {
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $databiao, $const_id_login, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $databiao, $sys_id_login, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled; //得到全局变量
     //$Conn=ChangeConn($databiao);    //依据表自动选择数据库
     //echo "</br><br>";
-    if ( $const_id_login != 1 ) { //无权限时
+    if ( $sys_id_login != 1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
     $sql = "select * From `sys_jlmb` where id='$re_id'  and sys_huis=0";
@@ -1950,10 +1950,10 @@ function GuanXiadd() {
 }; //function end
 //===================================================================================【关系】
 function GuanXi() {
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $databiao, $const_id_login, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled, $data_use; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $databiao, $sys_id_login, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled, $data_use; //得到全局变量
     //$Conn=ChangeConn($databiao);    //依据表自动选择数据库
     //echo "</br><br>";
-    if ( $const_id_login != 1 ) { //无权限时
+    if ( $sys_id_login != 1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
 
@@ -2131,7 +2131,7 @@ function GuanXi() {
     }
     mysqli_free_result( $rs ); //释放内存
     //---------------------------------------------------------------------【竖向添加按钮】
-    if ( $const_id_login == 1 ) {
+    if ( $sys_id_login == 1 ) {
         echo( "<div class='GuanXiTable adddiv' style='width:300px'>" );
         echo( "<ul class='addboxmenu' onclick=\"guanxiaddmenu(this,'" . $ToHtmlID . "')\">" );
         echo( "<li class='col1'>✚</li>" );
@@ -2235,7 +2235,7 @@ function GuanXi_ZiDuan_Heng( $databiao, $sys_GuanXiZDList = '', $ziduanTo = 'zid
 }; //function end
 //===================================================================================【关系解除】
 function GuanXi_Del() {
-    //global $Conn,$Connadmin, $hy, $ToHtmlID, $const_id_login, $re_id; //得到全局变量
+    //global $Conn,$Connadmin, $hy, $ToHtmlID, $sys_id_login, $re_id; //得到全局变量
 
     if ( isset( $_POST[ 'id' ] ) ) {
         $id = $_POST[ 'id' ];
@@ -2302,7 +2302,7 @@ function GuanXi_Del() {
 }; //function end
 //===================================================================================【关系】
 function GuanXi_ZiDuanChange( $databiaoENname = '', $nowid_guanxi_col = '' ) {
-    //global $Conn,$Connadmin, $hy, $ToHtmlID, $const_id_login, $re_id; //得到全局变量
+    //global $Conn,$Connadmin, $hy, $ToHtmlID, $sys_id_login, $re_id; //得到全局变量
     global $xt_m_ziduan;
     if ( isset( $_POST[ 'nowid_guanxi_col' ] ) ) {
         $nowid_guanxi_col = $_POST[ 'nowid_guanxi_col' ];
@@ -2358,7 +2358,7 @@ function GuanXi_ZiDuanChange( $databiaoENname = '', $nowid_guanxi_col = '' ) {
 }; //function end
 //===================================================================================【关系表添加与修改】
 function GuanXi_TableNameChange_POST() {
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $const_id_login, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $sys_id_login, $Axt_m_ziduan_hidden, $All_XT_ZiDuan, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled; //得到全局变量
     //echo "</br><br>";
     $id = $databiao = '';
 
@@ -2386,12 +2386,12 @@ function GuanXi_TableNameChange_POST() {
         //echo $id;
     } else if ( $id == '' ) { //$id为空添加
         //echo "新增了";
-        global $re_id, $hy, $bh, $const_id_login, $SYS_UserName, $const_id_fz, $const_id_bumen, $Conn;
+        global $re_id, $hy, $bh, $sys_id_login, $SYS_UserName, $sys_id_fz, $bumen_id, $Conn;
         $sys_nowid_guanxi_col = 'sys_gx_id_' . $re_id;
 
         //--------------------------------------执行添加
-        $sys_postzd_list = "`sys_re_id_02`,`sys_nowid_guanxi_col`,`sys_re_id`,`sys_huis`,`sys_id_login`,`sys_login`,`sys_yfzuid`,`sys_id_fz`,`sys_id_bumen`";
-        $sys_postvalue_list = "'$re_id_02','$sys_nowid_guanxi_col','$re_id','0','$const_id_login','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen'";
+        $sys_postzd_list = "`sys_re_id_02`,`sys_nowid_guanxi_col`,`sys_re_id`,`sys_huis`,`sys_id_login`,`sys_login`,`sys_yfzuid`,`sys_id_fz`,`bumen_id`";
+        $sys_postvalue_list = "'$re_id_02','$sys_nowid_guanxi_col','$re_id','0','$sys_id_login','$SYS_UserName','$hy','$sys_id_fz','$bumen_id'";
         // echo $sys_postvalue_list;
         $now_add_id = ADD_Col_id( 'sys_guanxibiao', $sys_postzd_list, $sys_postvalue_list ); //查询添加的id
         if ( $now_add_id == '' ) {
@@ -2413,7 +2413,7 @@ function GuanXi_TableNameChange_POST() {
 }; //function end
 //===================================================================================【关系表添加与修改】
 function GuanXi_ZiDuanChange_POST() {
-    global $Conn, $Connadmin, $hy, $ToHtmlID, $const_id_login, $re_id; //得到全局变量
+    global $Conn, $Connadmin, $hy, $ToHtmlID, $sys_id_login, $re_id; //得到全局变量
     $id = $databiao = '';
     if ( isset( $_POST[ 'id' ] ) ) {
         $id = htmlspecialchars( $_POST[ 'id' ] );
@@ -2429,7 +2429,7 @@ function GuanXi_ZiDuanChange_POST() {
 }; //function end
 //===================================================================================【关系表添加与修改】横向
 function GuanXi_ZiDuanChange_Hengxiang_POST() {
-    global $Conn, $hy, $ToHtmlID, $const_id_login, $re_id; //得到全局变量
+    global $Conn, $hy, $ToHtmlID, $sys_id_login, $re_id; //得到全局变量
     $id = $databiao = '';
     if ( isset( $_POST[ 'id' ] ) ) {
         $id = htmlspecialchars( $_POST[ 'id' ] );
@@ -2448,9 +2448,9 @@ function GuanXi_ZiDuanChange_Hengxiang_POST() {
 }; //function end
 //【ok】======================================================================================================顶级清单、分类
 function bigmenu() {
-    global $hy, $ToHtmlID, $databiao, $const_id_login, $All_XT_ZiDuan, $Axt_m_ziduan_hidden, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $const_q_disabled, $const_q_seid; //得到全局变量
+    global $hy, $ToHtmlID, $databiao, $sys_id_login, $All_XT_ZiDuan, $Axt_m_ziduan_hidden, $xt_m_ziduan, $xt_m_ziduan_Name, $r_cow_height, $re_id, $sys_q_disabled, $sys_q_seid; //得到全局变量
     //echo "</br><br>";
-    if ( $const_id_login != 1 ) { //无权限时
+    if ( $sys_id_login != 1 ) { //无权限时
         echo "<script>$('#{$ToHtmlID}_content_foot input,#{$ToHtmlID}_content_foot select').attr('disabled',true);</script>";
     }
     $Conn = ChangeConn( $databiao ); //依据表自动选择数据库
@@ -2462,10 +2462,10 @@ function bigmenu() {
 //};
 //======================================================================================================//图片库加载
 function picget() {
-    global $databiao,$const_q_cak,$Conn;
+    global $databiao,$sys_q_cak,$Conn;
     if ( '1' . $databiao == '1' ) {
         echo( '没有数据表' );
-    } elseif ( $const_q_cak < 0 ) {
+    } elseif ( $sys_q_cak < 0 ) {
         echo( '没有权限' );
     } else {
         $rs = $sql = $nowrscount = $nowleixin = $nowphoto_name = $nowphotosrc = '';
@@ -2494,7 +2494,7 @@ function picget() {
 }
 //======================================================================================================//显示页面的前端关系控制返回
 function GuanXi_Back() {
-    global $Conn, $hy, $ToHtmlID, $const_id_login, $re_id; //得到全局变量
+    global $Conn, $hy, $ToHtmlID, $sys_id_login, $re_id; //得到全局变量
 
     //----------------------------------------------------------接收参数
 
@@ -2519,7 +2519,7 @@ function GuanXi_Back() {
 }
 //======================================================================================================//关系id对应的值 返回前端
 function GetPage_Back() {
-    global $Conn, $hy, $ToHtmlID, $const_id_login, $re_id; //得到全局变量
+    global $Conn, $hy, $ToHtmlID, $sys_id_login, $re_id; //得到全局变量
 
     //----------------------------------------------------------接收参数关系id
     if ( isset( $_REQUEST[ 'GuanXi_id' ] ) ) {

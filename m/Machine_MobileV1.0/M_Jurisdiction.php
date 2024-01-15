@@ -28,7 +28,7 @@ include_once 'M_Jurisdiction_Set.php';             //连上参数设定
         <?php
             }
         ?>        
-        <em class="eleft"><?php echo $textsname ?></em> <a href="#" onclick="$('#wrapper .rightmenu').toggle(300)" class="siteMap"></a><a href="#" onClick="SearchToggle(this)" class="search"></a> <a href="<?php echo $phpstart ?>_add.php" class="add"></a> </div>
+        <em class="eleft"><?php echo $textsname ?></em> <a href="#" onclick="$('#wrapper .rightmenu').toggle(300)" class="siteMap"></a><a href="#" onClick="SearchToggle(this)" class="search"></a> <a href="M_Jurisdiction_edit.php?id=0" class="add"></a> </div>
     <div class="topsearchmenu">
         <tm class='left'  onClick="SearchToggle(this)"><i class='fa fa-19-3'></i></tm>
         <input type='text'  name='keyword' id='keyword'  placeholder="<?php echo $textsname ?>" class='addboxinput inputfocus'  value='<?php echo $nowkeyword ?>'    onkeydown="if(event.keyCode == 13){return false;}" />

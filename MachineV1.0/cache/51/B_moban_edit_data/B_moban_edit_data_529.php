@@ -12,8 +12,9 @@
 		    echo "<script>UpdatePhp_Zw($SYS_QuanXian);</script>";
 		}
 	
-		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_Connadmin.php";
-		global $strmk_id,$Connadmin,$const_q_xiug,$const_id_login,$bh,$hy,$SYS_UserName,$const_id_fz,$const_id_bumen;
+		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_conn.php";
+		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_connadmin.php";
+		global $strmk_id,$const_q_xiug,$const_id_login,$bh,$hy,$SYS_UserName,$const_id_fz,$const_id_bumen;
 		
 		
 if ( $const_q_xiug >= 0 ) { //有修改权限时

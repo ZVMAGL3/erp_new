@@ -44,7 +44,7 @@ if (function_exists($act)) {
 };
 //======================================================================================================设定为使用原数据表
 function edit_ajax() { //修改单独表中指定字段的值
-	global $re_id,$Conn,$bh,$SYS_UserName,$hy,$const_id_fz,$const_id_bumen;
+	global $re_id,$Conn,$bh,$SYS_UserName,$hy,$sys_id_fz,$bumen_id;
 	
 	if ( isset( $_POST[ 'Table_Name' ] ) )$Table_Name = $_POST[ 'Table_Name' ] ;
 	if ( isset( $_POST[ 'zdname' ] ) )$zdname = $_POST[ 'zdname' ] ;
@@ -59,8 +59,8 @@ function edit_ajax() { //修改单独表中指定字段的值
 
 	}else{          //添加
 		//echo $Table_Name,$zdname,$nowvalue;
-		$sys_postzd_list = "$zdname,sys_const_re_id,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate"; //加上系统默认值
-	    $sys_postvalue_list = "'$nowvalue','$re_id','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdate'";
+		$sys_postzd_list = "$zdname,sys_const_re_id,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,bumen_id,sys_adddate"; //加上系统默认值
+	    $sys_postvalue_list = "'$nowvalue','$re_id','0','$bh','$SYS_UserName','$hy','$sys_id_fz','$bumen_id','$nowdate'";
 	    //echo $sys_postvalue_list;
 	    //--------------------------------------以下为执行添加
 	    $sql = "insert into `$Table_Name` ($sys_postzd_list) values ($sys_postvalue_list)";
@@ -180,7 +180,7 @@ function ziduan_lx_edit() {
 };
 //======================================================================================================密码修改
 function MimaXG() {
-	global $Connadmin, $const_id_login, $hy; //得到全局变量
+	global $Connadmin, $sys_id_login, $hy; //得到全局变量
 	$ymima = $Xmima = $Xmima2 = '';
 	if ( isset( $_POST[ 'ymima' ] ) )$ymima = trim( $_POST[ 'ymima' ] );
 	if ( isset( $_POST[ 'Xmima' ] ) )$Xmima = trim( $_POST[ 'Xmima' ] );
@@ -189,7 +189,7 @@ function MimaXG() {
 		and $Xmima <> ''
 		and $Xmima2 <> ''
 		and $Xmima == $Xmima2 ) { //三个不为空
-		$sql = "select * From `msc_user_reg` where (id='$const_id_login' and sys_yfzuid='$hy')";
+		$sql = "select * From `msc_user_reg` where (id='$sys_id_login' and sys_yfzuid='$hy')";
 		$rs = mysqli_query(  $Connadmin , $sql );
 		$row = mysqli_fetch_array( $rs );
 		if ( !$row ) {
@@ -270,7 +270,7 @@ function daohangmenu() { //修改单独表中指定字段的值，及添加值 /
 ////*************************************************表处理*************************************////
 //[ok]======================================================================================================添加修改质量记录清单
 function Table_Edit_Jlmb() {
-	global $Conn, $hy, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen; //得到全局变量
+	global $Conn, $hy, $bh, $SYS_UserName, $sys_id_fz, $bumen_id; //得到全局变量
 	$fieldsname = $fieldsnamePY = $newfieldsname = $newfieldsnamePY = ''; 
 	$nowbigid = 0;
 	if ( isset( $_POST[ 'Tsid' ] ) )$nowTsid = intval( $_POST[ 'Tsid' ] );                       //记录清单id
@@ -743,7 +743,7 @@ function Edit_ZWquanxian_Update_new() { //职权更新
 }
 //[ok]======================================================================================================头部导航Menu添加修改
 function TopsMenu() {
-	global $Conn, $re_id, $hy, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen; //得到全局变量
+	global $db_vip, $re_id, $hy, $bh; //得到全局变量
 	$fieldsname = $nowrsnovalue = '';
 	if ( isset( $_POST[ 'fieldsname' ] ) )$fieldsname = $_POST[ 'fieldsname' ]; //得到表名  员工档案
 	if ( isset( $_POST[ 're_id' ] ) )$re_id = $_POST[ 're_id' ]; //得到re_id  204
@@ -752,11 +752,10 @@ function TopsMenu() {
 	//查询到头部标签是否有
 	$sys_postvalue = trim( $re_id . '_' . $fieldsname, ',' ); //得到标签组合
 	$sql = "select * from sys_top_menu where sys_yfzuid='$hy' and sys_id_login='$bh'  ";
-	$rs = mysqli_query(  $Conn , $sql );
-	$row = mysqli_fetch_array( $rs );
-	$count_rows = mysqli_num_rows( $rs ); //得到总数
-	$Menu_Id_List = trim( $row[ 'Menu_Id_List' ], ',' ); //查询到所有标签
-	
+	$rs = $db_vip -> query($sql);
+	$row = mysqli_fetch_array( $rs['result'] );
+	$count_rows = $db_vip -> numRows( $rs['result'] ); //得到总数
+	echo $re_id;
 	if ( $count_rows == 0 ) { //没有数据时便添加一条记录
 		if ( $re_id == 0 ) { //为桌面选定时
 			Jilu_add_Modular( 'sys_top_menu', 'Menu_checd_Id', $re_id); //添加一条
@@ -766,6 +765,7 @@ function TopsMenu() {
 			Jilu_add_Modular( 'sys_top_menu', $sys_postzd01, $sys_postvalue01); //添加一条
 		};
 	} else { //执行更新
+		$Menu_Id_List = trim( $row[ 'Menu_Id_List' ], ',' ); //查询到所有标签
 		Jilu_update_Modular( 'sys_top_menu', "`sys_id_login`='$bh'", 'Menu_checd_Id', $re_id ); //设定显示列
 		if ( $re_id > 0 ) { //为其它标签时
 			if ( getN_TWOFH($Menu_Id_List, $re_id ,',','_') < 0 ) { //当没有时，添加标签
@@ -774,8 +774,6 @@ function TopsMenu() {
 			}
 		}
 	}
-	mysqli_free_result( $rs ); //释放内存
-    
 }
 //[ok]======================================================================================================头部导航Menu删除
 function Top_Menu_Del() {
@@ -889,7 +887,7 @@ function YanZhenChongFu() {
 };
 //[ok]=========================================================================================添加记录
 function add() {
-	global $Conn, $databiao, $hy,  $now_xianshi, $sys_postvalue_list, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen,$re_id; //得到全局变量
+	global $Conn, $databiao, $hy,  $now_xianshi, $sys_postvalue_list, $bh, $SYS_UserName, $sys_id_fz, $bumen_id,$re_id; //得到全局变量
 	$rs = $sql = $sys_postzd_list = $i = $sys_post_ADD_value_list  = $Ubound_postzd_list = $nowdates = $now_xianshi_value = '';
 	$r_zt='GK';
 	$r_zt_bianhao='1';
@@ -938,7 +936,7 @@ function add() {
 };
 //[ok]=========================================================================================修改记录
 function edit() {
-	global $Conn, $databiao, $hy, $now_xianshi, $sys_postvalue_list, $bh, $SYS_UserName, $const_id_fz, $const_id_bumen,$re_id; //得到全局变量
+	global $Conn, $databiao, $hy, $now_xianshi, $sys_postvalue_list, $bh, $SYS_UserName, $sys_id_fz, $bumen_id,$re_id; //得到全局变量
 	
 	$strmk_id = $rs = $sql = $sys_postzd_list = $i = $sys_post_ADD_value_list  = $Ubound_postzd_list = $nowdates = $now_xianshi_value = '';
 	if ( isset( $_POST[ 'strmk_id' ] ) ) {

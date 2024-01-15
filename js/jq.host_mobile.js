@@ -993,7 +993,7 @@ function add_edit_mobile(ths, postpage, act, urlpage) {
             url: postpage,
             data: xserializeArray,
             success: function (data) {
-                // alert(data);
+                alert(data);
                 var nowsss = $(ths).parent().find("#SYS_lianxu:checked").size(); //得到是否选中连续提交
                 if (data == '添加成功！' || data == '修改成功！') {
                     // alert(urlpage);
@@ -1006,7 +1006,7 @@ function add_edit_mobile(ths, postpage, act, urlpage) {
                     }
 
                 } else {
-                    alert("有错误:" + data);
+                    console.log("有错误:" + data);
                 }
             },
             error: function () {
@@ -1329,7 +1329,7 @@ function Del_Renming(act, ths, posturlpage, id, zhiwei_id) {
         zhiwei_id: zhiwei_id
     }, function (data) {
         Get_ZWqiandan_one('list_renmen_one', ths, posturlpage, id, zhiwei_id); //得到单个人的职位清单
-        // console.log(data);
+        console.log(data);
         //$(ths).after(data);
     });
 }
@@ -1404,7 +1404,7 @@ function quanxian_mobile(ths, act, id, parent_id) {
         id: id,
         parent_id: parent_id
     }, function (data) {
-        //alert(data);
+        console.log(data);
         $('.quanxiandiv_parent').remove();
         $(ths).after(data);
         var thss = $(ths).find('.quanxiandiv_parent li');

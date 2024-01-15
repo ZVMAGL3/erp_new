@@ -29,8 +29,8 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
             //echo"可以添加";
             $sql = $rs = '';
             $nowdata = date( 'Y-m-d H:i:s' );
-            $sys_postzd_list = "$colsname,bumen,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate"; //加上系统默认值
-            $sys_postvalue_list = "'$name','$bumen','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata'";
+            $sys_postzd_list = "$colsname,bumen,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,bumen_id,sys_adddate"; //加上系统默认值
+            $sys_postvalue_list = "'$name','$bumen','0','$bh','$SYS_UserName','$hy','$sys_id_fz','$bumen_id','$nowdata'";
             //echo $sys_postvalue_list;
             //--------------------------------------以下为执行添加
             $sql = "insert into `$tablename` ($sys_postzd_list) values ($sys_postvalue_list)";
@@ -57,13 +57,13 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
 
 <body>
 <div id="wrapper">
-    <div id="header"> <a href="<?php echo $phpstart ?>.php?id=<?php echo $id ?>" class="home"></a> <em class="eleft"><?php echo $textsname ?> 添加</em> <a href="#" class="siteMap"></a> </div>
-    <form autocomplete='off' οnsubmit='return false' οnkeydοwn="if(event.keyCode==13){return false;}">
+    <div id="header"> <a href="<?php echo $phpstart ?>.php" class="home"></a> <em class="eleft"><?php echo $textsname ?> 添加</em> <a href="#" class="siteMap"></a> </div>
+    <form autocomplete='off' onsubmit='return false' onkeydown="if(event.keyCode==13){return false;}">
         <div id='mobanaddbox' class='NowULTable nocopytext' >
             <ul>
                 <li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;<font color='red'>[重]</font>&nbsp;<?php echo $textsname ?>名称:</li>
                 <li class='cols02'>
-                    <input type='text' typeid='1' name='name' id='name' class='addboxinput inputfocus'  value='<?php echo $name ?>' onkeydown="if(event.keyCode == 13){return false;}" />
+                    <input type='text' typeid='1' name='name' id='name' class='addboxinput inputfocus'  value='' onkeydown="if(event.keyCode == 13){return false;}" />
                     <div class='cols03 font_red yanzheng' id='name_bitian'></div>
                 </li>
             </ul>
@@ -78,7 +78,7 @@ if ( $act == 'add_mobile' ) { //当接收到处理指令时
             <ul style='height:15px;width:100%;'>
                 <li style='width:98%'></li>
             </ul>
-            <?php if ( $const_q_tianj >= 0 ) { //有添加权限时 ?>
+            <?php if ( $sys_q_tianj >= 0 ) { //有添加权限时 ?>
             <ul>
                 <li class='cols01'> &nbsp;</li>
                 <li class='cols02'>

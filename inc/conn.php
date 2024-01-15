@@ -106,6 +106,23 @@
 		 * 使用该方法开始一个数据库事务。在事务中的所有数据库操作要么全部成功提交，要么全部失败回滚。
 		 */
 		public function beginTransaction() {
+			// $filePath = $_SERVER['DOCUMENT_ROOT'].'/test.txt';
+			// // 读取文件中的整数值
+			// $currentValue = intval(@file_get_contents($filePath));
+			// echo $currentValue;
+			// if ($currentValue === false) {
+			// 	// 文件读取错误
+			// 	die('Error reading file.');
+			// }
+
+			// // 将值加一
+			// $newValue = $currentValue + 1;
+
+			// // 将新值写回文件
+			// if (@file_put_contents($filePath, $newValue) === false) {
+			// 	// 文件写入错误
+			// 	die('Error writing to file.');
+			// }
 			mysqli_begin_transaction($this->connection);
 		}
 

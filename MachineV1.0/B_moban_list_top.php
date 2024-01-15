@@ -37,12 +37,9 @@ if ( $re_id <> 0 ) {
 	//$shuoding_num = intval( $row[ 'shuoding_num' ] ); //锁定列数
 	
 	//echo $shuoding_num;
-	
-	$nowjlbhzt =$const_jlbhzt;//公司编号字头
-	if ( $nowjlbhzt <> '' )$nowjlbhzt = $nowjlbhzt . '-';
 	if ( $nowgsbh <> '' )$nowgsbh2 = $nowgsbh . '.';
 	
-	$wjbh= "<div class='wjbh' style='border:0;'><strong><font title='该记录文件编号' class='redfont' style='margin-top:-6px;line-height:12px;'>&nbsp;" . $nowgsbh2 . $nowjlbhzt . $re_id . $r_banben . "/" . $r_xiugaicishu . "&nbsp;</font><font style='color:#666'>" . $r_card . "&nbsp;" . $r_startdate . "</font></strong></div>";
+	$wjbh= "<div class='wjbh' style='border:0;'><strong><font title='该记录文件编号' class='redfont' style='margin-top:-6px;line-height:12px;'>&nbsp;" . $nowgsbh2 . $re_id . $r_banben . "/" . $r_xiugaicishu . "&nbsp;</font><font style='color:#666'>" . $r_card . "&nbsp;" . $r_startdate . "</font></strong></div>";
 };
 
 
@@ -125,7 +122,7 @@ function biaoqian() { //表头
 //==================================================================================================表头+文件编号
 function toplist() { //表头
 	$Htmlcache = $Htmlcache2 = '' ;
-	global $hy,$bh, $re_id, $sys_q_cak , $databiao, $databiao_SYS1,$const_q_shanc, $databiao_SYS, $xianshi_KD_num, $shuoding_num, $databiao1, $ToHtmlID, $scroll_left, $scroll_left, $const_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name,$SYS_UserName,$wjbh;
+	global $hy,$bh, $re_id, $sys_q_cak , $databiao, $databiao_SYS1,$sys_q_shanc, $databiao_SYS, $xianshi_KD_num, $shuoding_num, $databiao1, $ToHtmlID, $scroll_left, $scroll_left, $sys_q_cak, $xt_m_ziduan, $xt_m_ziduan_Name,$SYS_UserName,$wjbh;
 
 	// echo $sys_q_tianj . $re_id;
 	if ( !(getN( $sys_q_cak, $re_id ) >= 0) ) { //这个是当没有权限时执行
@@ -289,7 +286,7 @@ function toplist() { //表头
 			//document.'".$ToHtmlID."'.content.scrollLeft=".$scroll_left;
 		};
 		
-		if ( $databiao . '1' != '1'	and $const_q_shanc >= 0 ) { //没有权限时
+		if ( $databiao . '1' != '1'	and $sys_q_shanc >= 0 ) { //没有权限时
 			$Htmlcache.= "<script>$('#" . $ToHtmlID . " #chkall').eq(0).attr({'disabled':false,'title':''});</script>";
 		};
 		$Htmlcache2.= "<ul class='thead' style='width:$zd_xianshi_width_sum"."px'>" ;

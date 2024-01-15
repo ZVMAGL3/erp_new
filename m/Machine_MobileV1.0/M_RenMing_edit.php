@@ -9,7 +9,7 @@ include_once 'M_RenMing_Set.php'; //连上参数设定
 if ( isset( $_POST[ 'act' ] ) )$act = $_POST[ 'act' ]; //act
 if ( isset( $_REQUEST[ 'id' ] ) )$id = $_REQUEST[ 'id' ]; //id
 //echo($_POST[ 'data' ]);
-//echo "<br><br><br><br><br><br>".$const_q_zu;
+//echo "<br><br><br><br><br><br>".$sys_q_zu;
 if ( $act == 'edit_mobile' ) { //当接收到处理指令时
     //----------------------------------查询是否有重复值
     //echo $hy;

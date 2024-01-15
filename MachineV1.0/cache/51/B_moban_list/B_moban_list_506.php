@@ -12,7 +12,7 @@ global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_zidua
 	$r_cow_height="28";
 	$databiao="sys_GongZiBiao";
 	$const_shaixuan="";
-	$SYS_ALL_ziduan_list="id,sys_nowbh,ZD_XingMing,sys_id_bumen,ZD_JiBenGongZi,ZD_ZhiWuGongZi,ZD_NianDuJiaXin,ZD_ChuQinTianShu,ZD_GeRenSheBaoKouChu,ZD_JiaBanGongZi,ZD_ChuChaBuTie,ZD_XiangMuTiCheng,ZD_YeWuTiCheng,ZD_QingJiaTianShu,ZD_QingJiaKouChu,ZD_QuanQinJiang,ZD_GongSiSheBaoZhiChu,ZD_JiaBanFei,ZD_HuoShiBuTie,ZD_QiYouBuTie,ZD_DangYueShiFa,ZD_BeiZhu,ZD_SuoShuNianFen,ZD_SuoShuYueFen,sys_id_login,sys_shenpi_all";
+	$SYS_ALL_ziduan_list="id,sys_nowbh,ZD_XingMing,bumen_id,ZD_JiBenGongZi,ZD_ZhiWuGongZi,ZD_NianDuJiaXin,ZD_ChuQinTianShu,ZD_GeRenSheBaoKouChu,ZD_JiaBanGongZi,ZD_ChuChaBuTie,ZD_XiangMuTiCheng,ZD_YeWuTiCheng,ZD_QingJiaTianShu,ZD_QingJiaKouChu,ZD_QuanQinJiang,ZD_GongSiSheBaoZhiChu,ZD_JiaBanFei,ZD_HuoShiBuTie,ZD_QiYouBuTie,ZD_DangYueShiFa,ZD_BeiZhu,ZD_SuoShuNianFen,ZD_SuoShuYueFen,sys_id_login,sys_shenpi_all";
 	$xianshi_ZD_num="23";
 	$xianshi_KD_num="2438";
 	$shuoding_num="5";
@@ -33,7 +33,7 @@ global $const_q_cak,$ToHtmlID,$const_q_shanc,$const_q_xiug,$nowkeyword,$px_zidua
 if ( "1" . $databiao == "1" ) {
    echo nonelist();
 } else {
-   $Tablecol_list="id,sys_id_login,sys_login,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_nowbh,ZD_XingMing,sys_id_zu,sys_huis,sys_id_bumen,sys_shenpi,sys_web_shenpi,sys_adddate,sys_adddate_g,sys_shenpi_all,ZD_JiBenGongZi,ZD_ZhiWuGongZi,ZD_NianDuJiaXin,ZD_ChuQinTianShu,ZD_GeRenSheBaoKouChu,ZD_JiaBanGongZi,ZD_ChuChaBuTie,ZD_XiangMuTiCheng,ZD_YeWuTiCheng,ZD_QingJiaTianShu,ZD_QingJiaKouChu,ZD_QuanQinJiang,sys_gx_id_204,sys_chaosong,sys_paixu,ZD_GongSiSheBaoZhiChu,ZD_JiaBanFei,ZD_HuoShiBuTie,ZD_QiYouBuTie,ZD_DangYueShiFa,ZD_BeiZhu,ZD_JiFen,ZD_SuoShuNianFen,ZD_SuoShuYueFen";
+   $Tablecol_list="id,sys_id_login,sys_login,sys_id_fz,sys_yfzuid,sys_bh,sys_zt,sys_zt_bianhao,sys_nowbh,ZD_XingMing,sys_id_zu,sys_huis,bumen_id,sys_shenpi,sys_web_shenpi,sys_adddate,sys_adddate_g,sys_shenpi_all,ZD_JiBenGongZi,ZD_ZhiWuGongZi,ZD_NianDuJiaXin,ZD_ChuQinTianShu,ZD_GeRenSheBaoKouChu,ZD_JiaBanGongZi,ZD_ChuChaBuTie,ZD_XiangMuTiCheng,ZD_YeWuTiCheng,ZD_QingJiaTianShu,ZD_QingJiaKouChu,ZD_QuanQinJiang,sys_gx_id_204,sys_chaosong,sys_paixu,ZD_GongSiSheBaoZhiChu,ZD_JiaBanFei,ZD_HuoShiBuTie,ZD_QiYouBuTie,ZD_DangYueShiFa,ZD_BeiZhu,ZD_JiFen,ZD_SuoShuNianFen,ZD_SuoShuYueFen";
 
    $sql2 = "select (@rownum:=@rownum+1) as rownum,sys_GongZiBiao.id  from `sys_GongZiBiao`,(select @rownum:=0) as sys_GongZiBiao where  sys_yfzuid='$hy' and sys_huis='$huis' "; //这里得到查询id清单的sql
    if($sys_guanxibiao_id != '' && $GuanXi_id != ""){$sql2 .=" and  sys_gx_id_{$sys_guanxibiao_id}='{$GuanXi_id}'";}
@@ -45,7 +45,7 @@ if ( "1" . $databiao == "1" ) {
    if ( !$sql_all_id_list ) {
       echo( "<div class='nodata' tabindex='-1'><div class='nodata_center'><i class='fa fa-nodata' style='margin-top:-1px'></i>&nbsp; Sorry, No Data！</div></div>" );
    } else { 
-      $sql = "select  id,sys_nowbh,ZD_XingMing,sys_id_bumen,ZD_JiBenGongZi,ZD_ZhiWuGongZi,ZD_NianDuJiaXin,ZD_ChuQinTianShu,ZD_GeRenSheBaoKouChu,ZD_JiaBanGongZi,ZD_ChuChaBuTie,ZD_XiangMuTiCheng,ZD_YeWuTiCheng,ZD_QingJiaTianShu,ZD_QingJiaKouChu,ZD_QuanQinJiang,ZD_GongSiSheBaoZhiChu,ZD_JiaBanFei,ZD_HuoShiBuTie,ZD_QiYouBuTie,ZD_DangYueShiFa,ZD_BeiZhu,ZD_SuoShuNianFen,ZD_SuoShuYueFen,sys_id_login,sys_shenpi_all  from `sys_GongZiBiao` where id in($sql_all_id_list) and sys_yfzuid='$hy' and sys_huis='$huis'";
+      $sql = "select  id,sys_nowbh,ZD_XingMing,bumen_id,ZD_JiBenGongZi,ZD_ZhiWuGongZi,ZD_NianDuJiaXin,ZD_ChuQinTianShu,ZD_GeRenSheBaoKouChu,ZD_JiaBanGongZi,ZD_ChuChaBuTie,ZD_XiangMuTiCheng,ZD_YeWuTiCheng,ZD_QingJiaTianShu,ZD_QingJiaKouChu,ZD_QuanQinJiang,ZD_GongSiSheBaoZhiChu,ZD_JiaBanFei,ZD_HuoShiBuTie,ZD_QiYouBuTie,ZD_DangYueShiFa,ZD_BeiZhu,ZD_SuoShuNianFen,ZD_SuoShuYueFen,sys_id_login,sys_shenpi_all  from `sys_GongZiBiao` where id in($sql_all_id_list) and sys_yfzuid='$hy' and sys_huis='$huis'";
       $sql .= " order by $px_ziduan $pxv";
       $rs = mysqli_query( $Conn, $sql );
       echo( "<div id='para'  tabindex='-1' class='tables'  style='border:0;border-bottom:1px solid #CCC;min-width:100%;width: 2438px'>" );
@@ -73,7 +73,7 @@ if ( "1" . $databiao == "1" ) {
 	
               echo("<li id='c_tdtop1'  class='shuodingli   ET_sys_nowbh$now_id F_M_XS_1' ET='ET_sys_nowbh'  xstypeid='1' name='sys_nowbh' style='height:28px;line-height:28px;width:80px;'>".DeleteHtml($row['sys_nowbh'])."</li>");
               echo("<li  class='shuodingli   ET_ZD_XingMing$now_id F_M_XS_1' ET='ET_ZD_XingMing'  xstypeid='1' name='ZD_XingMing' style='height:28px;line-height:28px;width:50px;'>".DeleteHtml($row['ZD_XingMing'])."</li>");
-              echo("<li  class='shuodingli   ET_sys_id_bumen$now_id F_M_XS_1' ET='ET_sys_id_bumen'  xstypeid='1' name='sys_id_bumen' style='height:28px;line-height:28px;width:100px;'>".DeleteHtml($row['sys_id_bumen'])."</li>");
+              echo("<li  class='shuodingli   ET_bumen_id$now_id F_M_XS_1' ET='ET_bumen_id'  xstypeid='1' name='bumen_id' style='height:28px;line-height:28px;width:100px;'>".DeleteHtml($row['bumen_id'])."</li>");
               echo("<li  class='shuodingli   ET_ZD_SuoShuNianFen$now_id F_M_XS_1' ET='ET_ZD_SuoShuNianFen'  xstypeid='1' name='ZD_SuoShuNianFen' style='height:28px;line-height:28px;width:80px;'>".DeleteHtml($row['ZD_SuoShuNianFen'])."</li>");
               echo("<li  class='shuodingli  border_shuoding  ET_ZD_SuoShuYueFen$now_id F_M_XS_1' ET='ET_ZD_SuoShuYueFen'  xstypeid='1' name='ZD_SuoShuYueFen' style='height:28px;line-height:28px;width:80px;'>".DeleteHtml($row['ZD_SuoShuYueFen'])."</li>");
               echo("<li  class='contentli ET_ZD_JiBenGongZi$now_id F_M_XS_1' ET='ET_ZD_JiBenGongZi'  xstypeid='1' name='ZD_JiBenGongZi' style='height:28px;line-height:28px;width:70px;'>".DeleteHtml($row['ZD_JiBenGongZi'])."</li>");

@@ -65,7 +65,7 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		$sql = "insert into  `sys_yuangongdanganbiao`  (SYS_UserName,XingBie,SYS_GongHao,SYS_QuanXian,SYS_ShouJi,GongZi,ZD_GongZiFaFangZhangHu,SYS_ShenFenZheng,ZD_XianZhuDiZhi,QQ,SYS_Email,SYS_StartDate,SYS_EndDate,zzzt,ZD_HunYinZhuangTai,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values ('$SYS_UserName','$XingBie','$SYS_GongHao','$SYS_QuanXian','$SYS_ShouJi','$GongZi','$ZD_GongZiFaFangZhangHu','$SYS_ShenFenZheng','$ZD_XianZhuDiZhi','$QQ','$SYS_Email','$SYS_StartDate','$SYS_EndDate','$zzzt','$ZD_HunYinZhuangTai','$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
 		mysqli_query( $Conn,$sql );
 		echo "<script>sys_count('204','204','$sys_gx_id_204');</script>";
-        $nowid = mysqli_insert_id($Conn)
+        $nowid = mysqli_insert_id($Conn);
         //--------------------------------------以下为操作记录提交
         $sys_editcontent='首次建档;';
         if($sys_editcontent!=''){

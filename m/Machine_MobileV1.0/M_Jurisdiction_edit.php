@@ -1,6 +1,7 @@
 <?php
 include_once( '../../session.php' ); //接收session信息
 include_once '../../inc/B_connadmin.php'; //连上注册数据库
+include_once '../../inc/B_conn.php';
 include_once '../../inc/B_Config.php'; //执行接收参数及配置
 include_once( 'M_quanxian.php' ); //接收职位权限信息
 include_once 'M_Jurisdiction_Set.php'; //连上参数设定
@@ -10,7 +11,6 @@ include_once '../../inc/Function_All.php';
 
 if ( isset( $_POST[ 'act' ] ) )$act = $_POST[ 'act' ]; //act
 if ( isset( $_REQUEST[ 'id' ] ) )$id = $_REQUEST[ 'id' ]; //id
-
 if ( $act == 'edit_mobile' ) { //当接收到处理指令时
     //----------------------------------查询是否有重复值
     //echo $hy;
@@ -21,26 +21,27 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
     if ( isset( $_POST[ 'SYS_XingBie' ] ) )$SYS_XingBie = $_POST[ 'SYS_XingBie' ]; //性别
     if ( isset( $_POST[ 'sys_web_shenpi' ] ) )$state = $_POST[ 'sys_web_shenpi' ]; //是否允许登录
 
-    if ( $SYS_UserName . '1' == '1' ) {
-        echo "姓名，不能为空！";
+    if ( '1' . $SYS_UserName == '1' || '1' . $SYS_GongHao == '1' || '1' . $SYS_ShouJi == '1' ) {
+        echo "数据不能为空！";
     } else {
         $sql = $rs = $record_count = '';
-        $sql = "select id From msc_user_hy where SYS_GongHao = $SYS_GongHao and sys_yfzuid='$hy' and user_id <> $id";
+        $sql = "select id From msc_user_hy where (SYS_GongHao = $SYS_GongHao OR SYS_ShouJi = $SYS_ShouJi) and sys_yfzuid='$hy' and user_id <> $id";
         //echo $sql.'_'; 
         $rs = mysqli_query( $Connadmin, $sql );
         $record_count = mysqli_num_rows( $rs ); //统计总记录数
         mysqli_free_result( $rs ); //释放内存
 
         if ( $record_count > 0 ) { //有重复值时
-            echo "已有工号\"" . $SYS_GongHao . "\",禁止修改。";
+            echo "已有工号\手机号,禁止修改。";
+            //都不能重复!!!
         } else { //允许修改
             //echo"可以修改";
-            $nowdata = '';
-            $sql = "select id From msc_user_hy where sys_yfzuid='$hy' and user_id <> $id";
+            $sql = "select id,SYS_GongHao From msc_user_hy where sys_yfzuid='$hy' and user_id <> $id";
             $rs = mysqli_query( $Connadmin, $sql );
             $row = mysqli_fetch_array( $rs );
+            $numNumber = mysqli_num_rows($rs);
             mysqli_free_result( $rs ); //释放内存
-            $SYS_GongHao_old = $row['SYS_GongHao'];
+            $SYS_GongHao_old = $numNumber ? $row['SYS_GongHao'] : false;
             if($SYS_GongHao_old != $SYS_GongHao){
                 if($SYS_GongHao_old){
                     $sql = "
@@ -62,26 +63,42 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
                     mysqli_multi_query( $Conn, $sql ); //执行修改
                 }
             }
-            $sql = "
-                UPDATE msc_user_hy 
-                SET 
-                    state = $state,
-                    SYS_GongHao = $SYS_GongHao,
-                    zhiwei_id = '$SYS_QuanXian'
-                WHERE user_id='$id';
+            if($id > 0){
+                $sql = "
+                    UPDATE msc_user_hy 
+                    SET 
+                        state = $state,
+                        SYS_GongHao = $SYS_GongHao,
+                        zhiwei_id = '$SYS_QuanXian'
+                    WHERE user_id='$id';
 
-                UPDATE msc_user_reg
-                SET 
-                    SYS_UserName = '$SYS_UserName',
-                    SYS_ShouJi = $SYS_ShouJi,
-                    SYS_XingBie = '$SYS_XingBie'
-                WHERE id='$id';
-            ";
-            // echo $sql;
-            //--------------------------------------以下为执行修改
-            mysqli_multi_query( $Connadmin, $sql ); //执行修改
-            // echo mysqli_error($Connadmin);
-            echo "修改成功！"; /*这里只能禁止修改*/
+                    UPDATE msc_user_reg
+                    SET 
+                        SYS_UserName = '$SYS_UserName',
+                        SYS_ShouJi = $SYS_ShouJi,
+                        SYS_XingBie = '$SYS_XingBie'
+                    WHERE id='$id';
+                ";
+                // echo $sql;
+                //--------------------------------------以下为执行修改
+                mysqli_multi_query( $Connadmin, $sql ); //执行修改
+                // echo mysqli_error($Connadmin);
+                echo "修改成功！"; /*这里只能禁止修改*/
+            }else{
+                $sql = "
+                    INSERT INTO msc_user_reg (SYS_UserName, SYS_ShouJi, SYS_XingBie)
+                    VALUES ('$SYS_UserName', $SYS_ShouJi, '$SYS_XingBie');
+                
+                    SET @last_user_reg_id = LAST_INSERT_ID();
+                
+                    INSERT INTO msc_user_hy (user_id, state, SYS_GongHao, zhiwei_id, sys_yfzuid)
+                    VALUES (@last_user_reg_id, $state, $SYS_GongHao, '$SYS_QuanXian', $hy);
+                ";
+                //--------------------------------------以下为执行修改
+                mysqli_multi_query( $Connadmin, $sql ); //执行修改
+                // echo mysqli_error($Connadmin);
+                echo "添加成功！"; /*这里只能禁止修改*/
+            }
         }
     }
     //echo $SYS_ShouJi;
@@ -113,14 +130,16 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
         $sys_adddate = $row[ 'sys_adddate' ]; //添加时间
 
         mysqli_free_result( $rs ); //释放内存
-
-        if(!$SYS_GongHao){
-            $sql="select max(SYS_GongHao) AS SYS_GongHao From msc_user_hy AS hy where sys_yfzuid = $hy";
-            $rs = mysqli_query( $Connadmin, $sql );
-            $row = mysqli_fetch_array( $rs );
-            $SYS_GongHao = $row[ 'SYS_GongHao' ] + 1; //工号
-            mysqli_free_result( $rs ); //释放内存
-        }
+    }else{
+        $SYS_UserName = $SYS_ShouJi = $SYS_QuanXian =  '';
+        $sys_web_shenpi = $SYS_GongHao = 0;
+    }
+    if(!$SYS_GongHao){
+        $sql="select max(SYS_GongHao) AS SYS_GongHao From msc_user_hy AS hy where sys_yfzuid = $hy";
+        $rs = mysqli_query( $Connadmin, $sql );
+        $row = mysqli_fetch_array( $rs );
+        $SYS_GongHao = $row[ 'SYS_GongHao' ] + 1; //工号
+        mysqli_free_result( $rs ); //释放内存
     }
     ?>
 <!DOCTYPE HTML>
@@ -137,9 +156,11 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
 </head>
 
 <body>
+
+    <?php echo $act; ?>
 <div id="wrapper">
     <div id="header"> <a href="<?php echo $phpstart ?>.php?id=<?php echo $id ?>" class="home"></a> <em class="eleft"><?php echo $textsname ?> 修改</em> <a href="M_right_menu.php" class="siteMap"></a> </div>
-    <form autocomplete='off' οnsubmit='return false' οnkeydοwn="if(event.keyCode==13){return false;}">
+    <form autocomplete='off' onsubmit='return false' onkeydown="if(event.keyCode==13){return false;}">
         <div id='mobanaddbox' class='NowULTable nocopytext' >
             <ul>
                 <li class='cols01'><font color='red' class='s_bt'>*</font>&nbsp;<font color='red'>[重]</font>&nbsp;工号:</li>
@@ -177,7 +198,7 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
 
                         $bumenlistStorage = array();
                         // $SYS_QuanXian_str = implode(',',$SYS_QuanXian_list);
-                        allPosition(0,$bumenlistStorage,0,'parent');
+                        allPosition(0,$bumenlistStorage,0,'parent',$SYS_QuanXian);
 
                         echo( '</select>' );
 
@@ -192,6 +213,9 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
                     <div class='cols03 font_red yanzheng' id='sys_web_shenpi_bitian'></div>
                 </li>
             </ul>
+            <?php
+                if($id > 0){
+            ?>
             <ul>
                 <li class='cols01'>注册时间:</li>
                 <li class='cols02'>&nbsp;<?php echo $sys_adddate ?></li>
@@ -208,7 +232,11 @@ if ( $act == 'edit_mobile' ) { //当接收到处理指令时
                 <li class='cols01'>登录次数:</li>
                 <li class='cols02'>&nbsp;<?php echo $SYS_ZD_DengLuCiShu ?></li>
             </ul>
-            <?php if ( getN( $sys_q_tianj, 256 ) >= 0 ) { //有添加权限时 ?>
+
+            <?php 
+                }
+                if ( getN( $sys_q_tianj, 256 ) >= 0 ) { //有添加权限时     
+            ?>
             <ul>
                 <li class='cols01'> &nbsp;</li>
                 <li class='cols02'>

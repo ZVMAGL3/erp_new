@@ -44,15 +44,15 @@ function menuA() {
     $Htmlcache = '';
     global $Conn, $Connadmin, $ToHtmlID, $zwid, $SYS_Company_id; //得到全局变量
     //=========================================================================权限及相关设置信息文件包含
-    include_once '../inc/B_const_chache.php';
+    include_once '../inc/B_sys_chache.php';
     //========================================================================= 生成动态文件内容
 
 
-    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($const_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
+    $bigmenuarry = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'Id_MenuBigClass', "id in($sys_q_cak) and sys_huis=0" ) ); //查询到实际大类菜单
     echo $bigmenuarry;
 
-    $const_menuaquanxian = "$const_q_cak,$const_q_tianj,$const_q_xiug,";
-    $const_menuaquanxian = QuChong( $const_menuaquanxian );
+    $sys_menuaquanxian = "$sys_q_cak,$sys_q_tianj,$sys_q_xiug,";
+    $sys_menuaquanxian = QuChong( $sys_menuaquanxian );
 
 
     $Htmlcache .= '<?php' . "\n";
@@ -74,7 +74,7 @@ function menuA() {
             $NOW_menubigid = $row[ 'id' ];
             $NOW_quanxian = QuChong( Tablecol_list_ToStrArry( 'sys_jlmb', 'id', "Id_MenuBigClass='$NOW_menubigid' and sys_huis=0" ) ); //查询到实际大类菜单
             //$NOW_quanxian = $row[ 'quanxian' ];
-            $NOW_quanxian = TWOarryy_find_chong( $NOW_quanxian, $const_menuaquanxian ); //得到交集
+            $NOW_quanxian = TWOarryy_find_chong( $NOW_quanxian, $sys_menuaquanxian ); //得到交集
             $i++;
             if ( $i < 10 )$i = '0' . $i;
             $nowval = $row[ 'sys_GuoChengMingChen' ];
@@ -92,9 +92,9 @@ function menuA() {
     };
     $Htmlcache .= "</div>\n";
 
-    //$nowloginxinxi=$reg_name.' > '.$const_q_zu.' > '.$SYS_UserName.'('.$bh.')';
+    //$nowloginxinxi=$reg_name.' > '.$sys_q_zu.' > '.$SYS_UserName.'('.$bh.')';
 
-    $Htmlcache .= "<div class='deskbottom'>&nbsp;&nbsp;" . '{$reg_name} > {$const_bumenname}({$const_q_zu}) > {$SYS_UserName}({$bh})' . "<a>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！</a><marquee width='1px'></marquee></div>\n";
+    $Htmlcache .= "<div class='deskbottom'>&nbsp;&nbsp;" . '{$reg_name} > {$bumen_name}({$sys_q_zu}) > {$SYS_UserName}({$bh})' . "<a>软件名：SQPAMS V1.0&nbsp;▪&nbsp;开发商：源引力检测认证有限公司 &nbsp;▪&nbsp; SQP使命：让优秀的企业更优秀*让世界贸易成为享受！</a><marquee width='1px'></marquee></div>\n";
     $Htmlcache .= "</div>\n<script>menuoverclickstyle('div.menudesk ul li.overli','overstyle','clickstyle');</script>\";\n";
     //echo $Htmlcache;
     $Htmlcache .= '?>';
@@ -107,21 +107,21 @@ function menuA() {
 
 //================================================================================================//菜单二级菜单
 function menuA_date( $nsquanxian ) {
-    global $const_jlbhzt, $Conn, $nowgsbh, $re_id, $const_q_tianj, $const_q_xiug, $const_q_shanc, $const_q_cak, $const_q_dayin, $const_q_huis, $const_q_smallmenu;
+    global $sys_jlbhzt, $Conn, $nowgsbh, $re_id, $sys_q_tianj, $sys_q_xiug, $sys_q_shanc, $sys_q_cak, $sys_q_dayin, $sys_q_huis, $sys_q_smallmenu;
     $rs2 = $sql2 = $nowrscount2 = $row2 = $ii = '';
     $sql2 = "select id,menuimg,banben,sys_card,startdate,xiugaicishu,datapage_list,mdb_name_SYS From sys_jlmb where sys_huis=0 and id in($nsquanxian) order by sys_card Asc";
     //echo $sql;
     $rs2 = mysqli_query( $Conn, $sql2 );
     //$nowrscount2=mysqli_num_rows($rs2);//统计数量 无用
 
-    $re_datapage_list = $re_SYS_ALL_ziduan_list = $re_mdb_name_SYS = $re_id = $nowgsbh2 = $const_jlbhzt2 = $ttusername = $ttbanben = $ttxiugaicishu = $ttbanci = $ttcard = $ttstartdate = $tt = $strdesk = '';
+    $re_datapage_list = $re_SYS_ALL_ziduan_list = $re_mdb_name_SYS = $re_id = $nowgsbh2 = $sys_jlbhzt2 = $ttusername = $ttbanben = $ttxiugaicishu = $ttbanci = $ttcard = $ttstartdate = $tt = $strdesk = '';
     while ( $row2 = mysqli_fetch_array( $rs2 ) ) {
 
         $re_datapage_list = $row2[ 'datapage_list' ];
         $re_mdb_name_SYS = $row2[ 'mdb_name_SYS' ]; //初始表
         $re_id = $row2[ 'id' ];
         if ( $nowgsbh != '' )$nowgsbh2 = $nowgsbh . '.';
-        if ( $const_jlbhzt <> '' )$const_jlbhzt2 = $const_jlbhzt . '-';
+        if ( $sys_jlbhzt <> '' )$sys_jlbhzt2 = $sys_jlbhzt . '-';
         $ttusername = $row2[ 'id' ] . '-';
         $ttbanben = $row2[ 'banben' ];
         if ( '1' . $ttbanben == '1' )$ttbanben = 'A';
@@ -133,7 +133,7 @@ function menuA_date( $nsquanxian ) {
         $ttstartdate = $row2[ 'startdate' ]; //条款
         if ( $ttstartdate <> '' )$ttstartdate = $ttstartdate;
         $tt = "";
-        //if ( $const_q_cak >= 0 or $const_q_tianj >= 0 or $const_q_xiug >= 0 or $const_q_shanc >= 0 or $const_q_dayin >= 0 or $const_q_huis >= 0 ) {
+        //if ( $sys_q_cak >= 0 or $sys_q_tianj >= 0 or $sys_q_xiug >= 0 or $sys_q_shanc >= 0 or $sys_q_dayin >= 0 or $sys_q_huis >= 0 ) {
         $nowcard = $row2[ 'sys_card' ];
         $nowmenuimg = $row2[ 'menuimg' ];
         //$nowclickhtml="alert('0')";

@@ -11,8 +11,8 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		    echo "<script>UpdatePhp_Zw($SYS_QuanXian);</script>";
 		}
 		include_once "{$_SERVER['PATH_TRANSLATED']}/inc/B_Conn.php";
-        global $strmk_id,$Conn,$const_q_tianj;
-		if ( $const_q_tianj >= 0 ) { //有修改权限时
+        global $strmk_id,$Conn,$sys_q_tianj;
+		if ( $sys_q_tianj >= 0 ) { //有修改权限时
 		
 		//--------------------------------------以下为查询到表的信息
 	    $sql = "select sys_zt,sys_zt_bianhao From `sys_jlmb` where sys_yfzuid='$hy' and mdb_name_SYS='SQP_ZongGuoChengQingDan' ";
@@ -46,18 +46,10 @@ include_once "{$_SERVER['PATH_TRANSLATED']}/inc/Sub_All.php";
 		$nowdata = date( 'Y-m-d H:i:s' );       //当前时间
 		
 		//--------------------------------------以下为得交数据
-		$sql = "insert into  `SQP_ZongGuoChengQingDan`  (,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,sys_id_bumen,sys_adddate) values (,'$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$const_id_fz','$const_id_bumen','$nowdata')";
+		$sql = "insert into  `SQP_ZongGuoChengQingDan`  (,sys_nowbh,sys_bh,sys_zt,sys_zt_bianhao,sys_huis,sys_id_login,sys_login,sys_yfzuid,sys_id_fz,bumen_id,sys_adddate) values (,'$nowbh','$bh_y','$r_zt','$r_zt_bianhao','0','$bh','$SYS_UserName','$hy','$sys_id_fz','$bumen_id','$nowdata')";
 		mysqli_query( $Conn,$sql );
 		echo "<script></script>";
-		//--------------------------------------以下为查询数据
-		$sql = "select id From `SQP_ZongGuoChengQingDan` where    order by `id` desc";
-	    //echo $sql;
-	    $rs = mysqli_query(  $Conn , $sql );
-	    if ( $rs ) {
-		   $row = mysqli_fetch_array( $rs );
-		   $nowid = $row[ 'id' ];
-	    };
-		mysqli_free_result( $rs ); //释放内存
+        $nowid = mysqli_insert_id($Conn);
         //--------------------------------------以下为操作记录提交
         $sys_editcontent='首次建档;';
         if($sys_editcontent!=''){
